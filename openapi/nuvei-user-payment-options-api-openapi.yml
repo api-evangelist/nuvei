@@ -1,0 +1,305 @@
+openapi: 3.0.3
+info:
+  title: Nuvei User Payment Options API
+  description: Manage stored payment instruments (User Payment Options / UPOs) — cards and APMs.
+  version: "1.0"
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com
+servers:
+- url: https://secure.safecharge.com/ppp/api/v1
+  description: Production
+- url: https://ppp-test.nuvei.com/ppp/api/v1
+  description: Sandbox
+tags:
+- name: User Payment Options
+paths:
+  /addUPOCreditCard.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Add Credit Card UPO
+      operationId: addUPOCreditCard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddUPOCardRequest"
+      responses:
+        "200":
+          description: UPO created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UPOResponse"
+  /addUPOAPM.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Add APM UPO
+      operationId: addUPOAPM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddUPOAPMRequest"
+      responses:
+        "200":
+          description: UPO created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UPOResponse"
+  /editUPOCreditCard.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Edit Credit Card UPO
+      operationId: editUPOCreditCard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditUPORequest"
+      responses:
+        "200":
+          description: UPO updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UPOResponse"
+  /editUPOAPM.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Edit APM UPO
+      operationId: editUPOAPM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditUPORequest"
+      responses:
+        "200":
+          description: UPO updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UPOResponse"
+  /deleteUPO.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Delete UPO
+      operationId: deleteUPO
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteUPORequest"
+      responses:
+        "200":
+          description: UPO deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UPOResponse"
+  /getUserUPOs.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Get User UPOs
+      operationId: getUserUPOs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GetUserUPOsRequest"
+      responses:
+        "200":
+          description: List of UPOs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUserUPOsResponse"
+  /enableUPO.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Enable UPO
+      operationId: enableUPO
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ToggleUPORequest"
+      responses:
+        "200":
+          description: UPO enabled
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UPOResponse"
+  /disableUPO.do:
+    post:
+      tags:
+      - User Payment Options
+      summary: Disable UPO
+      operationId: disableUPO
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ToggleUPORequest"
+      responses:
+        "200":
+          description: UPO disabled
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UPOResponse"
+components:
+  schemas:
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - userTokenId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        userTokenId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+    AddUPOCardRequest:
+      allOf:
+      - $ref: "#/components/schemas/MerchantAuth"
+      - type: object
+        properties:
+          ccCardNumber:
+            type: string
+          ccExpMonth:
+            type: string
+          ccExpYear:
+            type: string
+          ccNameOnCard:
+            type: string
+          billingAddress:
+            type: object
+    AddUPOAPMRequest:
+      allOf:
+      - $ref: "#/components/schemas/MerchantAuth"
+      - type: object
+        properties:
+          paymentMethodName:
+            type: string
+          apmData:
+            type: object
+            additionalProperties: true
+          billingAddress:
+            type: object
+    EditUPORequest:
+      allOf:
+      - $ref: "#/components/schemas/MerchantAuth"
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
+          ccExpMonth:
+            type: string
+          ccExpYear:
+            type: string
+          ccNameOnCard:
+            type: string
+          billingAddress:
+            type: object
+    DeleteUPORequest:
+      allOf:
+      - $ref: "#/components/schemas/MerchantAuth"
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
+    GetUserUPOsRequest:
+      allOf:
+      - $ref: "#/components/schemas/MerchantAuth"
+    ToggleUPORequest:
+      allOf:
+      - $ref: "#/components/schemas/MerchantAuth"
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
+    UPOResponse:
+      type: object
+      properties:
+        userPaymentOptionId:
+          type: string
+        status:
+          type: string
+          enum: [SUCCESS, ERROR]
+        errCode:
+          type: integer
+        reason:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        version:
+          type: string
+        clientRequestId:
+          type: string
+        internalRequestId:
+          type: integer
+    GetUserUPOsResponse:
+      type: object
+      properties:
+        paymentMethods:
+          type: array
+          items:
+            type: object
+            properties:
+              userPaymentOptionId:
+                type: string
+              upoName:
+                type: string
+              upoStatus:
+                type: string
+              upoRegistrationDate:
+                type: string
+              ccCardNumber:
+                type: string
+              ccExpMonth:
+                type: string
+              ccExpYear:
+                type: string
+              brand:
+                type: string
+              uniqueCC:
+                type: string
+              bin:
+                type: string
+              last4Digits:
+                type: string
+        status:
+          type: string
+          enum: [SUCCESS, ERROR]

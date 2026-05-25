@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nuvei Payouts API — Payouts
+  description: Push funds out via card, bank account, or local APMs. Includes accountCapture for
+    safe bank account collection.
+  tags:
+  - Nuvei
+  - Payouts
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    NUVEI_MERCHANT_ID: NUVEI_MERCHANT_ID
+    NUVEI_MERCHANT_SITE_ID: NUVEI_MERCHANT_SITE_ID
+    NUVEI_MERCHANT_SECRET_KEY: NUVEI_MERCHANT_SECRET_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: payouts-payouts
+    baseUri: https://secure.safecharge.com
+    resources:
+    - name: payout
+      path: /ppp/api/v1/payout.do
+      operations:
+      - name: payout
+        method: POST
+        description: Nuvei Create Payout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: accountCapture
+      path: /ppp/api/v1/accountCapture.do
+      operations:
+      - name: accountcapture
+        method: POST
+        description: Nuvei Account Capture
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: none
+  exposes:
+  - type: rest
+    namespace: payouts-payouts-rest
+    port: 8080
+    resources:
+    - path: /v1/payouts
+      name: payout
+      operations:
+      - method: POST
+        name: payout
+        call: payouts-payouts.payout
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account-capture
+      name: accountCapture
+      operations:
+      - method: POST
+        name: accountcapture
+        call: payouts-payouts.accountcapture
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: payouts-payouts-mcp
+    port: 9090
+    transport: http
+    tools:
+    - name: nuvei-create-payout
+      description: Nuvei Create Payout
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: payouts-payouts.payout
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: nuvei-account-capture
+      description: Nuvei Account Capture
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: payouts-payouts.accountcapture
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

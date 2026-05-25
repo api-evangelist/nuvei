@@ -1,0 +1,65 @@
+apiCommonsPlans: "0.1"
+provider:
+  id: nuvei
+  name: Nuvei
+  url: https://nuvei.com
+modified: "2026-05-24"
+description: |
+  Nuvei does not publish a public retail price card. Pricing is quoted per merchant based on
+  geography, vertical, processing volume, payment method mix, and risk profile. The structure
+  below documents the commercial dimensions that appear in Nuvei commercial agreements.
+plans:
+- id: custom-merchant
+  name: Custom Merchant Pricing
+  visibility: private
+  pricingModel: negotiated
+  description: |
+    Custom merchant agreement covering acquiring, APMs, payouts, FX, risk, and ancillary services.
+  dimensions:
+  - id: card-processing-fee
+    name: Card Processing Fee
+    unit: percent_of_volume
+    notes: Interchange++ or blended rate, depending on contract and region.
+  - id: card-processing-transaction-fee
+    name: Card Processing Per-Transaction Fee
+    unit: per_transaction
+    currency: USD
+  - id: apm-processing-fee
+    name: APM Processing Fee
+    unit: percent_of_volume
+    notes: Varies per APM; bank-transfer APMs typically have a flat-fee component.
+  - id: 3ds-fee
+    name: 3D Secure Authentication Fee
+    unit: per_authentication
+  - id: chargeback-fee
+    name: Chargeback Fee
+    unit: per_chargeback
+  - id: refund-fee
+    name: Refund Fee
+    unit: per_refund
+  - id: payout-fee
+    name: Payout Fee
+    unit: per_payout
+    notes: Differs by destination (card vs bank vs APM) and corridor.
+  - id: dcc-markup
+    name: DCC Markup Share
+    unit: percent_of_dcc_markup
+    notes: Merchant typically receives a share of the markup.
+  - id: fx-spread
+    name: FX Settlement Spread
+    unit: percent
+  - id: monthly-platform-fee
+    name: Monthly Platform Fee
+    unit: per_month
+    currency: USD
+  - id: minimum-monthly-fee
+    name: Minimum Monthly Fee
+    unit: per_month
+    currency: USD
+  - id: gateway-fee
+    name: Gateway Fee
+    unit: per_transaction
+    currency: USD
+contact:
+  url: https://nuvei.com/contact-sales/
+  notes: Pricing is provided through sales engagement; standard merchant onboarding required.

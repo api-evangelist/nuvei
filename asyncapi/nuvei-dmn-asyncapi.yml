@@ -1,0 +1,165 @@
+asyncapi: 2.6.0
+info:
+  title: Nuvei Direct Merchant Notifications (DMN)
+  version: "1.0"
+  description: |
+    Asynchronous webhook notifications delivered from Nuvei to a merchant-configured notificationUrl
+    when payments, payouts, refunds, voids, settles, or Control Panel events reach their final state.
+    Payment DMNs include an `advanceResponseChecksum` (SHA-256 over the merchantSecretKey followed
+    by an ordered concatenation of payload values). Withdrawal DMNs sign `name=value` pairs with the
+    secret appended.
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com/documentation/integration/webhooks/
+defaultContentType: application/x-www-form-urlencoded
+channels:
+  payment-dmn:
+    description: Payment notifications (deposit, sale, auth, settle, refund, void).
+    subscribe:
+      operationId: receivePaymentDmn
+      summary: Receive a payment DMN
+      message:
+        $ref: "#/components/messages/PaymentDmn"
+  withdrawal-dmn:
+    description: Withdrawal / payout notifications.
+    subscribe:
+      operationId: receiveWithdrawalDmn
+      summary: Receive a withdrawal DMN
+      message:
+        $ref: "#/components/messages/WithdrawalDmn"
+  control-panel-dmn:
+    description: Control Panel event notifications (e.g. chargeback alerts, settlement reports).
+    subscribe:
+      operationId: receiveControlPanelDmn
+      summary: Receive a Control Panel DMN
+      message:
+        $ref: "#/components/messages/ControlPanelDmn"
+components:
+  messages:
+    PaymentDmn:
+      name: PaymentDmn
+      title: Payment DMN
+      summary: Final state of a payment transaction.
+      headers:
+        type: object
+        properties:
+          advanceResponseChecksum:
+            type: string
+            description: SHA-256(merchantSecretKey + ordered concatenation of payload values).
+      payload:
+        $ref: "#/components/schemas/PaymentDmnPayload"
+    WithdrawalDmn:
+      name: WithdrawalDmn
+      title: Withdrawal DMN
+      payload:
+        $ref: "#/components/schemas/WithdrawalDmnPayload"
+    ControlPanelDmn:
+      name: ControlPanelDmn
+      title: Control Panel DMN
+      payload:
+        $ref: "#/components/schemas/ControlPanelDmnPayload"
+  schemas:
+    PaymentDmnPayload:
+      type: object
+      properties:
+        ppp_status:
+          type: string
+        Status:
+          type: string
+          enum: [APPROVED, DECLINED, CANCELED, ERROR, PENDING]
+        ExErrCode:
+          type: string
+        ErrCode:
+          type: string
+        PPP_TransactionID:
+          type: string
+        TransactionID:
+          type: string
+        ExternalTransactionId:
+          type: string
+        userid:
+          type: string
+        merchant_unique_id:
+          type: string
+        merchantLocked:
+          type: string
+        responseTimeStamp:
+          type: string
+        merchantSiteId:
+          type: string
+        merchant_site_id:
+          type: string
+        clientRequestId:
+          type: string
+        clientUniqueId:
+          type: string
+        client_unique_id:
+          type: string
+        productId:
+          type: string
+        totalAmount:
+          type: string
+        currency:
+          type: string
+        transactionType:
+          type: string
+        authCode:
+          type: string
+        AuthCode:
+          type: string
+        invoice_id:
+          type: string
+        upoRegistrationDate:
+          type: string
+        message:
+          type: string
+        userPaymentOptionId:
+          type: string
+        paymentMethod:
+          type: string
+        nameOnCard:
+          type: string
+        bin:
+          type: string
+        last4Digits:
+          type: string
+        cardType:
+          type: string
+        cardCompany:
+          type: string
+        countryCode:
+          type: string
+        threeDFlow:
+          type: string
+        advanceResponseChecksum:
+          type: string
+        responsechecksum:
+          type: string
+    WithdrawalDmnPayload:
+      type: object
+      properties:
+        Status:
+          type: string
+        PPP_TransactionID:
+          type: string
+        TransactionID:
+          type: string
+        userid:
+          type: string
+        merchant_unique_id:
+          type: string
+        Currency:
+          type: string
+        totalAmount:
+          type: string
+        responseTimeStamp:
+          type: string
+        AuthCode:
+          type: string
+        Reason:
+          type: string
+        responsechecksum:
+          type: string
+    ControlPanelDmnPayload:
+      type: object
+      additionalProperties: true

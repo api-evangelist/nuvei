@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nuvei/main/json-schema/nuvei-payment-schema.json",
+  "title": "NuveiPayment",
+  "description": "A Nuvei payment request payload.",
+  "type": "object",
+  "required": ["merchantId", "merchantSiteId", "amount", "currency", "timeStamp", "checksum"],
+  "properties": {
+    "merchantId": { "type": "string", "description": "Merchant identifier assigned by Nuvei." },
+    "merchantSiteId": { "type": "string", "description": "Site identifier for the merchant." },
+    "sessionToken": { "type": "string", "description": "Token returned by getSessionToken / openOrder." },
+    "clientUniqueId": { "type": "string", "description": "Idempotency key issued by the merchant." },
+    "clientRequestId": { "type": "string" },
+    "userTokenId": { "type": "string" },
+    "amount": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]{1,2})?$" },
+    "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "paymentOption": {
+      "type": "object",
+      "properties": {
+        "card": {
+          "type": "object",
+          "properties": {
+            "cardNumber": { "type": "string" },
+            "cardHolderName": { "type": "string" },
+            "expirationMonth": { "type": "string" },
+            "expirationYear": { "type": "string" },
+            "CVV": { "type": "string" }
+          }
+        },
+        "alternativePaymentMethod": { "type": "object" },
+        "userPaymentOptionId": { "type": "string" }
+      }
+    },
+    "billingAddress": { "$ref": "#/$defs/Address" },
+    "shippingAddress": { "$ref": "#/$defs/Address" },
+    "deviceDetails": {
+      "type": "object",
+      "properties": {
+        "ipAddress": { "type": "string" },
+        "deviceType": { "type": "string" },
+        "deviceName": { "type": "string" },
+        "deviceOS": { "type": "string" },
+        "browser": { "type": "string" }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "price": { "type": "string" },
+          "quantity": { "type": "integer" }
+        }
+      }
+    },
+    "urlDetails": {
+      "type": "object",
+      "properties": {
+        "successUrl": { "type": "string", "format": "uri" },
+        "failureUrl": { "type": "string", "format": "uri" },
+        "pendingUrl": { "type": "string", "format": "uri" },
+        "notificationUrl": { "type": "string", "format": "uri" }
+      }
+    },
+    "isRebilling": { "type": "integer", "enum": [0, 1] },
+    "timeStamp": { "type": "string" },
+    "checksum": { "type": "string", "description": "SHA-256 over the ordered concatenation of fields plus the merchantSecretKey." }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "zip": { "type": "string" },
+        "country": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" }
+      }
+    }
+  }
+}

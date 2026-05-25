@@ -1,0 +1,86 @@
+name: Nuvei Vocabulary
+description: Domain vocabulary mapping Nuvei API and operational concepts.
+version: "1.0"
+modified: "2026-05-24"
+concepts:
+- term: Merchant
+  definition: A business entity provisioned with Nuvei credentials (merchantId).
+- term: Merchant Site
+  definition: A site / channel under a merchant identified by merchantSiteId.
+- term: Merchant Secret Key
+  definition: Secret used as the final segment of SHA-256 checksums signing requests and DMNs.
+- term: Session Token
+  definition: Short-lived token returned by getSessionToken / openOrder.
+- term: Open Order
+  definition: First step of a checkout that authenticates the merchant and registers an order.
+- term: Payment
+  definition: An end-to-end card or APM transaction.
+- term: Authorization
+  definition: A reservation of funds that will be captured by a later Settle.
+- term: Settle
+  definition: Capture of a previously authorized amount in full or in part.
+- term: Void
+  definition: Cancellation of a transaction before transmission to the scheme.
+- term: Refund
+  definition: Return of funds against a previously settled transaction.
+- term: Payout
+  definition: Push of funds from the merchant to a consumer / counterparty.
+- term: User Payment Option (UPO)
+  definition: A stored payment instrument (card or APM) tied to a userTokenId.
+- term: APM
+  definition: Alternative Payment Method (digital wallets, BNPL, bank transfers, vouchers, etc.).
+- term: 3DS
+  definition: 3-D Secure 2 authentication for PSD2 SCA compliance.
+- term: DCC
+  definition: Dynamic Currency Conversion at point of sale.
+- term: DMN
+  definition: Direct Merchant Notification — Nuvei's server-to-server webhook.
+- term: advanceResponseChecksum
+  definition: SHA-256 signature included with payment DMNs.
+- term: Local Acquiring
+  definition: Settlement via a local scheme/processor in the cardholder's country.
+- term: Smart Routing
+  definition: Optimization layer that dynamically routes transactions across acquirers.
+- term: Cashier
+  definition: Hosted deposit/withdrawal UX targeted at iGaming and regulated verticals.
+- term: Simply Connect
+  definition: Drop-in JS integration that orchestrates Web SDK calls.
+operations:
+- name: openOrder
+  description: Set up an order and obtain a sessionToken.
+- name: updateOrder
+  description: Modify an in-flight order's amount / items.
+- name: getSessionToken
+  description: Issue a sessionToken for subsequent operations.
+- name: payment
+  description: End-to-end PCI payment.
+- name: settleTransaction
+  description: Capture an authorization.
+- name: voidTransaction
+  description: Cancel a transaction prior to transmission.
+- name: refundTransaction
+  description: Refund a settled transaction.
+- name: payout
+  description: Send funds out.
+- name: accountCapture
+  description: Securely collect destination bank details for a payout.
+- name: getMerchantCountries
+  description: List supported countries for the merchant.
+- name: getMerchantPaymentMethods
+  description: List enabled payment methods per country.
+- name: addUPOCreditCard
+  description: Tokenize and store a card UPO.
+- name: addUPOAPM
+  description: Store an APM UPO.
+- name: deleteUPO
+  description: Remove a UPO.
+- name: getUserUPOs
+  description: List UPOs for a userTokenId.
+- name: getCard3DDetails
+  description: Inspect 3DS-relevant card metadata.
+- name: authenticate3d
+  description: Run 3DS-only authentication.
+- name: getDccDetails
+  description: Quote a DCC conversion.
+- name: getPaymentStatus
+  description: Final-state lookup for a payment.

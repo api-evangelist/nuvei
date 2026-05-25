@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-structure.org/draft/2025/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nuvei/main/json-structure/nuvei-payment-structure.json",
+  "name": "NuveiPaymentStructure",
+  "description": "Logical structure of a Nuvei payment, suitable for documentation and code generation.",
+  "type": "structure",
+  "properties": {
+    "merchant": {
+      "type": "structure",
+      "properties": {
+        "merchantId": { "type": "string", "required": true },
+        "merchantSiteId": { "type": "string", "required": true }
+      }
+    },
+    "session": {
+      "type": "structure",
+      "properties": {
+        "sessionToken": { "type": "string" },
+        "clientRequestId": { "type": "string" },
+        "clientUniqueId": { "type": "string" }
+      }
+    },
+    "amount": {
+      "type": "structure",
+      "properties": {
+        "amount": { "type": "string", "required": true },
+        "currency": { "type": "string", "required": true }
+      }
+    },
+    "paymentOption": {
+      "type": "structure",
+      "discriminator": "kind",
+      "variants": {
+        "card": {
+          "properties": {
+            "cardNumber": { "type": "string" },
+            "cardHolderName": { "type": "string" },
+            "expirationMonth": { "type": "string" },
+            "expirationYear": { "type": "string" },
+            "CVV": { "type": "string" }
+          }
+        },
+        "alternativePaymentMethod": {
+          "properties": {
+            "paymentMethod": { "type": "string" },
+            "data": { "type": "object" }
+          }
+        },
+        "userPaymentOption": {
+          "properties": {
+            "userPaymentOptionId": { "type": "string", "required": true }
+          }
+        }
+      }
+    },
+    "billingAddress": { "$ref": "#/$defs/Address" },
+    "shippingAddress": { "$ref": "#/$defs/Address" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "structure",
+        "properties": {
+          "name": { "type": "string", "required": true },
+          "price": { "type": "string", "required": true },
+          "quantity": { "type": "integer", "required": true }
+        }
+      }
+    },
+    "urlDetails": {
+      "type": "structure",
+      "properties": {
+        "successUrl": { "type": "string" },
+        "failureUrl": { "type": "string" },
+        "pendingUrl": { "type": "string" },
+        "notificationUrl": { "type": "string" }
+      }
+    },
+    "checksum": {
+      "type": "structure",
+      "properties": {
+        "timeStamp": { "type": "string", "required": true },
+        "checksum": { "type": "string", "required": true, "algorithm": "SHA-256" }
+      }
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "structure",
+      "properties": {
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "zip": { "type": "string" },
+        "country": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" }
+      }
+    }
+  }
+}

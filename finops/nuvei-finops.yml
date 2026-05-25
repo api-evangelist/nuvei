@@ -1,0 +1,89 @@
+finopsFramework: "2025.1"
+focus: "1.1"
+provider:
+  id: nuvei
+  name: Nuvei
+  url: https://nuvei.com
+modified: "2026-05-24"
+description: |
+  FinOps mapping of the Nuvei commercial surface. Nuvei is a payments processor, so the cost
+  surface is dominated by interchange, scheme assessment, gateway fees, and acquirer margin; it is
+  primarily processing-volume and per-transaction billable, not consumption-of-compute. The FOCUS
+  columns below describe how Nuvei invoice lines map into a FinOps dataset.
+serviceCategory: Payments
+serviceSubCategory: Payment Processing
+billingFrequency: Monthly
+charges:
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: Card Processing
+  description: Acquiring volume processed (Interchange++ or blended).
+  unit: percent_of_volume
+  pricingUnit: USD_per_USD_volume
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: Per-Transaction Fee
+  description: Flat fee per processed authorization/sale.
+  unit: per_transaction
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: APM Processing
+  description: Volume processed via alternative payment methods.
+  unit: percent_or_flat
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: 3D Secure
+  description: Per-authentication fee for 3DS calls.
+  unit: per_authentication
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: Refund
+  description: Per-refund operational fee.
+  unit: per_refund
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: Chargeback
+  description: Per-chargeback fee plus optional defense/representment fee.
+  unit: per_chargeback
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: Payout
+  description: Per-payout fee differing by destination and corridor.
+  unit: per_payout
+- chargeCategory: Adjustment
+  chargeClass: Credit
+  chargeSubcategory: DCC Markup Share
+  description: Merchant share of FX markup on DCC transactions.
+  unit: percent_of_markup
+- chargeCategory: Usage
+  chargeClass: Standard
+  chargeSubcategory: FX Settlement Spread
+  description: Spread applied at multi-currency settlement.
+  unit: percent
+- chargeCategory: Subscription
+  chargeClass: Committed
+  chargeSubcategory: Platform Fee
+  description: Recurring monthly platform fee.
+  unit: per_month
+- chargeCategory: Subscription
+  chargeClass: Committed
+  chargeSubcategory: Minimum Monthly Fee
+  description: Floor charged when usage fees are below the minimum.
+  unit: per_month
+focusColumns:
+  ServiceName: Nuvei Payments
+  ProviderName: Nuvei
+  PublisherName: Nuvei
+  InvoiceIssuerName: Nuvei
+  ChargeFrequency: Monthly
+  PricingUnit: per_transaction|percent_of_volume|per_month
+  Region: Global (52 acquiring markets, 200+ APM markets)
+  CommitmentDiscountStatus: Negotiated
+  BillingCurrency: USD|EUR|GBP|CAD|Other (per contract)
+notes:
+- Volumes and rates are governed by the merchant agreement and are not published as a public rate
+  card.
+- Many merchant agreements include settlement currency choice; reconciliation accounts for FX
+  spreads at the settlement step.
+- Chargeback and risk fees are operationally significant cost lines for high-risk verticals
+  (iGaming, travel).

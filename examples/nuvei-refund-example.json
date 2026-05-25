@@ -1,0 +1,24 @@
+{
+  "request": {
+    "merchantId": "1234567890",
+    "merchantSiteId": "987654",
+    "clientRequestId": "REQ-2026-05-24-0003",
+    "clientUniqueId": "REFUND-INV-100123",
+    "amount": "49.99",
+    "currency": "USD",
+    "relatedTransactionId": "711000000019876543",
+    "authCode": "111111",
+    "comment": "Customer requested refund - duplicate charge.",
+    "timeStamp": "20260524130200",
+    "checksum": "a18bf3c52e0d...redacted...001"
+  },
+  "response": {
+    "transactionId": "711000000019999000",
+    "externalTransactionId": "",
+    "transactionStatus": "APPROVED",
+    "status": "SUCCESS",
+    "authCode": "111111",
+    "gwErrorCode": 0,
+    "gwErrorReason": ""
+  }
+}

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nuvei Session API — Sessions
+  description: Authenticate merchant credentials and issue a sessionToken.
+  tags:
+  - Nuvei
+  - Sessions
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    NUVEI_MERCHANT_ID: NUVEI_MERCHANT_ID
+    NUVEI_MERCHANT_SITE_ID: NUVEI_MERCHANT_SITE_ID
+    NUVEI_MERCHANT_SECRET_KEY: NUVEI_MERCHANT_SECRET_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: session-sessions
+    baseUri: https://secure.safecharge.com
+    resources:
+    - name: getSessionToken
+      path: /ppp/api/v1/getSessionToken.do
+      operations:
+      - name: getsessiontoken
+        method: POST
+        description: Nuvei Get Session Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: none
+  exposes:
+  - type: rest
+    namespace: session-sessions-rest
+    port: 8080
+    resources:
+    - path: /v1/session-token
+      name: getSessionToken
+      operations:
+      - method: POST
+        name: getsessiontoken
+        call: session-sessions.getsessiontoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: session-sessions-mcp
+    port: 9090
+    transport: http
+    tools:
+    - name: nuvei-get-session-token
+      description: Nuvei Get Session Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: session-sessions.getsessiontoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

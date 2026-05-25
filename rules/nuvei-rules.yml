@@ -1,0 +1,49 @@
+extends: [[spectral:oas, all]]
+functions: []
+rules:
+  nuvei-operation-id-camelCase:
+    description: Operation IDs in Nuvei specs use camelCase mirroring the .do endpoint name.
+    severity: warn
+    given: $.paths.*.*.operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+  nuvei-paths-do-suffix:
+    description: Nuvei REST paths end with .do.
+    severity: warn
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: ".*\\.do$"
+  nuvei-tag-required:
+    description: Every operation must declare a tag.
+    severity: error
+    given: $.paths.*.*
+    then:
+      field: tags
+      function: truthy
+  nuvei-summary-title-case:
+    description: Operation summaries use Title Case.
+    severity: warn
+    given: $.paths.*.*.summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(?:[A-Z0-9][A-Za-z0-9]*)(?: (?:[A-Z0-9][A-Za-z0-9]*|[a-z]{1,3}))*$"
+  nuvei-server-https:
+    description: All servers must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  nuvei-checksum-required:
+    description: Request bodies should reference a checksum-bearing schema.
+    severity: info
+    given: $.paths.*.post.requestBody.content.application/json.schema
+    then:
+      function: truthy

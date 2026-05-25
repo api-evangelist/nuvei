@@ -1,0 +1,46 @@
+apiCommonsRateLimits: "0.1"
+provider:
+  id: nuvei
+  name: Nuvei
+  url: https://docs.nuvei.com
+modified: "2026-05-24"
+description: |
+  Nuvei does not publish a single uniform rate-limit table. Production limits are tuned per
+  merchant based on contracted volume and risk. The dimensions below capture the limit categories
+  that Nuvei applies in practice.
+policies:
+- id: per-merchant-tps
+  name: Per Merchant Transactions Per Second
+  description: Sustained ceiling on /payment.do, /openOrder.do, /settleTransaction.do, etc. set at
+    onboarding and reviewed against contracted volume.
+  scope: merchantId
+  metric: requests_per_second
+  default: negotiated
+- id: per-site-tps
+  name: Per Merchant Site Transactions Per Second
+  scope: merchantSiteId
+  metric: requests_per_second
+  default: negotiated
+- id: dmn-retry-policy
+  name: DMN Retry Policy
+  description: Nuvei retries DMN delivery with exponential back-off until a 200 OK is received from
+    the merchant notificationUrl. Persistent failure escalates to alerting.
+  scope: merchant
+  metric: retry_count
+  default: managed
+- id: control-panel-api
+  name: Control Panel API Limits
+  description: Reporting and admin endpoints expose a separate, lower throughput envelope than the
+    transaction APIs.
+  scope: merchantId
+  metric: requests_per_minute
+  default: 60
+- id: sandbox-throttling
+  name: Sandbox Throttling
+  description: Sandbox environment (ppp-test.nuvei.com) is shared and may apply soft caps to
+    prevent abuse.
+  scope: environment
+  metric: requests_per_second
+  default: soft
+contact:
+  url: https://docs.nuvei.com

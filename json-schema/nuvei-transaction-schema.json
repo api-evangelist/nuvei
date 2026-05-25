@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nuvei/main/json-schema/nuvei-transaction-schema.json",
+  "title": "NuveiTransaction",
+  "description": "A Nuvei transaction (payment, settle, void, refund, payout) response.",
+  "type": "object",
+  "properties": {
+    "transactionId": { "type": "string" },
+    "externalTransactionId": { "type": "string" },
+    "transactionStatus": {
+      "type": "string",
+      "enum": ["APPROVED", "DECLINED", "ERROR", "REDIRECT", "PENDING"]
+    },
+    "transactionType": {
+      "type": "string",
+      "enum": ["Sale", "Auth", "Settle", "Void", "Credit", "Payout", "InitAuth3D", "Auth3D"]
+    },
+    "status": { "type": "string", "enum": ["SUCCESS", "ERROR"] },
+    "amount": { "type": "string" },
+    "currency": { "type": "string" },
+    "authCode": { "type": "string" },
+    "relatedTransactionId": { "type": "string" },
+    "gwErrorCode": { "type": "integer" },
+    "gwErrorReason": { "type": "string" },
+    "gwExtendedErrorCode": { "type": "integer" },
+    "errCode": { "type": "integer" },
+    "reason": { "type": "string" },
+    "merchantId": { "type": "string" },
+    "merchantSiteId": { "type": "string" },
+    "clientUniqueId": { "type": "string" },
+    "clientRequestId": { "type": "string" },
+    "userPaymentOption": {
+      "type": "object",
+      "properties": {
+        "userPaymentOptionId": { "type": "string" },
+        "card": {
+          "type": "object",
+          "properties": {
+            "bin": { "type": "string" },
+            "last4Digits": { "type": "string" },
+            "ccCardNumber": { "type": "string" },
+            "brand": { "type": "string" },
+            "ccExpMonth": { "type": "string" },
+            "ccExpYear": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "required": ["transactionId", "transactionStatus", "status"]
+}

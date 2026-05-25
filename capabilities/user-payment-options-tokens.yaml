@@ -1,0 +1,190 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nuvei UPO API — Tokens
+  description: Manage stored payment instruments (User Payment Options) for cards and APMs.
+  tags:
+  - Nuvei
+  - Tokens
+  - User Payment Options
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    NUVEI_MERCHANT_ID: NUVEI_MERCHANT_ID
+    NUVEI_MERCHANT_SITE_ID: NUVEI_MERCHANT_SITE_ID
+    NUVEI_MERCHANT_SECRET_KEY: NUVEI_MERCHANT_SECRET_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-payment-options
+    baseUri: https://secure.safecharge.com
+    resources:
+    - name: addUPOCreditCard
+      path: /ppp/api/v1/addUPOCreditCard.do
+      operations:
+      - name: addupocreditcard
+        method: POST
+        description: Nuvei Add UPO Credit Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: addUPOAPM
+      path: /ppp/api/v1/addUPOAPM.do
+      operations:
+      - name: addupoapm
+        method: POST
+        description: Nuvei Add UPO APM
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: deleteUPO
+      path: /ppp/api/v1/deleteUPO.do
+      operations:
+      - name: deleteupo
+        method: POST
+        description: Nuvei Delete UPO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: getUserUPOs
+      path: /ppp/api/v1/getUserUPOs.do
+      operations:
+      - name: getuserupos
+        method: POST
+        description: Nuvei Get User UPOs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: none
+  exposes:
+  - type: rest
+    namespace: user-payment-options-rest
+    port: 8080
+    resources:
+    - path: /v1/upos/cards
+      name: addUPOCreditCard
+      operations:
+      - method: POST
+        name: addupocreditcard
+        call: user-payment-options.addupocreditcard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/upos/apms
+      name: addUPOAPM
+      operations:
+      - method: POST
+        name: addupoapm
+        call: user-payment-options.addupoapm
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/upos/delete
+      name: deleteUPO
+      operations:
+      - method: POST
+        name: deleteupo
+        call: user-payment-options.deleteupo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/upos/list
+      name: getUserUPOs
+      operations:
+      - method: POST
+        name: getuserupos
+        call: user-payment-options.getuserupos
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-payment-options-mcp
+    port: 9090
+    transport: http
+    tools:
+    - name: nuvei-add-upo-credit-card
+      description: Nuvei Add UPO Credit Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-payment-options.addupocreditcard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: nuvei-add-upo-apm
+      description: Nuvei Add UPO APM
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-payment-options.addupoapm
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: nuvei-delete-upo
+      description: Nuvei Delete UPO
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user-payment-options.deleteupo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: nuvei-get-user-upos
+      description: Nuvei Get User UPOs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-payment-options.getuserupos
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

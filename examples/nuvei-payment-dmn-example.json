@@ -1,0 +1,37 @@
+{
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  "body": {
+    "ppp_status": "OK",
+    "Status": "APPROVED",
+    "ExErrCode": "0",
+    "ErrCode": "0",
+    "PPP_TransactionID": "412345678",
+    "TransactionID": "711000000019876543",
+    "userid": "user_98765",
+    "merchant_unique_id": "ORDER-INV-100123",
+    "merchantLocked": "0",
+    "responseTimeStamp": "2026-05-24.12:31:05",
+    "merchantSiteId": "987654",
+    "merchant_site_id": "987654",
+    "clientUniqueId": "ORDER-INV-100123",
+    "productId": "Pro Subscription - Monthly",
+    "totalAmount": "49.99",
+    "currency": "USD",
+    "transactionType": "Sale",
+    "authCode": "111111",
+    "AuthCode": "111111",
+    "userPaymentOptionId": "70123456",
+    "paymentMethod": "cc_card",
+    "nameOnCard": "Alex Doe",
+    "bin": "411111",
+    "last4Digits": "1111",
+    "cardType": "Credit",
+    "cardCompany": "VISA",
+    "countryCode": "US",
+    "threeDFlow": "0",
+    "advanceResponseChecksum": "be71...sha256...e0c",
+    "responsechecksum": "ac02...sha256...11f"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "request": {
+    "sessionToken": "5d2c19f0-3a90-4f4f-8c1e-4d4a8c3b9c11",
+    "merchantId": "1234567890",
+    "merchantSiteId": "987654",
+    "clientRequestId": "REQ-2026-05-24-0002",
+    "clientUniqueId": "ORDER-INV-100123",
+    "amount": "49.99",
+    "currency": "USD",
+    "userTokenId": "user_98765",
+    "paymentOption": {
+      "card": {
+        "cardNumber": "4111111111111111",
+        "cardHolderName": "Alex Doe",
+        "expirationMonth": "12",
+        "expirationYear": "2030",
+        "CVV": "123"
+      }
+    },
+    "billingAddress": {
+      "firstName": "Alex",
+      "lastName": "Doe",
+      "address": "1 Market St",
+      "city": "San Francisco",
+      "zip": "94105",
+      "country": "US",
+      "email": "alex@example.com"
+    },
+    "deviceDetails": {
+      "ipAddress": "203.0.113.10"
+    },
+    "timeStamp": "20260524123100",
+    "checksum": "9c1d3e0a55b9...redacted...7af"
+  },
+  "response": {
+    "orderId": "412345678",
+    "userTokenId": "user_98765",
+    "paymentOption": {
+      "userPaymentOptionId": "70123456",
+      "card": {
+        "ccCardNumber": "4****1111",
+        "bin": "411111",
+        "last4Digits": "1111",
+        "ccExpMonth": "12",
+        "ccExpYear": "2030",
+        "brand": "VISA",
+        "uniqueCC": "ABCDEF==",
+        "threeD": {}
+      }
+    },
+    "transactionStatus": "APPROVED",
+    "transactionId": "711000000019876543",
+    "externalTransactionId": "",
+    "authCode": "111111",
+    "status": "SUCCESS",
+    "merchantId": "1234567890",
+    "merchantSiteId": "987654",
+    "internalRequestId": 1789456400,
+    "version": "1.0",
+    "clientUniqueId": "ORDER-INV-100123",
+    "clientRequestId": "REQ-2026-05-24-0002"
+  }
+}

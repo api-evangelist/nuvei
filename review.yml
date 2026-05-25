@@ -1,0 +1,35 @@
+provider:
+  id: nuvei
+  name: Nuvei
+  url: https://nuvei.com
+  type: company
+reviewer: Kin Lane
+reviewedAt: "2026-05-24"
+tier: 1
+summary: |
+  Nuvei is a tier-1 global payments processor with a coherent server-to-server REST API surface
+  (openOrder / payment / settle / void / refund / payout / UPOs / 3DS / DCC), a polished Web SDK,
+  native iOS and Android SDKs, and a deep eCommerce plugin catalog spanning Magento, WooCommerce,
+  PrestaShop, OpenCart, Shopware, Salesforce Commerce Cloud, SAP Commerce, and commercetools.
+  Asynchronous integration is well-defined via Direct Merchant Notifications (DMN) with SHA-256
+  signing. Public price card is absent; commercial terms are negotiated. Sandbox is publicly
+  reachable at ppp-test.nuvei.com.
+strengths:
+- Single integration covers 700+ APMs and 150+ currencies across 200+ markets.
+- Local acquiring in 52 markets meaningfully improves approval rates and interchange.
+- Modern Web SDK + Simply Connect + Payment Page covers all PCI postures.
+- Comprehensive eCommerce plugin coverage (10+ first-party plugins).
+- DMN webhook system is signed (advanceResponseChecksum), retried, and well-documented.
+- iGaming-grade cashier UX and payouts via card and bank rails.
+gaps:
+- No publicly published OpenAPI artifact; this profile reconstructs the surface from docs and SDKs.
+- No public price card; pricing requires sales engagement.
+- API uses .do-suffix POST-only endpoints with checksum auth rather than a more modern OAuth2 +
+  RESTful resource model.
+- Rate limits are negotiated and not surfaced as published headers or policy docs.
+- Some legacy SafeCharge naming (e.g. secure.safecharge.com host) still present in the brand and
+  endpoints post-rebrand.
+nextSteps:
+- Pull canonical OpenAPI from docs.nuvei.com if/when Nuvei publishes a machine-readable spec.
+- Refresh DMN AsyncAPI once Nuvei expands the public event catalog (Control Panel events).
+- Track post-Advent product roadmap and any consolidation of payouts / BaaS surfaces.

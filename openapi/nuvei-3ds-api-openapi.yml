@@ -1,0 +1,145 @@
+openapi: 3.0.3
+info:
+  title: Nuvei 3DS API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: "1.0"
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com
+servers:
+- url: https://secure.safecharge.com/ppp/api/v1
+  description: Production
+- url: https://ppp-test.nuvei.com/ppp/api/v1
+  description: Sandbox
+tags:
+- name: 3DS
+paths:
+  /getCard3DDetails.do:
+    post:
+      tags:
+      - 3DS
+      summary: Get Card 3DS Details
+      operationId: getCard3DDetails
+      description: Returns 3DS-relevant info for a card (DS, version, challenge requirements) so
+        the merchant can decide whether to proceed with a frictionless or challenge flow.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Card3DRequest"
+      responses:
+        "200":
+          description: 3DS details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Card3DResponse"
+  /authenticate3d.do:
+    post:
+      tags:
+      - 3DS
+      summary: Authenticate 3D
+      operationId: authenticate3d
+      description: Performs the 3DS-only authentication (without authorization) and returns CAVV
+        and ECI values for use in a downstream payment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Authenticate3DRequest"
+      responses:
+        "200":
+          description: Authentication result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Authenticate3DResponse"
+components:
+  schemas:
+    Card3DRequest:
+      type: object
+      required:
+      - sessionToken
+      - merchantId
+      - merchantSiteId
+      properties:
+        sessionToken:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        cardNumber:
+          type: string
+        userPaymentOptionId:
+          type: string
+    Card3DResponse:
+      type: object
+      properties:
+        ccTempToken:
+          type: string
+        bin:
+          type: string
+        last4Digits:
+          type: string
+        ccCardNumber:
+          type: string
+        brand:
+          type: string
+        issuerBankName:
+          type: string
+        threeDDetails:
+          type: object
+          additionalProperties: true
+        status:
+          type: string
+    Authenticate3DRequest:
+      type: object
+      required:
+      - sessionToken
+      - merchantId
+      - merchantSiteId
+      - amount
+      - currency
+      properties:
+        sessionToken:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        paymentOption:
+          type: object
+        billingAddress:
+          type: object
+        deviceDetails:
+          type: object
+    Authenticate3DResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        threeDResult:
+          type: string
+        cavv:
+          type: string
+        eci:
+          type: string
+        version:
+          type: string
+        dsTransID:
+          type: string
+        acsTransID:
+          type: string
+        status:
+          type: string

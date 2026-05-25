@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: Nuvei DCC API
+  description: Dynamic Currency Conversion. Compute a converted amount and markup rate for a card
+    BIN against a target currency.
+  version: "1.0"
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com
+servers:
+- url: https://secure.safecharge.com/ppp/api/v1
+  description: Production
+- url: https://ppp-test.nuvei.com/ppp/api/v1
+  description: Sandbox
+tags:
+- name: DCC
+paths:
+  /getDccDetails.do:
+    post:
+      tags:
+      - DCC
+      summary: Get DCC Details
+      operationId: getDccDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DccRequest"
+      responses:
+        "200":
+          description: DCC quote
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DccResponse"
+components:
+  schemas:
+    DccRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - amount
+      - currency
+      - timeStamp
+      - checksum
+      properties:
+        sessionToken:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        bin:
+          type: string
+        originalCurrency:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+    DccResponse:
+      type: object
+      properties:
+        dccDetails:
+          type: object
+          properties:
+            originalAmount:
+              type: string
+            originalCurrency:
+              type: string
+            convertedAmount:
+              type: string
+            convertedCurrency:
+              type: string
+            exchangeRate:
+              type: string
+            markup:
+              type: string
+            expireTime:
+              type: string
+        status:
+          type: string
+        errCode:
+          type: integer
+        reason:
+          type: string

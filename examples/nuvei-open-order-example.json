@@ -1,0 +1,49 @@
+{
+  "request": {
+    "merchantId": "1234567890",
+    "merchantSiteId": "987654",
+    "clientRequestId": "REQ-2026-05-24-0001",
+    "clientUniqueId": "ORDER-INV-100123",
+    "currency": "USD",
+    "amount": "49.99",
+    "userTokenId": "user_98765",
+    "items": [
+      { "name": "Pro Subscription - Monthly", "price": "49.99", "quantity": 1 }
+    ],
+    "billingAddress": {
+      "firstName": "Alex",
+      "lastName": "Doe",
+      "address": "1 Market St",
+      "city": "San Francisco",
+      "zip": "94105",
+      "country": "US",
+      "email": "alex@example.com",
+      "phone": "+14155550123"
+    },
+    "deviceDetails": {
+      "ipAddress": "203.0.113.10",
+      "deviceType": "DESKTOP",
+      "browser": "Chrome 124.0"
+    },
+    "urlDetails": {
+      "successUrl": "https://merchant.example.com/checkout/success",
+      "failureUrl": "https://merchant.example.com/checkout/failure",
+      "notificationUrl": "https://merchant.example.com/webhooks/nuvei"
+    },
+    "timeStamp": "20260524123045",
+    "checksum": "f2b8a4c0e9d1...redacted...3b6"
+  },
+  "response": {
+    "orderId": "412345678",
+    "sessionToken": "5d2c19f0-3a90-4f4f-8c1e-4d4a8c3b9c11",
+    "clientRequestId": "REQ-2026-05-24-0001",
+    "internalRequestId": 1789456321,
+    "status": "SUCCESS",
+    "errCode": 0,
+    "reason": "",
+    "merchantId": "1234567890",
+    "merchantSiteId": "987654",
+    "version": "1.0",
+    "userTokenId": "user_98765"
+  }
+}

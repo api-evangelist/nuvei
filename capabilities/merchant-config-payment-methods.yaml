@@ -1,0 +1,111 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nuvei Merchant Config API — Payment Methods
+  description: Retrieve supported countries and dynamic payment-method catalogs for a merchant.
+  tags:
+  - Nuvei
+  - Configuration
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    NUVEI_MERCHANT_ID: NUVEI_MERCHANT_ID
+    NUVEI_MERCHANT_SITE_ID: NUVEI_MERCHANT_SITE_ID
+    NUVEI_MERCHANT_SECRET_KEY: NUVEI_MERCHANT_SECRET_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: merchant-config
+    baseUri: https://secure.safecharge.com
+    resources:
+    - name: getMerchantCountries
+      path: /ppp/api/v1/getMerchantCountries.do
+      operations:
+      - name: getmerchantcountries
+        method: POST
+        description: Nuvei Get Merchant Countries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: getMerchantPaymentMethods
+      path: /ppp/api/v1/getMerchantPaymentMethods.do
+      operations:
+      - name: getmerchantpaymentmethods
+        method: POST
+        description: Nuvei Get Merchant Payment Methods
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: none
+  exposes:
+  - type: rest
+    namespace: merchant-config-rest
+    port: 8080
+    resources:
+    - path: /v1/merchant/countries
+      name: getMerchantCountries
+      operations:
+      - method: POST
+        name: getmerchantcountries
+        call: merchant-config.getmerchantcountries
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/merchant/payment-methods
+      name: getMerchantPaymentMethods
+      operations:
+      - method: POST
+        name: getmerchantpaymentmethods
+        call: merchant-config.getmerchantpaymentmethods
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: merchant-config-mcp
+    port: 9090
+    transport: http
+    tools:
+    - name: nuvei-get-merchant-countries
+      description: Nuvei Get Merchant Countries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: merchant-config.getmerchantcountries
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: nuvei-get-merchant-payment-methods
+      description: Nuvei Get Merchant Payment Methods
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: merchant-config.getmerchantpaymentmethods
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
