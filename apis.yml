@@ -1,12 +1,13 @@
 aid: nuvei
 url: https://raw.githubusercontent.com/api-evangelist/nuvei/refs/heads/main/apis.yml
 name: Nuvei
-description: Nuvei is a global payment technology company headquartered in Montreal, Canada, providing
-  a single platform for online card acquiring, alternative payment methods (700+ APMs), payouts,
-  currency management across 150+ currencies, risk and fraud, and payment orchestration. Nuvei
-  serves merchants in 200+ markets with local acquiring in 52 markets across eCommerce, iGaming,
-  sports betting, travel, retail, B2B, and financial services. Originally listed on Nasdaq and TSX
-  as NVEI, Nuvei was taken private by Advent International in 2024.
+description: Nuvei is a global payment technology company headquartered in Montreal,
+  Canada, providing a single platform for online card acquiring, alternative payment
+  methods (700+ APMs), payouts, currency management across 150+ currencies, risk and
+  fraud, and payment orchestration. Nuvei serves merchants in 200+ markets with local
+  acquiring in 52 markets across eCommerce, iGaming, sports betting, travel, retail,
+  B2B, and financial services. Originally listed on Nasdaq and TSX as NVEI, Nuvei
+  was taken private by Advent International in 2024.
 image: https://nuvei.com/wp-content/uploads/2023/01/Nuvei_Logo_2C_RGB.svg
 humanURL: https://nuvei.com
 baseURL: https://secure.safecharge.com/ppp/api/v1/
@@ -67,24 +68,23 @@ apis:
   - Void
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Server-to-server REST API for processing card and APM transactions through Nuvei.
-    Includes openOrder for session setup, payment for end-to-end transactions, settleTransaction for
-    capturing pre-authorized amounts, refundTransaction for refunds, voidTransaction for cancellations,
-    and getPaymentStatus for transaction state. Auth uses SHA-256 checksum over merchantId, merchantSiteId,
-    clientRequestId, amount, currency, timeStamp, and merchantSecretKey.
+  description: Server-to-server REST API for processing card and APM transactions
+    through Nuvei. Includes openOrder for session setup, payment for end-to-end transactions,
+    settleTransaction for capturing pre-authorized amounts, refundTransaction for
+    refunds, voidTransaction for cancellations, and getPaymentStatus for transaction
+    state. Auth uses SHA-256 checksum over merchantId, merchantSiteId, clientRequestId,
+    amount, currency, timeStamp, and merchantSecretKey.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-payments-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/payments-payments.yaml
-  - type: NaftikoCapability
-    url: capabilities/payments-refunds.yaml
   - type: JSONSchema
     url: json-schema/nuvei-payment-schema.json
   - type: JSONSchema
     url: json-schema/nuvei-transaction-schema.json
+  - url: graphql/nuvei-graphql.md
+    type: GraphQL
 - aid: nuvei:nuvei-session-api
   name: Nuvei Session API
   tags:
@@ -93,16 +93,14 @@ apis:
   - Authentication
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Generates and manages session tokens (getSessionToken) used to authenticate subsequent
-    REST calls and Web SDK operations. Session tokens are scoped to a merchant and order and have
-    a short lifetime.
+  description: Generates and manages session tokens (getSessionToken) used to authenticate
+    subsequent REST calls and Web SDK operations. Session tokens are scoped to a merchant
+    and order and have a short lifetime.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-session-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/session-sessions.yaml
 - aid: nuvei:nuvei-order-api
   name: Nuvei Order API
   tags:
@@ -111,16 +109,15 @@ apis:
   - Checkout
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Creates and updates orders prior to payment via openOrder and updateOrder. Supports
-    line items, billing/shipping addresses, currency, device details, and dynamic descriptors. Used
-    as the first step for Web SDK, Simply Connect, and Payment Page integrations.
+  description: Creates and updates orders prior to payment via openOrder and updateOrder.
+    Supports line items, billing/shipping addresses, currency, device details, and
+    dynamic descriptors. Used as the first step for Web SDK, Simply Connect, and Payment
+    Page integrations.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-order-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/orders-orders.yaml
 - aid: nuvei:nuvei-payouts-api
   name: Nuvei Payouts API
   tags:
@@ -129,17 +126,15 @@ apis:
   - Disbursement
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Pushes funds out to consumers and counterparties via card, bank account, and a wide
-    set of local APMs. The payout endpoint supports referenced (relatedTransactionId) and unreferenced
-    (account number / IBAN) payouts and integrates with accountCapture to collect destination
-    details safely.
+  description: Pushes funds out to consumers and counterparties via card, bank account,
+    and a wide set of local APMs. The payout endpoint supports referenced (relatedTransactionId)
+    and unreferenced (account number / IBAN) payouts and integrates with accountCapture
+    to collect destination details safely.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-payouts-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/payouts-payouts.yaml
 - aid: nuvei:nuvei-user-payment-options-api
   name: Nuvei User Payment Options API
   tags:
@@ -149,16 +144,14 @@ apis:
   - Cards
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Manages stored payment instruments (User Payment Options / UPOs) including card and
-    APM tokenization. Supports addUPOCreditCard, addUPOAPM, editUPOCreditCard, editUPOAPM,
-    deleteUPO, getUserUPOs, and enableUPO/disableUPO.
+  description: Manages stored payment instruments (User Payment Options / UPOs) including
+    card and APM tokenization. Supports addUPOCreditCard, addUPOAPM, editUPOCreditCard,
+    editUPOAPM, deleteUPO, getUserUPOs, and enableUPO/disableUPO.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-user-payment-options-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/user-payment-options-tokens.yaml
 - aid: nuvei:nuvei-merchant-config-api
   name: Nuvei Merchant Configuration API
   tags:
@@ -169,15 +162,13 @@ apis:
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
   description: Returns configuration data for a merchant including supported countries
-    (getMerchantCountries) and the active set of payment methods per country
-    (getMerchantPaymentMethods). Used by client checkouts to render dynamic payment selection.
+    (getMerchantCountries) and the active set of payment methods per country (getMerchantPaymentMethods).
+    Used by client checkouts to render dynamic payment selection.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-merchant-config-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/merchant-config-payment-methods.yaml
 - aid: nuvei:nuvei-3ds-api
   name: Nuvei 3DS API
   tags:
@@ -187,16 +178,15 @@ apis:
   - Cards
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: 3D Secure 2 authentication endpoints. getCard3DDetails returns DS information and
-    challenge requirements for a card; authenticate3d completes the authentication flow returning
-    CAVV and ECI. Designed to satisfy PSD2 SCA requirements for EEA acquiring.
+  description: 3D Secure 2 authentication endpoints. getCard3DDetails returns DS information
+    and challenge requirements for a card; authenticate3d completes the authentication
+    flow returning CAVV and ECI. Designed to satisfy PSD2 SCA requirements for EEA
+    acquiring.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-3ds-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/three-ds-authentication.yaml
 - aid: nuvei:nuvei-dcc-api
   name: Nuvei DCC API
   tags:
@@ -205,16 +195,14 @@ apis:
   - FX
   humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Dynamic Currency Conversion. getDccDetails computes the converted amount and markup
-    rate for a card BIN and currency pair so merchants can present a localized currency offer at
-    checkout.
+  description: Dynamic Currency Conversion. getDccDetails computes the converted amount
+    and markup rate for a card BIN and currency pair so merchants can present a localized
+    currency offer at checkout.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-dcc-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/dcc-conversions.yaml
 - aid: nuvei:nuvei-webhooks-dmn
   name: Nuvei Direct Merchant Notifications (DMN)
   tags:
@@ -223,11 +211,11 @@ apis:
   - Notifications
   - DMN
   humanURL: https://docs.nuvei.com/documentation/integration/webhooks/
-  description: Asynchronous webhook notifications sent from Nuvei to a merchant endpoint to
-    communicate the final status of payments, payouts, refunds, voids, settles, and Control Panel
-    events. Payment DMNs include an advanceResponseChecksum signed with the merchantSecretKey using
-    SHA-256 over the ordered parameter values; withdrawal DMNs concatenate name=value pairs with the
-    secret appended.
+  description: Asynchronous webhook notifications sent from Nuvei to a merchant endpoint
+    to communicate the final status of payments, payouts, refunds, voids, settles,
+    and Control Panel events. Payment DMNs include an advanceResponseChecksum signed
+    with the merchantSecretKey using SHA-256 over the ordered parameter values; withdrawal
+    DMNs concatenate name=value pairs with the secret appended.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/webhooks/
@@ -311,51 +299,55 @@ common:
   name: Nuvei commercetools Frontend Plugin
 features:
 - name: Local Acquiring in 52 Markets
-  description: Nuvei operates as a licensed acquirer across 52 markets, enabling merchants to use
-    local card rails for higher approval rates and lower interchange costs.
+  description: Nuvei operates as a licensed acquirer across 52 markets, enabling merchants
+    to use local card rails for higher approval rates and lower interchange costs.
 - name: 700+ Alternative Payment Methods
-  description: Single integration to over 700 APMs including digital wallets, bank transfers,
-    cash voucher, BNPL, and local schemes spanning 200+ markets.
+  description: Single integration to over 700 APMs including digital wallets, bank
+    transfers, cash voucher, BNPL, and local schemes spanning 200+ markets.
 - name: 150+ Currencies and Dynamic Currency Conversion
-  description: Multi-currency processing with optional DCC at the cardholder level, FX settlement,
-    and localized pricing options.
+  description: Multi-currency processing with optional DCC at the cardholder level,
+    FX settlement, and localized pricing options.
 - name: Payouts to 200+ Markets
-  description: Push funds to cards (Visa Direct, Mastercard Send), bank accounts, and local APMs.
+  description: Push funds to cards (Visa Direct, Mastercard Send), bank accounts,
+    and local APMs.
 - name: PCI DSS Level 1 and 3DS2 Out-of-the-Box
-  description: Web SDK and hosted solutions remove PCI scope; 3DS2 authentication is built into
-    the gateway for PSD2 SCA compliance.
+  description: Web SDK and hosted solutions remove PCI scope; 3DS2 authentication
+    is built into the gateway for PSD2 SCA compliance.
 - name: Direct Merchant Notifications (DMN) Webhooks
-  description: Server-to-server async notifications for payments, payouts, refunds, voids, settles,
-    and Control Panel events; signed with merchantSecretKey-based SHA-256 checksum.
+  description: Server-to-server async notifications for payments, payouts, refunds,
+    voids, settles, and Control Panel events; signed with merchantSecretKey-based
+    SHA-256 checksum.
 - name: Tokenization and User Payment Options (UPOs)
-  description: Network and gateway tokenization for cards and APMs with vaulted UPOs supporting
-    one-click checkout and recurring payments.
+  description: Network and gateway tokenization for cards and APMs with vaulted UPOs
+    supporting one-click checkout and recurring payments.
 - name: iGaming and Sports Betting Specialization
-  description: Purpose-built risk, payouts, and KYC flows for regulated iGaming markets including
-    instant withdrawals and cashier helpers.
+  description: Purpose-built risk, payouts, and KYC flows for regulated iGaming markets
+    including instant withdrawals and cashier helpers.
 - name: Payment Orchestration and Smart Routing
-  description: Routes transactions across multiple acquirers and APMs for cost, approval, and
-    availability optimization.
+  description: Routes transactions across multiple acquirers and APMs for cost, approval,
+    and availability optimization.
 - name: Cashier and Payment Page Hosted Solutions
-  description: Drop-in checkout (Simply Connect, Web SDK, Payment Page) and Cashier helpers
-    minimize PCI scope and accelerate time-to-market.
+  description: Drop-in checkout (Simply Connect, Web SDK, Payment Page) and Cashier
+    helpers minimize PCI scope and accelerate time-to-market.
 useCases:
 - name: Global eCommerce Checkout
-  description: Single integration delivering cards plus 700+ APMs across 200 markets with local
-    acquiring where available.
+  description: Single integration delivering cards plus 700+ APMs across 200 markets
+    with local acquiring where available.
 - name: Marketplace Payouts
-  description: Disburse funds to sellers and gig workers via cards, bank accounts, and local APMs
-    in 200+ markets.
+  description: Disburse funds to sellers and gig workers via cards, bank accounts,
+    and local APMs in 200+ markets.
 - name: iGaming Deposits and Withdrawals
-  description: Cashier-grade UX for instant deposits and fast payouts in regulated jurisdictions.
+  description: Cashier-grade UX for instant deposits and fast payouts in regulated
+    jurisdictions.
 - name: Subscription and Recurring Billing
-  description: Vaulted UPOs, network tokens, and account updater for high-retention recurring
-    revenue.
+  description: Vaulted UPOs, network tokens, and account updater for high-retention
+    recurring revenue.
 - name: B2B and Cross-Border Payments
-  description: Multi-currency acceptance and settlement with FX management and DCC offers.
+  description: Multi-currency acceptance and settlement with FX management and DCC
+    offers.
 - name: Travel and Hospitality
-  description: Multi-currency pricing, deferred capture (auth-and-settle), and refund/void flows
-    tailored to travel booking lifecycles.
+  description: Multi-currency pricing, deferred capture (auth-and-settle), and refund/void
+    flows tailored to travel booking lifecycles.
 integrations:
 - name: Magento 2
   url: https://github.com/Nuvei/nuvei-plugin-magento-2
@@ -383,13 +375,15 @@ integrations:
   url: https://docs.nuvei.com
 solutions:
 - name: Online Payments
-  description: Card and APM acceptance via Web SDK, Simply Connect, Payment Page, or server-to-server.
+  description: Card and APM acceptance via Web SDK, Simply Connect, Payment Page,
+    or server-to-server.
 - name: In-Store and Omnichannel
   description: Card-present acquiring integrated with the same online platform.
 - name: Payouts
   description: Push-to-card and push-to-account disbursement across 200+ markets.
 - name: Risk and Fraud
-  description: Built-in 3DS2, device fingerprinting, velocity rules, and chargeback management.
+  description: Built-in 3DS2, device fingerprinting, velocity rules, and chargeback
+    management.
 - name: Banking-as-a-Service for ISVs
   description: White-label payments, accounts, and FX for software platforms.
 - name: iGaming

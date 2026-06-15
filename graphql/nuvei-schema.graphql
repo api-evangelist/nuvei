@@ -1,0 +1,1255 @@
+"""
+Nuvei GraphQL API Schema
+Conceptual schema derived from the Nuvei REST API covering payment processing,
+payment methods, refunds, payouts, subscriptions, fraud management, 3DS authentication,
+and transaction reporting across multiple currencies and regions.
+"""
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+# ─── Root Types ───────────────────────────────────────────────────────────────
+
+type Query {
+  """Get a session token for authenticating subsequent API calls."""
+  sessionToken(input: SessionTokenInput!): SessionTokenResponse
+
+  """Get the status of a payment transaction."""
+  paymentStatus(input: PaymentStatusInput!): PaymentStatusResponse
+
+  """Get available payment methods for a merchant."""
+  merchantPaymentMethods(input: MerchantPaymentMethodsInput!): MerchantPaymentMethodsResponse
+
+  """Get supported countries for a merchant."""
+  merchantCountries(input: MerchantCountriesInput!): MerchantCountriesResponse
+
+  """Get stored user payment options (vault)."""
+  userPaymentOptions(input: UserPaymentOptionsInput!): UserPaymentOptionsResponse
+
+  """Get DCC (Dynamic Currency Conversion) details for a card BIN and currency pair."""
+  dccDetails(input: DccDetailsInput!): DccDetailsResponse
+
+  """Get 3D Secure card authentication details."""
+  card3DDetails(input: Card3DDetailsInput!): Card3DDetailsResponse
+
+  """List transactions with optional filters."""
+  transactions(input: TransactionListInput!): TransactionListResponse
+
+  """Get a single transaction by its ID."""
+  transaction(merchantId: String!, merchantSiteId: String!, transactionId: String!): Transaction
+
+  """Get subscription details."""
+  subscription(input: SubscriptionQueryInput!): Subscription
+
+  """List subscriptions for a user."""
+  userSubscriptions(input: UserSubscriptionsInput!): UserSubscriptionsResponse
+
+  """Get fraud assessment for a transaction."""
+  fraudAssessment(input: FraudAssessmentInput!): FraudAssessmentResponse
+
+  """List available currencies."""
+  currencies(merchantId: String!, merchantSiteId: String!): [Currency!]!
+
+  """List webhook/DMN event history."""
+  webhookEvents(input: WebhookEventListInput!): WebhookEventListResponse
+}
+
+type Mutation {
+  """Open/create a new order prior to payment."""
+  openOrder(input: OpenOrderInput!): OrderResponse
+
+  """Update an existing order."""
+  updateOrder(input: UpdateOrderInput!): OrderResponse
+
+  """Execute a payment transaction."""
+  payment(input: PaymentInput!): PaymentResponse
+
+  """Settle a pre-authorized (captured) transaction."""
+  settleTransaction(input: SettleTransactionInput!): TransactionActionResponse
+
+  """Void a transaction (cancel before settlement)."""
+  voidTransaction(input: VoidTransactionInput!): TransactionActionResponse
+
+  """Refund a settled transaction."""
+  refundTransaction(input: RefundTransactionInput!): TransactionActionResponse
+
+  """Initiate a payout to a consumer or counterparty."""
+  payout(input: PayoutInput!): PayoutResponse
+
+  """Add a credit/debit card as a User Payment Option."""
+  addUPOCreditCard(input: AddUPOCreditCardInput!): UPOResponse
+
+  """Add an alternative payment method as a User Payment Option."""
+  addUPOAPM(input: AddUPOAPMInput!): UPOResponse
+
+  """Edit an existing credit card UPO."""
+  editUPOCreditCard(input: EditUPOCreditCardInput!): UPOResponse
+
+  """Edit an existing APM UPO."""
+  editUPOAPM(input: EditUPOAPMInput!): UPOResponse
+
+  """Delete a User Payment Option."""
+  deleteUPO(input: DeleteUPOInput!): UPOActionResponse
+
+  """Enable a previously disabled UPO."""
+  enableUPO(input: UPOStatusInput!): UPOActionResponse
+
+  """Disable a UPO without deleting it."""
+  disableUPO(input: UPOStatusInput!): UPOActionResponse
+
+  """Complete 3D Secure 2 authentication."""
+  authenticate3D(input: Authenticate3DInput!): Authenticate3DResponse
+
+  """Create or update a subscription plan."""
+  upsertSubscription(input: UpsertSubscriptionInput!): Subscription
+
+  """Cancel a subscription."""
+  cancelSubscription(input: CancelSubscriptionInput!): SubscriptionActionResponse
+}
+
+# ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum TransactionStatus {
+  APPROVED
+  DECLINED
+  ERROR
+  PENDING
+  PROCESSING
+  CHARGEBACK
+  VOID
+  SETTLED
+}
+
+enum TransactionType {
+  PAYMENT
+  SETTLE
+  VOID
+  REFUND
+  PAYOUT
+  AUTH
+  CREDIT
+  PREAUTH
+}
+
+enum PaymentMethodType {
+  CREDIT_CARD
+  DEBIT_CARD
+  APM
+  WALLET
+  BANK_TRANSFER
+  CASH_VOUCHER
+  BNPL
+  CRYPTO
+}
+
+enum CardType {
+  VISA
+  MASTERCARD
+  AMEX
+  DISCOVER
+  DINERS
+  JCB
+  UNIONPAY
+  MAESTRO
+}
+
+enum ThreeDS2ChallengeIndicator {
+  NO_PREFERENCE
+  NO_CHALLENGE_REQUESTED
+  CHALLENGE_REQUESTED
+  CHALLENGE_MANDATE
+}
+
+enum ThreeDSStatus {
+  Y
+  N
+  U
+  A
+  C
+  R
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+  EXPIRED
+  PENDING
+}
+
+enum SubscriptionRecurrenceType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  ANNUAL
+}
+
+enum WebhookEventType {
+  PAYMENT
+  REFUND
+  VOID
+  SETTLE
+  PAYOUT
+  CHARGEBACK
+  CONTROL_PANEL
+  SUBSCRIPTION
+}
+
+enum UPOStatus {
+  ENABLED
+  DISABLED
+  DELETED
+}
+
+enum FraudDecision {
+  APPROVE
+  REVIEW
+  DECLINE
+  CHALLENGE
+}
+
+enum DccMarkupType {
+  PERCENTAGE
+  FIXED
+}
+
+# ─── Input Types ──────────────────────────────────────────────────────────────
+
+input SessionTokenInput {
+  merchantId: String!
+  merchantSiteId: String!
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input MerchantAuthInput {
+  merchantId: String!
+  merchantSiteId: String!
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input PaymentStatusInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input MerchantPaymentMethodsInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  countryCode: String
+  currencyCode: String
+  languageCode: String
+}
+
+input MerchantCountriesInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  languageCode: String
+}
+
+input UserPaymentOptionsInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  userTokenId: String!
+  clientRequestId: String
+}
+
+input DccDetailsInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  cardNumber: String!
+  originalAmount: String!
+  originalCurrency: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input Card3DDetailsInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  cardNumber: String!
+  currency: String!
+  amount: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input TransactionListInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  fromDate: String
+  toDate: String
+  transactionType: TransactionType
+  transactionStatus: TransactionStatus
+  currency: String
+  page: Int
+  pageSize: Int
+}
+
+input SubscriptionQueryInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  subscriptionId: String!
+}
+
+input UserSubscriptionsInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  userTokenId: String!
+  status: SubscriptionStatus
+}
+
+input FraudAssessmentInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  transactionId: String!
+}
+
+input WebhookEventListInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  fromDate: String
+  toDate: String
+  eventType: WebhookEventType
+  page: Int
+  pageSize: Int
+}
+
+input OpenOrderInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  clientUniqueId: String
+  amount: String!
+  currency: String!
+  userTokenId: String
+  billingAddress: AddressInput
+  shippingAddress: AddressInput
+  items: [OrderItemInput!]
+  deviceDetails: DeviceDetailsInput
+  userDetails: UserDetailsInput
+  merchantDetails: MerchantDetailsInput
+  dynamicDescriptor: DynamicDescriptorInput
+  timeStamp: String!
+  checksum: String!
+}
+
+input UpdateOrderInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  orderId: String!
+  clientRequestId: String!
+  amount: String
+  currency: String
+  items: [OrderItemInput!]
+  billingAddress: AddressInput
+  shippingAddress: AddressInput
+  timeStamp: String!
+  checksum: String!
+}
+
+input PaymentInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  clientUniqueId: String
+  orderId: String
+  amount: String!
+  currency: String!
+  userTokenId: String
+  paymentOption: PaymentOptionInput!
+  billingAddress: AddressInput
+  shippingAddress: AddressInput
+  userDetails: UserDetailsInput
+  deviceDetails: DeviceDetailsInput
+  merchantDetails: MerchantDetailsInput
+  dynamicDescriptor: DynamicDescriptorInput
+  threeDSData: ThreeDSDataInput
+  isPartialApproval: Boolean
+  timeStamp: String!
+  checksum: String!
+}
+
+input SettleTransactionInput {
+  merchantId: String!
+  merchantSiteId: String!
+  clientRequestId: String!
+  clientUniqueId: String
+  amount: String!
+  currency: String!
+  relatedTransactionId: String!
+  descriptorMerchantName: String
+  descriptorMerchantPhone: String
+  timeStamp: String!
+  checksum: String!
+}
+
+input VoidTransactionInput {
+  merchantId: String!
+  merchantSiteId: String!
+  clientRequestId: String!
+  clientUniqueId: String
+  amount: String!
+  currency: String!
+  relatedTransactionId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input RefundTransactionInput {
+  merchantId: String!
+  merchantSiteId: String!
+  clientRequestId: String!
+  clientUniqueId: String
+  amount: String!
+  currency: String!
+  relatedTransactionId: String!
+  comment: String
+  timeStamp: String!
+  checksum: String!
+}
+
+input PayoutInput {
+  merchantId: String!
+  merchantSiteId: String!
+  clientRequestId: String!
+  clientUniqueId: String
+  amount: String!
+  currency: String!
+  userTokenId: String
+  paymentOption: PayoutPaymentOptionInput!
+  billingAddress: AddressInput
+  userDetails: UserDetailsInput
+  comment: String
+  timeStamp: String!
+  checksum: String!
+}
+
+input AddUPOCreditCardInput {
+  merchantId: String!
+  merchantSiteId: String!
+  userTokenId: String!
+  sessionToken: String!
+  cardData: CardDataInput!
+  billingAddress: AddressInput
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input AddUPOAPMInput {
+  merchantId: String!
+  merchantSiteId: String!
+  userTokenId: String!
+  sessionToken: String!
+  paymentMethodName: String!
+  apmData: [KeyValueInput!]!
+  billingAddress: AddressInput
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input EditUPOCreditCardInput {
+  merchantId: String!
+  merchantSiteId: String!
+  userPaymentOptionId: String!
+  sessionToken: String!
+  cardData: CardDataInput
+  billingAddress: AddressInput
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input EditUPOAPMInput {
+  merchantId: String!
+  merchantSiteId: String!
+  userPaymentOptionId: String!
+  sessionToken: String!
+  apmData: [KeyValueInput!]
+  billingAddress: AddressInput
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input DeleteUPOInput {
+  merchantId: String!
+  merchantSiteId: String!
+  userPaymentOptionId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input UPOStatusInput {
+  merchantId: String!
+  merchantSiteId: String!
+  userPaymentOptionId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input Authenticate3DInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  orderId: String!
+  amount: String!
+  currency: String!
+  cardNumber: String!
+  notificationUrl: String!
+  paResponse: String
+  v2AdditionalParams: ThreeDS2AdditionalParamsInput
+  timeStamp: String!
+  checksum: String!
+}
+
+input UpsertSubscriptionInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  userTokenId: String!
+  planId: String
+  planName: String
+  initialAmount: String
+  recurringAmount: String!
+  currency: String!
+  recurringPeriod: SubscriptionRecurrencePeriodInput!
+  endAfter: SubscriptionEndAfterInput
+  paymentOption: PaymentOptionInput!
+  billingAddress: AddressInput
+  timeStamp: String!
+  checksum: String!
+}
+
+input CancelSubscriptionInput {
+  merchantId: String!
+  merchantSiteId: String!
+  sessionToken: String!
+  clientRequestId: String!
+  subscriptionId: String!
+  timeStamp: String!
+  checksum: String!
+}
+
+input AddressInput {
+  firstName: String
+  lastName: String
+  address: String
+  city: String
+  country: String!
+  state: String
+  zip: String
+  phone: String
+  email: String
+  cell: String
+  county: String
+}
+
+input OrderItemInput {
+  name: String!
+  price: String!
+  quantity: String!
+}
+
+input DeviceDetailsInput {
+  deviceType: String
+  deviceName: String
+  deviceOS: String
+  browser: String
+  ipAddress: String
+}
+
+input UserDetailsInput {
+  firstName: String
+  lastName: String
+  address: String
+  phone: String
+  zip: String
+  city: String
+  country: String
+  state: String
+  email: String
+  county: String
+  language: String
+  dateOfBirth: String
+  identification: String
+}
+
+input MerchantDetailsInput {
+  customField1: String
+  customField2: String
+  customField3: String
+  customField4: String
+  customField5: String
+  customField6: String
+  customField7: String
+  customField8: String
+  customField9: String
+  customField10: String
+}
+
+input DynamicDescriptorInput {
+  merchantName: String
+  merchantPhone: String
+  merchantAddress: String
+}
+
+input PaymentOptionInput {
+  card: CardPaymentOptionInput
+  alternativePaymentMethod: APMPaymentOptionInput
+  userPaymentOptionId: String
+}
+
+input CardPaymentOptionInput {
+  cardNumber: String
+  cardHolderName: String
+  expirationMonth: String
+  expirationYear: String
+  CVV: String
+  threeD: ThreeDSInput
+  storedCredentials: StoredCredentialsInput
+}
+
+input APMPaymentOptionInput {
+  paymentMethod: String!
+  paymentMethodFields: [KeyValueInput!]
+}
+
+input PayoutPaymentOptionInput {
+  card: CardPaymentOptionInput
+  alternativePaymentMethod: APMPaymentOptionInput
+  userPaymentOptionId: String
+}
+
+input CardDataInput {
+  cardNumber: String!
+  cardHolderName: String!
+  expirationMonth: String!
+  expirationYear: String!
+  CVV: String
+}
+
+input ThreeDSInput {
+  version: String
+  v2supported: String
+  methodCompletionInd: String
+  notificationURL: String
+  merchantURL: String
+  platformType: String
+  browserDetails: BrowserDetailsInput
+  challengePreference: ThreeDS2ChallengeIndicator
+}
+
+input ThreeDSDataInput {
+  threeDSMethod: String
+  challengeWindowSize: String
+}
+
+input ThreeDS2AdditionalParamsInput {
+  challengePreference: ThreeDS2ChallengeIndicator
+  exemptionRequestReason: String
+  deliveryEmail: String
+  deliveryTimeframe: String
+  giftCardAmount: String
+  giftCardCount: String
+  giftCardCurrency: String
+  preOrderDate: String
+  preOrderPurchaseInd: String
+  reorderItemsInd: String
+  shipIndicator: String
+}
+
+input BrowserDetailsInput {
+  acceptHeader: String
+  ip: String
+  javaEnabled: String
+  javaScriptEnabled: String
+  language: String
+  colorDepth: String
+  screenHeight: String
+  screenWidth: String
+  timeZone: String
+  userAgent: String
+}
+
+input StoredCredentialsInput {
+  storedCredentialsMode: Int
+}
+
+input SubscriptionRecurrencePeriodInput {
+  unit: SubscriptionRecurrenceType!
+  period: Int!
+}
+
+input SubscriptionEndAfterInput {
+  unit: SubscriptionRecurrenceType
+  period: Int
+  date: String
+}
+
+input KeyValueInput {
+  key: String!
+  value: String!
+}
+
+# ─── Response / Object Types ──────────────────────────────────────────────────
+
+type SessionTokenResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  internalRequestId: String
+  status: String
+  errCode: String
+  reason: String
+  version: String
+  clientTimestamp: String
+}
+
+type PaymentStatusResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  internalRequestId: String
+  status: String
+  errCode: String
+  reason: String
+  paymentStatus: TransactionStatus
+  transactionId: String
+  amount: String
+  currency: String
+  transactionType: TransactionType
+  userPaymentOptionId: String
+  paymentOption: PaymentOptionDetails
+}
+
+type MerchantPaymentMethodsResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  paymentMethods: [PaymentMethod!]
+}
+
+type MerchantCountriesResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  countries: [Country!]
+}
+
+type UserPaymentOptionsResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  userPaymentOptions: [UserPaymentOption!]
+}
+
+type DccDetailsResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  dccDetails: DccDetails
+}
+
+type Card3DDetailsResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  dsStartProtocolVersion: String
+  dsEndProtocolVersion: String
+  acsStartProtocolVersion: String
+  acsEndProtocolVersion: String
+}
+
+type TransactionListResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  totalCount: Int
+  page: Int
+  pageSize: Int
+  transactions: [Transaction!]
+}
+
+type UserSubscriptionsResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  subscriptions: [Subscription!]
+}
+
+type FraudAssessmentResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  fraudDecision: FraudDecision
+  fraudScore: Float
+  fraudReasons: [String!]
+  rules: [FraudRule!]
+}
+
+type WebhookEventListResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  totalCount: Int
+  events: [WebhookEvent!]
+}
+
+type OrderResponse {
+  sessionToken: String
+  orderId: String
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  internalRequestId: String
+  status: String
+  errCode: String
+  reason: String
+  version: String
+  clientTimestamp: String
+  userTokenId: String
+  amount: String
+  currency: String
+}
+
+type PaymentResponse {
+  sessionToken: String
+  orderId: String
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  internalRequestId: String
+  transactionId: String
+  externalTransactionId: String
+  status: String
+  transactionStatus: TransactionStatus
+  errCode: String
+  reason: String
+  paymentOption: PaymentOptionDetails
+  authCode: String
+  rrn: String
+  amount: String
+  currency: String
+  version: String
+  clientTimestamp: String
+  billingAddress: Address
+  userPaymentOptionId: String
+  customData: String
+  fraudDetails: FraudDetails
+  threeDReason: String
+  threeD: ThreeDSResult
+  isPartialApproval: Boolean
+  partialApprovalAmount: String
+}
+
+type TransactionActionResponse {
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  internalRequestId: String
+  transactionId: String
+  externalTransactionId: String
+  status: String
+  transactionStatus: TransactionStatus
+  errCode: String
+  reason: String
+  version: String
+  clientTimestamp: String
+}
+
+type PayoutResponse {
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  internalRequestId: String
+  transactionId: String
+  externalTransactionId: String
+  status: String
+  transactionStatus: TransactionStatus
+  errCode: String
+  reason: String
+  userPaymentOptionId: String
+  amount: String
+  currency: String
+  version: String
+  clientTimestamp: String
+}
+
+type UPOResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  userPaymentOptionId: String
+  status: String
+  errCode: String
+  reason: String
+  version: String
+  clientTimestamp: String
+}
+
+type UPOActionResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  status: String
+  errCode: String
+  reason: String
+  version: String
+  clientTimestamp: String
+}
+
+type Authenticate3DResponse {
+  sessionToken: String
+  orderId: String
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  internalRequestId: String
+  status: String
+  errCode: String
+  reason: String
+  threeDSVersion: String
+  CAVV: String
+  ECI: String
+  acsTransId: String
+  dsTransId: String
+  threeDSStatus: ThreeDSStatus
+  authenticationStatus: String
+  version: String
+  clientTimestamp: String
+}
+
+type SubscriptionActionResponse {
+  sessionToken: String
+  merchantId: String
+  merchantSiteId: String
+  subscriptionId: String
+  status: String
+  errCode: String
+  reason: String
+  version: String
+  clientTimestamp: String
+}
+
+type Transaction {
+  transactionId: String!
+  externalTransactionId: String
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  clientUniqueId: String
+  orderId: String
+  transactionType: TransactionType
+  transactionStatus: TransactionStatus
+  amount: String
+  currency: String
+  authCode: String
+  rrn: String
+  paymentOption: PaymentOptionDetails
+  billingAddress: Address
+  userDetails: UserDetails
+  deviceDetails: DeviceDetails
+  customData: String
+  relatedTransactionId: String
+  createdAt: String
+  updatedAt: String
+  fraudDetails: FraudDetails
+  threeDDetails: ThreeDSResult
+}
+
+type PaymentMethod {
+  paymentMethod: String!
+  paymentMethodDisplayName: [LocalizedText!]
+  isDirect: Boolean
+  countries: [String!]
+  currencies: [String!]
+  logoURL: String
+  fields: [PaymentMethodField!]
+}
+
+type PaymentMethodField {
+  name: String!
+  regex: String
+  type: String
+  validValues: [String!]
+  isMandatory: Boolean
+}
+
+type LocalizedText {
+  language: String!
+  message: String!
+}
+
+type Country {
+  countryCode: String!
+  countryName: String!
+}
+
+type Currency {
+  currencyCode: String!
+  currencyName: String!
+  symbol: String
+  decimalPlaces: Int
+}
+
+type UserPaymentOption {
+  userPaymentOptionId: String!
+  paymentMethodName: String
+  type: PaymentMethodType
+  status: UPOStatus
+  isPreferred: Boolean
+  cardData: StoredCardData
+  apmData: [KeyValue!]
+  billingAddress: Address
+  addedOn: String
+  lastUsedOn: String
+}
+
+type StoredCardData {
+  cardBin: String
+  lastFourDigits: String
+  expirationMonth: String
+  expirationYear: String
+  cardType: CardType
+  cardBrand: String
+  isNetworkTokenized: Boolean
+  networkTokenBin: String
+}
+
+type DccDetails {
+  originalAmount: String!
+  originalCurrency: String!
+  convertedAmount: String!
+  convertedCurrency: String!
+  exchangeRate: String!
+  markupAmount: String
+  markupType: DccMarkupType
+  markupRate: String
+  token: String
+}
+
+type PaymentOptionDetails {
+  type: PaymentMethodType
+  card: CardDetails
+  alternativePaymentMethod: APMDetails
+  userPaymentOptionId: String
+}
+
+type CardDetails {
+  cardNumber: String
+  cardHolderName: String
+  expirationMonth: String
+  expirationYear: String
+  cardType: CardType
+  bin: String
+  last4Digits: String
+  isNetworkTokenized: Boolean
+}
+
+type APMDetails {
+  paymentMethod: String
+  paymentMethodFields: [KeyValue!]
+  externalAccountId: String
+  externalAccountDescription: String
+}
+
+type Address {
+  firstName: String
+  lastName: String
+  address: String
+  city: String
+  country: String
+  state: String
+  zip: String
+  phone: String
+  email: String
+  cell: String
+  county: String
+}
+
+type UserDetails {
+  firstName: String
+  lastName: String
+  address: String
+  phone: String
+  zip: String
+  city: String
+  country: String
+  state: String
+  email: String
+  county: String
+  language: String
+  dateOfBirth: String
+  identification: String
+}
+
+type DeviceDetails {
+  deviceType: String
+  deviceName: String
+  deviceOS: String
+  browser: String
+  ipAddress: String
+}
+
+type FraudDetails {
+  finalDecision: FraudDecision
+  score: Float
+  recommendations: [String!]
+}
+
+type FraudRule {
+  ruleId: String
+  ruleName: String
+  ruleDescription: String
+  ruleTriggered: Boolean
+}
+
+type ThreeDSResult {
+  version: String
+  CAVV: String
+  ECI: String
+  dsTransId: String
+  acsTransId: String
+  threeDSStatus: ThreeDSStatus
+  challengePreference: ThreeDS2ChallengeIndicator
+}
+
+type Subscription {
+  subscriptionId: String!
+  merchantId: String
+  merchantSiteId: String
+  userTokenId: String
+  planId: String
+  planName: String
+  status: SubscriptionStatus
+  recurringAmount: String
+  currency: String
+  recurringPeriod: SubscriptionRecurrencePeriod
+  endAfter: SubscriptionEndAfter
+  nextChargeDate: String
+  startDate: String
+  endDate: String
+  cancelledDate: String
+  totalCycles: Int
+  completedCycles: Int
+  paymentOption: PaymentOptionDetails
+  billingAddress: Address
+  createdAt: String
+  updatedAt: String
+}
+
+type SubscriptionRecurrencePeriod {
+  unit: SubscriptionRecurrenceType!
+  period: Int!
+}
+
+type SubscriptionEndAfter {
+  unit: SubscriptionRecurrenceType
+  period: Int
+  date: String
+}
+
+type WebhookEvent {
+  eventId: String!
+  eventType: WebhookEventType!
+  transactionId: String
+  orderId: String
+  merchantId: String
+  merchantSiteId: String
+  clientRequestId: String
+  status: TransactionStatus
+  amount: String
+  currency: String
+  payload: String
+  receivedAt: String
+  retries: Int
+  lastRetryAt: String
+}
+
+type KeyValue {
+  key: String!
+  value: String!
+}
+
+type MerchantConfig {
+  merchantId: String!
+  merchantSiteId: String!
+  merchantName: String
+  sandboxMode: Boolean
+  supportedCurrencies: [String!]
+  supportedCountries: [String!]
+  dccEnabled: Boolean
+  threeDS2Enabled: Boolean
+  tokenizationEnabled: Boolean
+}
+
+type AuthChecksum {
+  merchantId: String!
+  merchantSiteId: String!
+  clientRequestId: String!
+  timeStamp: String!
+  checksum: String!
+}
