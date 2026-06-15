@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei Session API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Session Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getSessionToken.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates merchant credentials and returns a sessionToken used by other REST and Web SDK operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

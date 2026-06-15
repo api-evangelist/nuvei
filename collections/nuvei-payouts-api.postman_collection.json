@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "92733dc9-694d-43b1-8d02-f8bde32204c9",
+      "name": "Payouts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8720b57-b6d9-43c4-888e-1c5c2de0540d",
+          "name": "Create Payout",
+          "request": {
+            "name": "Create Payout",
+            "description": {
+              "content": "Withdraws funds to a card, bank account, or APM. Either references a prior transaction (relatedTransactionId) or uses a userPaymentOptionId / unreferenced destination details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payout.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOption\": \"<object>\",\n  \"cardData\": \"<object>\",\n  \"comment\": \"<string>\",\n  \"dynamicDescriptor\": \"<object>\",\n  \"merchantDetails\": \"<object>\",\n  \"deviceDetails\": \"<object>\",\n  \"urlDetails\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e35d082b-b15d-4c51-ab7f-a094342b21f5",
+              "name": "Payout result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payout.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOption\": \"<object>\",\n  \"cardData\": \"<object>\",\n  \"comment\": \"<string>\",\n  \"dynamicDescriptor\": \"<object>\",\n  \"merchantDetails\": \"<object>\",\n  \"deviceDetails\": \"<object>\",\n  \"urlDetails\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"transactionStatus\": \"DECLINED\",\n  \"status\": \"ERROR\",\n  \"authCode\": \"string\",\n  \"gwErrorCode\": 4165,\n  \"gwErrorReason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad45cbc9-c89e-45a7-a2fd-803444a4b631",
+          "name": "Account Capture",
+          "request": {
+            "name": "Account Capture",
+            "description": {
+              "content": "Returns a redirect URL where the cardholder/account holder securely provides bank account details for use in a subsequent payout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCapture.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"country\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"urlDetails\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c044696-e03f-49d4-903a-5887cb8db52f",
+              "name": "Account capture redirect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCapture.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"country\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"urlDetails\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"redirectURL\": \"string\",\n  \"sessionToken\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 719,\n  \"reason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://secure.safecharge.com/ppp/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7f1f885e-a8db-4cd2-954e-335d01619509",
+    "name": "Nuvei Payouts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Push funds to consumers and counterparties via card, bank account, or local APMs. Supports referenced (relatedTransactionId) and unreferenced payouts.\n\nContact Support:\n Name: Nuvei Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

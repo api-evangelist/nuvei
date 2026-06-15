@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei 3DS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "3DS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Card 3DS Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getCard3DDetails.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns 3DS-relevant info for a card (DS, version, challenge requirements) so the merchant can decide whether to proceed with a frictionless or challenge flow."
+        },
+        {
+          "info": {
+            "name": "Authenticate 3D",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/authenticate3d.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs the 3DS-only authentication (without authorization) and returns CAVV and ECI values for use in a downstream payment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

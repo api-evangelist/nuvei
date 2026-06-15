@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei Merchant Configuration API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Merchant Countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getMerchantCountries.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Merchant Countries"
+        },
+        {
+          "info": {
+            "name": "Get Merchant Payment Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getMerchantPaymentMethods.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Merchant Payment Methods"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

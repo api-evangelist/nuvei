@@ -1,139 +1,262 @@
 # Nuvei (nuvei)
 
-Nuvei is a global payment technology company headquartered in Montreal, Canada, offering a single platform for online card acquiring, alternative payment methods (700+ APMs), payouts, currency management across 150+ currencies, fraud/risk, and payment orchestration. Nuvei serves merchants in 200+ markets with local acquiring in 52 markets across eCommerce, iGaming, sports betting, travel, retail, B2B, and financial services. Originally listed on Nasdaq and TSX as NVEI, Nuvei was taken private by Advent International in 2024.
+Nuvei is a global payment technology company headquartered in Montreal, Canada, providing a single platform for online card acquiring, alternative payment methods (700+ APMs), payouts, currency management across 150+ currencies, risk and fraud, and payment orchestration. Nuvei serves merchants in 200+ markets with local acquiring in 52 markets across eCommerce, iGaming, sports betting, travel, retail, B2B, and financial services. Originally listed on Nasdaq and TSX as NVEI, Nuvei was taken private by Advent International in 2024.
 
-**URL:** [Visit APIs.json](https://raw.githubusercontent.com/api-evangelist/nuvei/refs/heads/main/apis.yml)
-
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/nuvei/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/nuvei/refs/heads/main/apis.yml)
 
 ## Tags
 
- - Payments, Payment Processing, Payment Gateway, Acquiring, Payouts, Alternative Payment Methods, Fraud, Risk, Currency Conversion, iGaming, eCommerce, FinTech
+- Payments
+- Payment Processing
+- Payment Gateway
+- Acquiring
+- Payouts
+- Alternative Payment Methods
+- Fraud
+- Risk
+- Currency Conversion
+- iGaming
+- eCommerce
+- FinTech
 
 ## Timestamps
 
 - **Created:** 2026-05-24
 - **Modified:** 2026-05-24
 
-## Base URLs
-
-| Environment | URL |
-|---|---|
-| Production | `https://secure.safecharge.com/ppp/api/v1/` |
-| Sandbox | `https://ppp-test.nuvei.com/ppp/api/v1/` |
-
-Authentication uses a SHA-256 checksum computed over an ordered concatenation of `merchantId`, `merchantSiteId`, `clientRequestId`, `amount`, `currency`, `timeStamp`, and the `merchantSecretKey`.
-
 ## APIs
 
 ### Nuvei Payments API
-Server-to-server REST API for processing card and APM transactions. Includes `payment`, `settleTransaction`, `voidTransaction`, `refundTransaction`, and `getPaymentStatus`.
+
+Server-to-server REST API for processing card and APM transactions through Nuvei. Includes openOrder for session setup, payment for end-to-end transactions, settleTransaction for capturing pre-authorized amounts, refundTransaction for refunds, voidTransaction for cancellations, and getPaymentStatus for transaction state. Auth uses SHA-256 checksum over merchantId, merchantSiteId, clientRequestId, amount, currency, timeStamp, and merchantSecretKey.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- Payments
+- Authorization
+- Settlement
+- Refund
+- Void
+
+#### Properties
 
 - [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
-- [OpenAPI](openapi/nuvei-payments-api-openapi.yml)
-- [JSON Schema — Payment](json-schema/nuvei-payment-schema.json)
-- [JSON Schema — Transaction](json-schema/nuvei-transaction-schema.json)
-- [Naftiko Capability — Payments](capabilities/payments-payments.yaml)
-- [Naftiko Capability — Refunds/Voids/Settles](capabilities/payments-refunds.yaml)
+- [OpenAPI](openapi/nuvei-payments-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-payments-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-payments-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/nuvei-payment-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/nuvei-transaction-schema.json) — [JSON Schema](https://json-schema.org/specification)
 
 ### Nuvei Session API
-`getSessionToken` issues a short-lived sessionToken used by the REST API and Web SDK.
 
-- [OpenAPI](openapi/nuvei-session-api-openapi.yml)
-- [Naftiko Capability — Sessions](capabilities/session-sessions.yaml)
+Generates and manages session tokens (getSessionToken) used to authenticate subsequent REST calls and Web SDK operations. Session tokens are scoped to a merchant and order and have a short lifetime.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- Sessions
+- Tokens
+- Authentication
+
+#### Properties
+
+- [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- [OpenAPI](openapi/nuvei-session-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-session-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-session-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Nuvei Order API
-Creates and updates orders before payment via `openOrder` and `updateOrder`.
 
-- [OpenAPI](openapi/nuvei-order-api-openapi.yml)
-- [Naftiko Capability — Orders](capabilities/orders-orders.yaml)
+Creates and updates orders prior to payment via openOrder and updateOrder. Supports line items, billing/shipping addresses, currency, device details, and dynamic descriptors. Used as the first step for Web SDK, Simply Connect, and Payment Page integrations.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- Orders
+- Cart
+- Checkout
+
+#### Properties
+
+- [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- [OpenAPI](openapi/nuvei-order-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-order-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-order-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Nuvei Payouts API
-Push funds to consumers and counterparties via card, bank account, and local APMs. Includes `payout` and `accountCapture`.
 
-- [OpenAPI](openapi/nuvei-payouts-api-openapi.yml)
-- [Naftiko Capability — Payouts](capabilities/payouts-payouts.yaml)
+Pushes funds out to consumers and counterparties via card, bank account, and a wide set of local APMs. The payout endpoint supports referenced (relatedTransactionId) and unreferenced (account number / IBAN) payouts and integrates with accountCapture to collect destination details safely.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- Payouts
+- Withdrawals
+- Disbursement
+
+#### Properties
+
+- [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- [OpenAPI](openapi/nuvei-payouts-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-payouts-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-payouts-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Nuvei User Payment Options API
-Manage stored payment instruments (UPOs) for cards and APMs.
 
-- [OpenAPI](openapi/nuvei-user-payment-options-api-openapi.yml)
-- [Naftiko Capability — Tokens](capabilities/user-payment-options-tokens.yaml)
+Manages stored payment instruments (User Payment Options / UPOs) including card and APM tokenization. Supports addUPOCreditCard, addUPOAPM, editUPOCreditCard, editUPOAPM, deleteUPO, getUserUPOs, and enableUPO/disableUPO.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- Tokens
+- Vault
+- User Payment Options
+- Cards
+
+#### Properties
+
+- [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- [OpenAPI](openapi/nuvei-user-payment-options-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-user-payment-options-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-user-payment-options-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Nuvei Merchant Configuration API
-Look up supported countries and payment methods per country.
 
-- [OpenAPI](openapi/nuvei-merchant-config-api-openapi.yml)
-- [Naftiko Capability — Payment Methods](capabilities/merchant-config-payment-methods.yaml)
+Returns configuration data for a merchant including supported countries (getMerchantCountries) and the active set of payment methods per country (getMerchantPaymentMethods). Used by client checkouts to render dynamic payment selection.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- Merchant
+- Configuration
+- Payment Methods
+- Countries
+
+#### Properties
+
+- [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- [OpenAPI](openapi/nuvei-merchant-config-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-merchant-config-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-merchant-config-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Nuvei 3DS API
-3-D Secure 2 authentication (`getCard3DDetails`, `authenticate3d`) for PSD2 SCA.
 
-- [OpenAPI](openapi/nuvei-3ds-api-openapi.yml)
-- [Naftiko Capability — 3DS](capabilities/three-ds-authentication.yaml)
+3D Secure 2 authentication endpoints. getCard3DDetails returns DS information and challenge requirements for a card; authenticate3d completes the authentication flow returning CAVV and ECI. Designed to satisfy PSD2 SCA requirements for EEA acquiring.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- 3DS
+- SCA
+- Authentication
+- Cards
+
+#### Properties
+
+- [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- [OpenAPI](openapi/nuvei-3ds-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-3ds-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-3ds-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Nuvei DCC API
-Dynamic Currency Conversion quotes (`getDccDetails`).
 
-- [OpenAPI](openapi/nuvei-dcc-api-openapi.yml)
-- [Naftiko Capability — DCC](capabilities/dcc-conversions.yaml)
+Dynamic Currency Conversion. getDccDetails computes the converted amount and markup rate for a card BIN and currency pair so merchants can present a localized currency offer at checkout.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- **Base URL:** `https://secure.safecharge.com/ppp/api/v1/`
+
+#### Tags
+
+- DCC
+- Currency Conversion
+- FX
+
+#### Properties
+
+- [Documentation](https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/)
+- [OpenAPI](openapi/nuvei-dcc-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/nuvei-dcc-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-dcc-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Nuvei Direct Merchant Notifications (DMN)
-Server-to-server webhook delivery for payments, payouts, refunds, voids, settles, and Control Panel events. Payment DMNs are signed via `advanceResponseChecksum`.
+
+Asynchronous webhook notifications sent from Nuvei to a merchant endpoint to communicate the final status of payments, payouts, refunds, voids, settles, and Control Panel events. Payment DMNs include an advanceResponseChecksum signed with the merchantSecretKey using SHA-256 over the ordered parameter values; withdrawal DMNs concatenate name=value pairs with the secret appended.
+
+- **Human URL:** [https://docs.nuvei.com/documentation/integration/webhooks/](https://docs.nuvei.com/documentation/integration/webhooks/)
+
+#### Tags
+
+- Webhooks
+- Events
+- Notifications
+- DMN
+
+#### Properties
 
 - [Documentation](https://docs.nuvei.com/documentation/integration/webhooks/)
-- [AsyncAPI](asyncapi/nuvei-dmn-asyncapi.yml)
-- [Payment DMN example](examples/nuvei-payment-dmn-example.json)
+- [Documentation](https://docs.nuvei.com/documentation/integration/webhooks/payment-dmns/)
+- [Documentation](https://docs.nuvei.com/documentation/integration/webhooks/withdrawal-dmns/)
+- [Documentation](https://docs.nuvei.com/documentation/integration/webhooks/control-panel/)
+- [AsyncAPI](asyncapi/nuvei-dmn-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [Postman Collection](collections/nuvei-3ds-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-3ds-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/nuvei-dcc-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-dcc-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/nuvei-merchant-config-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-merchant-config-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/nuvei-order-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-order-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/nuvei-payments-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-payments-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/nuvei-payouts-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-payouts-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/nuvei-session-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-session-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/nuvei-user-payment-options-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nuvei-user-payment-options-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Server SDKs
+## Common Properties
 
-| Language | Repo |
-|---|---|
-| PHP | [Nuvei/nuvei-server-php](https://github.com/Nuvei/nuvei-server-php) |
-| Java | [Nuvei/nuvei-server-java](https://github.com/Nuvei/nuvei-server-java) |
-| Java 2.0 | [Nuvei/nuvei-server-java-2.0](https://github.com/Nuvei/nuvei-server-java-2.0) |
-| Node.js | [Nuvei/nuvei-server-nodejs](https://github.com/Nuvei/nuvei-server-nodejs) |
+- [SDK](https://github.com/Nuvei/nuvei-server-php)
+- [SDK](https://github.com/Nuvei/nuvei-server-java)
+- [SDK](https://github.com/Nuvei/nuvei-server-java-2.0)
+- [SDK](https://github.com/Nuvei/nuvei-server-nodejs)
+- [SDK](https://github.com/Nuvei/nuvei-mobile-sdk-android)
+- [SDK](https://github.com/Nuvei/nuvei-mobile-sdk-ios)
+- [SDK](https://github.com/Nuvei/nuvei-react-native-mobile-sdk)
+- [SDK](https://github.com/Nuvei/nuvei-mobile-cashier-helper-android)
+- [SDK](https://github.com/Nuvei/nuvei-mobile-cashier-helper-ios)
+- [SDK](https://github.com/Nuvei/nuvei-cashier-helper-react-for-android)
+- [SDK](https://github.com/Nuvei/nuvei-mobile-pods)
+- [SDK](https://github.com/Nuvei/nuvei-maven-android)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-magento-2)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-woocommerce)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-prestashop)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-opencart-3)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-opencart-4)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-shopware-5)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-shopware-6)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-salesforce-commerce-cloud)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-sap-commerce)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-commerce-tools-backend)
+- [Plugin](https://github.com/Nuvei/nuvei-plugin-commerce-tools-frontend)
 
-## Mobile SDKs
+## Maintainers
 
-| Platform | Repo |
-|---|---|
-| iOS | [Nuvei/nuvei-mobile-sdk-ios](https://github.com/Nuvei/nuvei-mobile-sdk-ios) |
-| Android | [Nuvei/nuvei-mobile-sdk-android](https://github.com/Nuvei/nuvei-mobile-sdk-android) |
-| React Native | [Nuvei/nuvei-react-native-mobile-sdk](https://github.com/Nuvei/nuvei-react-native-mobile-sdk) |
-| iOS Cashier Helper | [Nuvei/nuvei-mobile-cashier-helper-ios](https://github.com/Nuvei/nuvei-mobile-cashier-helper-ios) |
-| Android Cashier Helper | [Nuvei/nuvei-mobile-cashier-helper-android](https://github.com/Nuvei/nuvei-mobile-cashier-helper-android) |
-| Android Cashier Helper (React) | [Nuvei/nuvei-cashier-helper-react-for-android](https://github.com/Nuvei/nuvei-cashier-helper-react-for-android) |
-| CocoaPods distribution | [Nuvei/nuvei-mobile-pods](https://github.com/Nuvei/nuvei-mobile-pods) |
-| Maven distribution | [Nuvei/nuvei-maven-android](https://github.com/Nuvei/nuvei-maven-android) |
-
-## eCommerce Plugins
-
-- [Magento 2](https://github.com/Nuvei/nuvei-plugin-magento-2)
-- [WooCommerce](https://github.com/Nuvei/nuvei-plugin-woocommerce)
-- [PrestaShop](https://github.com/Nuvei/nuvei-plugin-prestashop)
-- [OpenCart 3](https://github.com/Nuvei/nuvei-plugin-opencart-3) / [OpenCart 4](https://github.com/Nuvei/nuvei-plugin-opencart-4)
-- [Shopware 5](https://github.com/Nuvei/nuvei-plugin-shopware-5) / [Shopware 6](https://github.com/Nuvei/nuvei-plugin-shopware-6)
-- [Salesforce Commerce Cloud](https://github.com/Nuvei/nuvei-plugin-salesforce-commerce-cloud)
-- [SAP Commerce](https://github.com/Nuvei/nuvei-plugin-sap-commerce)
-- [commercetools Backend](https://github.com/Nuvei/nuvei-plugin-commerce-tools-backend) / [commercetools Frontend](https://github.com/Nuvei/nuvei-plugin-commerce-tools-frontend)
-
-## Commercial Surface
-
-- [Plans / Pricing](plans/nuvei-plans-pricing.yml)
-- [Rate Limits](rate-limits/nuvei-rate-limits.yml)
-- [FinOps Mapping](finops/nuvei-finops.yml)
-
-## Semantics and Conventions
-
-- [Vocabulary](vocabulary/nuvei-vocabulary.yml)
-- [JSON-LD Context](json-ld/nuvei-context.jsonld)
-- [JSON Structure — Payment](json-structure/nuvei-payment-structure.json)
-- [Spectral Ruleset](rules/nuvei-rules.yml)
-
-## Examples
-
-- [Open Order](examples/nuvei-open-order-example.json)
-- [Payment](examples/nuvei-payment-example.json)
-- [Refund](examples/nuvei-refund-example.json)
-- [Payment DMN](examples/nuvei-payment-dmn-example.json)
+**FN:** Kin Lane
+**URL:** https://kinlane.com

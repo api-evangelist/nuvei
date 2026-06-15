@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei Order API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Open Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/openOrder.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates merchant credentials, sets up an order in the Nuvei system, and returns a sessionToken."
+        },
+        {
+          "info": {
+            "name": "Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/updateOrder.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an existing order's amount or item list during checkout without reloading."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

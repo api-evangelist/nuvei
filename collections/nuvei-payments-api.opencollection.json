@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei Payments API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/payment.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs an end-to-end PCI-compliant payment using card data, a UPO id, a temporary token\nfrom the Web SDK, or an APM payment option. The Nuvei platform handles 3DS2, fraud screening,\nand routing.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Financial Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Settle Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/settleTransaction.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Captures a previously authorized transaction in full or in part using its relatedTransactionId."
+        },
+        {
+          "info": {
+            "name": "Void Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/voidTransaction.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels a sale, credit, or APM transaction before it has been transmitted to the acquirer/scheme."
+        },
+        {
+          "info": {
+            "name": "Refund Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/refundTransaction.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refunds a settled transaction in full or in part. The relatedTransactionId is mandatory and must reference the original payment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payment Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getPaymentStatus.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the final state of a payment. Should be called only at the end of payment processing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

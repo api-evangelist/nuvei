@@ -1,0 +1,509 @@
+{
+  "item": [
+    {
+      "id": "e3e73461-0501-4360-ad10-c6befd0a84ef",
+      "name": "Payments",
+      "description": {
+        "content": "End-to-end payment processing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89c7dff9-03f5-47e8-99d3-d1c625d6392f",
+          "name": "Create Payment",
+          "request": {
+            "name": "Create Payment",
+            "description": {
+              "content": "Performs an end-to-end PCI-compliant payment using card data, a UPO id, a temporary token\nfrom the Web SDK, or an APM payment option. The Nuvei platform handles 3DS2, fraud screening,\nand routing.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"paymentOption\": {\n    \"card\": {\n      \"cardNumber\": \"<string>\",\n      \"cardHolderName\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"CVV\": \"<string>\",\n      \"threeD\": {\n        \"key_0\": 1982\n      }\n    },\n    \"alternativePaymentMethod\": {\n      \"key_0\": 4691\n    },\n    \"userPaymentOptionId\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"deviceDetails\": {\n    \"ipAddress\": \"<string>\",\n    \"deviceType\": \"<string>\",\n    \"deviceName\": \"<string>\",\n    \"deviceOS\": \"<string>\",\n    \"browser\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"urlDetails\": {\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\",\n    \"pendingUrl\": \"<string>\",\n    \"notificationUrl\": \"<string>\"\n  },\n  \"isRebilling\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d8f9b0a-3724-4e4a-9840-a57029039c71",
+              "name": "Payment result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"paymentOption\": {\n    \"card\": {\n      \"cardNumber\": \"<string>\",\n      \"cardHolderName\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"CVV\": \"<string>\",\n      \"threeD\": {\n        \"key_0\": 9915\n      }\n    },\n    \"alternativePaymentMethod\": {\n      \"key_0\": 2886,\n      \"key_1\": 4607,\n      \"key_2\": 6936.6963152313165\n    },\n    \"userPaymentOptionId\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"deviceDetails\": {\n    \"ipAddress\": \"<string>\",\n    \"deviceType\": \"<string>\",\n    \"deviceName\": \"<string>\",\n    \"deviceOS\": \"<string>\",\n    \"browser\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"urlDetails\": {\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\",\n    \"pendingUrl\": \"<string>\",\n    \"notificationUrl\": \"<string>\"\n  },\n  \"isRebilling\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionToken\": \"string\",\n  \"orderId\": \"string\",\n  \"userTokenId\": \"string\",\n  \"paymentOption\": {},\n  \"transactionStatus\": \"ERROR\",\n  \"gwErrorCode\": 626,\n  \"gwErrorReason\": \"string\",\n  \"gwExtendedErrorCode\": 6053,\n  \"transactionType\": \"string\",\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"authCode\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"reason\": \"string\",\n  \"errCode\": 4589,\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 6725,\n  \"clientUniqueId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "113143a5-4fe5-4c32-9b80-4e23ad49c6ad",
+      "name": "Financial Operations",
+      "description": {
+        "content": "Settle, void, and refund operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "619915b7-cf46-4e6e-b4da-0c86e187cfbd",
+          "name": "Settle Transaction",
+          "request": {
+            "name": "Settle Transaction",
+            "description": {
+              "content": "Captures a previously authorized transaction in full or in part using its relatedTransactionId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settleTransaction.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"relatedTransactionId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"authCode\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef635790-5218-4c64-94e1-e27f93926de2",
+              "name": "Settle result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settleTransaction.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"relatedTransactionId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"authCode\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"transactionStatus\": \"DECLINED\",\n  \"status\": \"SUCCESS\",\n  \"authCode\": \"string\",\n  \"gwErrorCode\": 297,\n  \"gwErrorReason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59e07c36-0429-42ed-85cb-81d74bf7d698",
+          "name": "Void Transaction",
+          "request": {
+            "name": "Void Transaction",
+            "description": {
+              "content": "Cancels a sale, credit, or APM transaction before it has been transmitted to the acquirer/scheme.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voidTransaction.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"relatedTransactionId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"authCode\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7078d309-6fbc-462c-819a-0d185a72ee17",
+              "name": "Void result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voidTransaction.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"relatedTransactionId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"authCode\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"transactionStatus\": \"DECLINED\",\n  \"status\": \"SUCCESS\",\n  \"authCode\": \"string\",\n  \"gwErrorCode\": 297,\n  \"gwErrorReason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ceaec7d4-2389-40e7-bfe6-95aef901b3b2",
+          "name": "Refund Transaction",
+          "request": {
+            "name": "Refund Transaction",
+            "description": {
+              "content": "Refunds a settled transaction in full or in part. The relatedTransactionId is mandatory and must reference the original payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "refundTransaction.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"relatedTransactionId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"authCode\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a5656f8-42dc-4993-97b0-dc1b83e9c992",
+              "name": "Refund result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "refundTransaction.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"relatedTransactionId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"authCode\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"transactionStatus\": \"DECLINED\",\n  \"status\": \"SUCCESS\",\n  \"authCode\": \"string\",\n  \"gwErrorCode\": 297,\n  \"gwErrorReason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0cac2060-a5bb-4a5f-9690-9b91bf1c7498",
+      "name": "Status",
+      "description": {
+        "content": "Read-only transaction state.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1814f2d0-3931-4208-aba1-093c371083f6",
+          "name": "Get Payment Status",
+          "request": {
+            "name": "Get Payment Status",
+            "description": {
+              "content": "Returns the final state of a payment. Should be called only at the end of payment processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getPaymentStatus.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checksum\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa0a3598-ed8b-41eb-8f8d-2a5ddf700555",
+              "name": "Payment status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getPaymentStatus.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"checksum\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionToken\": \"string\",\n  \"orderId\": \"string\",\n  \"userTokenId\": \"string\",\n  \"paymentOption\": {},\n  \"transactionStatus\": \"ERROR\",\n  \"gwErrorCode\": 626,\n  \"gwErrorReason\": \"string\",\n  \"gwExtendedErrorCode\": 6053,\n  \"transactionType\": \"string\",\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"authCode\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"reason\": \"string\",\n  \"errCode\": 4589,\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 6725,\n  \"clientUniqueId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://secure.safecharge.com/ppp/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5845765d-ae69-479b-a5f3-7e39efc2f14c",
+    "name": "Nuvei Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Server-to-server REST API for processing card and APM transactions through Nuvei.\nAll endpoints accept JSON POST bodies and respond with JSON. Authentication is performed\nvia a SHA-256 checksum over an ordered concatenation of merchantId, merchantSiteId,\nclientRequestId, amount, currency, timeStamp, and merchantSecretKey.\n\n\nContact Support:\n Name: Nuvei Developer Support\n Email: support@nuvei.com",
+      "type": "text/plain"
+    }
+  }
+}

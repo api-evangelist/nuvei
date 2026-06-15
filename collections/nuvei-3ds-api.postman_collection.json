@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "4afc98e2-ac2c-4412-9b63-249cedbb3e20",
+      "name": "3DS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "518f63a6-ce36-4c4c-8965-bed66646b4ba",
+          "name": "Get Card 3DS Details",
+          "request": {
+            "name": "Get Card 3DS Details",
+            "description": {
+              "content": "Returns 3DS-relevant info for a card (DS, version, challenge requirements) so the merchant can decide whether to proceed with a frictionless or challenge flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getCard3DDetails.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionToken\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"cardNumber\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2d5acdb-210b-40bf-ab97-611942fdc807",
+              "name": "3DS details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getCard3DDetails.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionToken\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"cardNumber\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ccTempToken\": \"string\",\n  \"bin\": \"string\",\n  \"last4Digits\": \"string\",\n  \"ccCardNumber\": \"string\",\n  \"brand\": \"string\",\n  \"issuerBankName\": \"string\",\n  \"threeDDetails\": {\n    \"key_0\": 4958\n  },\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24ebd7eb-e3de-4b5c-b59d-c70dff9fdccb",
+          "name": "Authenticate 3D",
+          "request": {
+            "name": "Authenticate 3D",
+            "description": {
+              "content": "Performs the 3DS-only authentication (without authorization) and returns CAVV and ECI values for use in a downstream payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "authenticate3d.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionToken\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentOption\": \"<object>\",\n  \"billingAddress\": \"<object>\",\n  \"deviceDetails\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4746501a-b2fc-413d-8500-83337aa38a3e",
+              "name": "Authentication result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authenticate3d.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionToken\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentOption\": \"<object>\",\n  \"billingAddress\": \"<object>\",\n  \"deviceDetails\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"threeDResult\": \"string\",\n  \"cavv\": \"string\",\n  \"eci\": \"string\",\n  \"version\": \"string\",\n  \"dsTransID\": \"string\",\n  \"acsTransID\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://secure.safecharge.com/ppp/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e1dc3b45-d172-4683-9c68-3d6fe7b9ec55",
+    "name": "Nuvei 3DS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "3D Secure 2 authentication endpoints supporting PSD2 SCA.\n\nContact Support:\n Name: Nuvei Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

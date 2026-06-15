@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei User Payment Options API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Payment Options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Credit Card UPO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/addUPOCreditCard.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Credit Card UPO"
+        },
+        {
+          "info": {
+            "name": "Add APM UPO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/addUPOAPM.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add APM UPO"
+        },
+        {
+          "info": {
+            "name": "Edit Credit Card UPO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/editUPOCreditCard.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit Credit Card UPO"
+        },
+        {
+          "info": {
+            "name": "Edit APM UPO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/editUPOAPM.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit APM UPO"
+        },
+        {
+          "info": {
+            "name": "Delete UPO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/deleteUPO.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete UPO"
+        },
+        {
+          "info": {
+            "name": "Get User UPOs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getUserUPOs.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get User UPOs"
+        },
+        {
+          "info": {
+            "name": "Enable UPO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/enableUPO.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable UPO"
+        },
+        {
+          "info": {
+            "name": "Disable UPO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/disableUPO.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disable UPO"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

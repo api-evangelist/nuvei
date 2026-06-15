@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei DCC API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DCC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get DCC Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getDccDetails.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get DCC Details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

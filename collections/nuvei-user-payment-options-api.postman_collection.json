@@ -1,0 +1,736 @@
+{
+  "item": [
+    {
+      "id": "64e1e3e9-98ae-4ca0-94ad-39555959a5f4",
+      "name": "User Payment Options",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "acfc990a-4a33-409a-8a84-55b615ff07b6",
+          "name": "Add Credit Card UPO",
+          "request": {
+            "name": "Add Credit Card UPO",
+            "description": {},
+            "url": {
+              "path": [
+                "addUPOCreditCard.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"ccCardNumber\": \"<string>\",\n  \"ccExpMonth\": \"<string>\",\n  \"ccExpYear\": \"<string>\",\n  \"ccNameOnCard\": \"<string>\",\n  \"billingAddress\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "59451135-a5d1-48ea-bfff-533c2a513074",
+              "name": "UPO created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addUPOCreditCard.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"ccCardNumber\": \"<string>\",\n  \"ccExpMonth\": \"<string>\",\n  \"ccExpYear\": \"<string>\",\n  \"ccNameOnCard\": \"<string>\",\n  \"billingAddress\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d845189c-25e2-4559-835b-0d0a432b7f8a",
+          "name": "Add APM UPO",
+          "request": {
+            "name": "Add APM UPO",
+            "description": {},
+            "url": {
+              "path": [
+                "addUPOAPM.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentMethodName\": \"<string>\",\n  \"apmData\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5461\n  },\n  \"billingAddress\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec06d85e-257d-43ef-a7af-139de4847e05",
+              "name": "UPO created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addUPOAPM.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentMethodName\": \"<string>\",\n  \"apmData\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5207,\n    \"key_2\": 4422.706614400907\n  },\n  \"billingAddress\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a4088b8-3720-4db4-9f25-6fa672465c98",
+          "name": "Edit Credit Card UPO",
+          "request": {
+            "name": "Edit Credit Card UPO",
+            "description": {},
+            "url": {
+              "path": [
+                "editUPOCreditCard.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\",\n  \"ccExpMonth\": \"<string>\",\n  \"ccExpYear\": \"<string>\",\n  \"ccNameOnCard\": \"<string>\",\n  \"billingAddress\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c31df12-1f70-4b41-b88c-0dec317d64a6",
+              "name": "UPO updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editUPOCreditCard.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\",\n  \"ccExpMonth\": \"<string>\",\n  \"ccExpYear\": \"<string>\",\n  \"ccNameOnCard\": \"<string>\",\n  \"billingAddress\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a583c3c5-36d7-4cee-8858-6866056d4b20",
+          "name": "Edit APM UPO",
+          "request": {
+            "name": "Edit APM UPO",
+            "description": {},
+            "url": {
+              "path": [
+                "editUPOAPM.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\",\n  \"ccExpMonth\": \"<string>\",\n  \"ccExpYear\": \"<string>\",\n  \"ccNameOnCard\": \"<string>\",\n  \"billingAddress\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56661df4-d443-4114-b738-eaee266c46f7",
+              "name": "UPO updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editUPOAPM.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\",\n  \"ccExpMonth\": \"<string>\",\n  \"ccExpYear\": \"<string>\",\n  \"ccNameOnCard\": \"<string>\",\n  \"billingAddress\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65845942-fdf2-408a-8a3b-a04ac64c6005",
+          "name": "Delete UPO",
+          "request": {
+            "name": "Delete UPO",
+            "description": {},
+            "url": {
+              "path": [
+                "deleteUPO.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6c988d3-e2a5-4dad-bf08-6b412c580f79",
+              "name": "UPO deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deleteUPO.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e885447-615f-47b0-a912-770bf8dea2a8",
+          "name": "Get User UPOs",
+          "request": {
+            "name": "Get User UPOs",
+            "description": {},
+            "url": {
+              "path": [
+                "getUserUPOs.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01197144-75f9-4b73-ad52-bbb55214b4d9",
+              "name": "List of UPOs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getUserUPOs.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paymentMethods\": [\n    {\n      \"userPaymentOptionId\": \"string\",\n      \"upoName\": \"string\",\n      \"upoStatus\": \"string\",\n      \"upoRegistrationDate\": \"string\",\n      \"ccCardNumber\": \"string\",\n      \"ccExpMonth\": \"string\",\n      \"ccExpYear\": \"string\",\n      \"brand\": \"string\",\n      \"uniqueCC\": \"string\",\n      \"bin\": \"string\",\n      \"last4Digits\": \"string\"\n    },\n    {\n      \"userPaymentOptionId\": \"string\",\n      \"upoName\": \"string\",\n      \"upoStatus\": \"string\",\n      \"upoRegistrationDate\": \"string\",\n      \"ccCardNumber\": \"string\",\n      \"ccExpMonth\": \"string\",\n      \"ccExpYear\": \"string\",\n      \"brand\": \"string\",\n      \"uniqueCC\": \"string\",\n      \"bin\": \"string\",\n      \"last4Digits\": \"string\"\n    }\n  ],\n  \"status\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae7a830c-046f-413c-b237-b3dd09520352",
+          "name": "Enable UPO",
+          "request": {
+            "name": "Enable UPO",
+            "description": {},
+            "url": {
+              "path": [
+                "enableUPO.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06f046fd-fbdf-4937-bd68-ffb7b818427a",
+              "name": "UPO enabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enableUPO.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5235e68-9525-4eff-9fde-beb361b5c297",
+          "name": "Disable UPO",
+          "request": {
+            "name": "Disable UPO",
+            "description": {},
+            "url": {
+              "path": [
+                "disableUPO.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2726f407-11cb-4c14-af6c-169e5e2fccc0",
+              "name": "UPO disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "disableUPO.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"userPaymentOptionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://secure.safecharge.com/ppp/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a98da21-ccd4-4e02-8f22-eb69e7e47f36",
+    "name": "Nuvei User Payment Options API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage stored payment instruments (User Payment Options / UPOs) — cards and APMs.\n\nContact Support:\n Name: Nuvei Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

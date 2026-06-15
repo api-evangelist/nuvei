@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei Payouts API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/payout.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraws funds to a card, bank account, or APM. Either references a prior transaction (relatedTransactionId) or uses a userPaymentOptionId / unreferenced destination details."
+        },
+        {
+          "info": {
+            "name": "Account Capture",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/accountCapture.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a redirect URL where the cardholder/account holder securely provides bank account details for use in a subsequent payout."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

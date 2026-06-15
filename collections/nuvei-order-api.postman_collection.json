@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "11fd32e0-9f6a-4a30-bf9e-1263cf369750",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09ab84e6-2f76-4cc9-bbbf-7aa20243b300",
+          "name": "Open Order",
+          "request": {
+            "name": "Open Order",
+            "description": {
+              "content": "Authenticates merchant credentials, sets up an order in the Nuvei system, and returns a sessionToken.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openOrder.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"billingAddress\": \"<object>\",\n  \"shippingAddress\": \"<object>\",\n  \"deviceDetails\": \"<object>\",\n  \"urlDetails\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e1e7060-2fed-4515-ba59-c8719c5ff63f",
+              "name": "Order opened",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openOrder.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"billingAddress\": \"<object>\",\n  \"shippingAddress\": \"<object>\",\n  \"deviceDetails\": \"<object>\",\n  \"urlDetails\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"sessionToken\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 5405,\n  \"status\": \"ERROR\",\n  \"errCode\": 7923,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"userTokenId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92fceaff-4062-44cd-bb08-f38d1af4b1de",
+          "name": "Update Order",
+          "request": {
+            "name": "Update Order",
+            "description": {
+              "content": "Modifies an existing order's amount or item list during checkout without reloading.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "updateOrder.do"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"billingAddress\": \"<object>\",\n  \"shippingAddress\": \"<object>\",\n  \"deviceDetails\": \"<object>\",\n  \"urlDetails\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d578b38-1cd9-4585-9ca9-70004cd0e82b",
+              "name": "Order updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "updateOrder.do"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"clientUniqueId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"price\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"billingAddress\": \"<object>\",\n  \"shippingAddress\": \"<object>\",\n  \"deviceDetails\": \"<object>\",\n  \"urlDetails\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"sessionToken\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 5405,\n  \"status\": \"ERROR\",\n  \"errCode\": 7923,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"userTokenId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://secure.safecharge.com/ppp/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9d147738-30d6-4e34-b607-4a895ca885b5",
+    "name": "Nuvei Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Create and update orders prior to payment. openOrder authenticates merchant credentials, sets up an order, and returns a sessionToken. updateOrder modifies an in-flight order (amount/items) without reloading.\n\nContact Support:\n Name: Nuvei Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
