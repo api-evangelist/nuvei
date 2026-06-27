@@ -27,7 +27,7 @@ tags:
 properties:
 - type: Documentation
   url: https://docs.nuvei.com
-- type: SignUp
+- type: Signup
   url: https://nuvei.com/contact-sales/
 - type: TermsOfService
   url: https://nuvei.com/policies/terms-of-use/
@@ -228,40 +228,40 @@ apis:
   - type: AsyncAPI
     url: asyncapi/nuvei-dmn-asyncapi.yml
 common:
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-server-php
   name: Nuvei PHP Server SDK
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-server-java
   name: Nuvei Java Server SDK
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-server-java-2.0
   name: Nuvei Java Server SDK 2.0
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-server-nodejs
   name: Nuvei Node.js Server SDK
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-mobile-sdk-android
   name: Nuvei Android Mobile SDK
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-mobile-sdk-ios
   name: Nuvei iOS Mobile SDK
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-react-native-mobile-sdk
   name: Nuvei React Native Mobile SDK
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-mobile-cashier-helper-android
   name: Nuvei Android Cashier Helper
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-mobile-cashier-helper-ios
   name: Nuvei iOS Cashier Helper
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-cashier-helper-react-for-android
   name: Nuvei Cashier Helper React Wrapper for Android
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-mobile-pods
   name: Nuvei iOS CocoaPods Distribution
-- type: SDK
+- type: SDKs
   url: https://github.com/Nuvei/nuvei-maven-android
   name: Nuvei Android Maven Distribution
 - type: Plugin
