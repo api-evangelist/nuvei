@@ -228,6 +228,8 @@ apis:
   - type: AsyncAPI
     url: asyncapi/nuvei-dmn-asyncapi.yml
 common:
+- type: DomainSecurity
+  url: security/nuvei-domain-security.yml
 - type: SDKs
   url: https://github.com/Nuvei/nuvei-server-php
   name: Nuvei PHP Server SDK
