@@ -228,6 +228,8 @@ apis:
   - type: AsyncAPI
     url: asyncapi/nuvei-dmn-asyncapi.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/nuvei-agentic-access.yml
 - type: DomainSecurity
   url: security/nuvei-domain-security.yml
 - type: SDKs
