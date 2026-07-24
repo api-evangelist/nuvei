@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Nuvei User Payment Options API
-  description: Manage stored payment instruments (User Payment Options / UPOs) — cards and APMs.
-  version: "1.0"
+  title: Nuvei 3DS User Payment Options API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: '1.0'
   contact:
     name: Nuvei Developer Support
     url: https://docs.nuvei.com
@@ -25,14 +25,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddUPOCardRequest"
+              $ref: '#/components/schemas/AddUPOCardRequest'
       responses:
-        "200":
+        '200':
           description: UPO created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UPOResponse"
+                $ref: '#/components/schemas/UPOResponse'
   /addUPOAPM.do:
     post:
       tags:
@@ -44,14 +44,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddUPOAPMRequest"
+              $ref: '#/components/schemas/AddUPOAPMRequest'
       responses:
-        "200":
+        '200':
           description: UPO created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UPOResponse"
+                $ref: '#/components/schemas/UPOResponse'
   /editUPOCreditCard.do:
     post:
       tags:
@@ -63,14 +63,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EditUPORequest"
+              $ref: '#/components/schemas/EditUPORequest'
       responses:
-        "200":
+        '200':
           description: UPO updated
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UPOResponse"
+                $ref: '#/components/schemas/UPOResponse'
   /editUPOAPM.do:
     post:
       tags:
@@ -82,14 +82,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EditUPORequest"
+              $ref: '#/components/schemas/EditUPORequest'
       responses:
-        "200":
+        '200':
           description: UPO updated
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UPOResponse"
+                $ref: '#/components/schemas/UPOResponse'
   /deleteUPO.do:
     post:
       tags:
@@ -101,14 +101,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DeleteUPORequest"
+              $ref: '#/components/schemas/DeleteUPORequest'
       responses:
-        "200":
+        '200':
           description: UPO deleted
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UPOResponse"
+                $ref: '#/components/schemas/UPOResponse'
   /getUserUPOs.do:
     post:
       tags:
@@ -120,14 +120,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/GetUserUPOsRequest"
+              $ref: '#/components/schemas/GetUserUPOsRequest'
       responses:
-        "200":
+        '200':
           description: List of UPOs
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetUserUPOsResponse"
+                $ref: '#/components/schemas/GetUserUPOsResponse'
   /enableUPO.do:
     post:
       tags:
@@ -139,14 +139,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ToggleUPORequest"
+              $ref: '#/components/schemas/ToggleUPORequest'
       responses:
-        "200":
+        '200':
           description: UPO enabled
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UPOResponse"
+                $ref: '#/components/schemas/UPOResponse'
   /disableUPO.do:
     post:
       tags:
@@ -158,40 +158,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ToggleUPORequest"
+              $ref: '#/components/schemas/ToggleUPORequest'
       responses:
-        "200":
+        '200':
           description: UPO disabled
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UPOResponse"
+                $ref: '#/components/schemas/UPOResponse'
 components:
   schemas:
-    MerchantAuth:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - userTokenId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        userTokenId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string
     AddUPOCardRequest:
       allOf:
-      - $ref: "#/components/schemas/MerchantAuth"
+      - $ref: '#/components/schemas/MerchantAuth'
       - type: object
         properties:
           ccCardNumber:
@@ -204,46 +183,12 @@ components:
             type: string
           billingAddress:
             type: object
-    AddUPOAPMRequest:
-      allOf:
-      - $ref: "#/components/schemas/MerchantAuth"
-      - type: object
-        properties:
-          paymentMethodName:
-            type: string
-          apmData:
-            type: object
-            additionalProperties: true
-          billingAddress:
-            type: object
-    EditUPORequest:
-      allOf:
-      - $ref: "#/components/schemas/MerchantAuth"
-      - type: object
-        properties:
-          userPaymentOptionId:
-            type: string
-          ccExpMonth:
-            type: string
-          ccExpYear:
-            type: string
-          ccNameOnCard:
-            type: string
-          billingAddress:
-            type: object
-    DeleteUPORequest:
-      allOf:
-      - $ref: "#/components/schemas/MerchantAuth"
-      - type: object
-        properties:
-          userPaymentOptionId:
-            type: string
     GetUserUPOsRequest:
       allOf:
-      - $ref: "#/components/schemas/MerchantAuth"
-    ToggleUPORequest:
+      - $ref: '#/components/schemas/MerchantAuth'
+    DeleteUPORequest:
       allOf:
-      - $ref: "#/components/schemas/MerchantAuth"
+      - $ref: '#/components/schemas/MerchantAuth'
       - type: object
         properties:
           userPaymentOptionId:
@@ -255,7 +200,9 @@ components:
           type: string
         status:
           type: string
-          enum: [SUCCESS, ERROR]
+          enum:
+          - SUCCESS
+          - ERROR
         errCode:
           type: integer
         reason:
@@ -270,6 +217,21 @@ components:
           type: string
         internalRequestId:
           type: integer
+    EditUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
+          ccExpMonth:
+            type: string
+          ccExpYear:
+            type: string
+          ccNameOnCard:
+            type: string
+          billingAddress:
+            type: object
     GetUserUPOsResponse:
       type: object
       properties:
@@ -302,4 +264,46 @@ components:
                 type: string
         status:
           type: string
-          enum: [SUCCESS, ERROR]
+          enum:
+          - SUCCESS
+          - ERROR
+    ToggleUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - userTokenId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        userTokenId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+    AddUPOAPMRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          paymentMethodName:
+            type: string
+          apmData:
+            type: object
+            additionalProperties: true
+          billingAddress:
+            type: object

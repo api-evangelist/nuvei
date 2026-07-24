@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Nuvei 3DS API
   description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
-  version: "1.0"
+  version: '1.0'
   contact:
     name: Nuvei Developer Support
     url: https://docs.nuvei.com
@@ -20,44 +20,61 @@ paths:
       - 3DS
       summary: Get Card 3DS Details
       operationId: getCard3DDetails
-      description: Returns 3DS-relevant info for a card (DS, version, challenge requirements) so
-        the merchant can decide whether to proceed with a frictionless or challenge flow.
+      description: Returns 3DS-relevant info for a card (DS, version, challenge requirements) so the merchant can decide whether to proceed with a frictionless or challenge flow.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Card3DRequest"
+              $ref: '#/components/schemas/Card3DRequest'
       responses:
-        "200":
+        '200':
           description: 3DS details
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Card3DResponse"
+                $ref: '#/components/schemas/Card3DResponse'
   /authenticate3d.do:
     post:
       tags:
       - 3DS
       summary: Authenticate 3D
       operationId: authenticate3d
-      description: Performs the 3DS-only authentication (without authorization) and returns CAVV
-        and ECI values for use in a downstream payment.
+      description: Performs the 3DS-only authentication (without authorization) and returns CAVV and ECI values for use in a downstream payment.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Authenticate3DRequest"
+              $ref: '#/components/schemas/Authenticate3DRequest'
       responses:
-        "200":
+        '200':
           description: Authentication result
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Authenticate3DResponse"
+                $ref: '#/components/schemas/Authenticate3DResponse'
 components:
   schemas:
+    Authenticate3DResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        threeDResult:
+          type: string
+        cavv:
+          type: string
+        eci:
+          type: string
+        version:
+          type: string
+        dsTransID:
+          type: string
+        acsTransID:
+          type: string
+        status:
+          type: string
     Card3DRequest:
       type: object
       required:
@@ -76,26 +93,6 @@ components:
         cardNumber:
           type: string
         userPaymentOptionId:
-          type: string
-    Card3DResponse:
-      type: object
-      properties:
-        ccTempToken:
-          type: string
-        bin:
-          type: string
-        last4Digits:
-          type: string
-        ccCardNumber:
-          type: string
-        brand:
-          type: string
-        issuerBankName:
-          type: string
-        threeDDetails:
-          type: object
-          additionalProperties: true
-        status:
           type: string
     Authenticate3DRequest:
       type: object
@@ -124,22 +121,23 @@ components:
           type: object
         deviceDetails:
           type: object
-    Authenticate3DResponse:
+    Card3DResponse:
       type: object
       properties:
-        transactionId:
+        ccTempToken:
           type: string
-        threeDResult:
+        bin:
           type: string
-        cavv:
+        last4Digits:
           type: string
-        eci:
+        ccCardNumber:
           type: string
-        version:
+        brand:
           type: string
-        dsTransID:
+        issuerBankName:
           type: string
-        acsTransID:
-          type: string
+        threeDDetails:
+          type: object
+          additionalProperties: true
         status:
           type: string

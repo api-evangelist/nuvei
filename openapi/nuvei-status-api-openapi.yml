@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Nuvei 3DS Status API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: '1.0'
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com
+servers:
+- url: https://secure.safecharge.com/ppp/api/v1
+  description: Production
+- url: https://ppp-test.nuvei.com/ppp/api/v1
+  description: Sandbox
+tags:
+- name: Status
+  description: Read-only transaction state.
+paths:
+  /getPaymentStatus.do:
+    post:
+      tags:
+      - Status
+      summary: Get Payment Status
+      operationId: getPaymentStatus
+      description: Returns the final state of a payment. Should be called only at the end of payment processing.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusRequest'
+      responses:
+        '200':
+          description: Payment status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+components:
+  schemas:
+    PaymentResponse:
+      type: object
+      properties:
+        sessionToken:
+          type: string
+        orderId:
+          type: string
+        userTokenId:
+          type: string
+        paymentOption:
+          type: object
+        transactionStatus:
+          type: string
+          enum:
+          - APPROVED
+          - DECLINED
+          - ERROR
+          - REDIRECT
+          - PENDING
+        gwErrorCode:
+          type: integer
+        gwErrorReason:
+          type: string
+        gwExtendedErrorCode:
+          type: integer
+        transactionType:
+          type: string
+        transactionId:
+          type: string
+        externalTransactionId:
+          type: string
+        authCode:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        reason:
+          type: string
+        errCode:
+          type: integer
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        version:
+          type: string
+        clientRequestId:
+          type: string
+        internalRequestId:
+          type: integer
+        clientUniqueId:
+          type: string
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+          description: Merchant identifier assigned by Nuvei.
+        merchantSiteId:
+          type: string
+          description: Site identifier for the merchant.
+        clientRequestId:
+          type: string
+          description: Idempotent client-side identifier for the request.
+        timeStamp:
+          type: string
+          description: yyyyMMddHHmmss timestamp used in the checksum.
+        checksum:
+          type: string
+          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
+    StatusRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        required:
+        - sessionToken
+        properties:
+          sessionToken:
+            type: string

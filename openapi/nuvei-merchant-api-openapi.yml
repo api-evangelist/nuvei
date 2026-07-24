@@ -1,9 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Nuvei Merchant Configuration API
-  description: Returns configuration data for a merchant including supported countries and the
-    payment methods enabled per country.
-  version: "1.0"
+  title: Nuvei 3DS Merchant API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: '1.0'
   contact:
     name: Nuvei Developer Support
     url: https://docs.nuvei.com
@@ -26,14 +25,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/MerchantRequest"
+              $ref: '#/components/schemas/MerchantRequest'
       responses:
-        "200":
+        '200':
           description: Country list
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CountriesResponse"
+                $ref: '#/components/schemas/CountriesResponse'
   /getMerchantPaymentMethods.do:
     post:
       tags:
@@ -45,37 +44,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PaymentMethodsRequest"
+              $ref: '#/components/schemas/PaymentMethodsRequest'
       responses:
-        "200":
+        '200':
           description: Payment methods list
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaymentMethodsResponse"
+                $ref: '#/components/schemas/PaymentMethodsResponse'
 components:
   schemas:
-    MerchantRequest:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string
     PaymentMethodsRequest:
       allOf:
-      - $ref: "#/components/schemas/MerchantRequest"
+      - $ref: '#/components/schemas/MerchantRequest'
       - type: object
         properties:
           countryCode:
@@ -86,21 +67,9 @@ components:
             type: string
           type:
             type: string
-            enum: [DEPOSIT, WITHDRAWAL]
-    CountriesResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        countries:
-          type: array
-          items:
-            type: object
-            properties:
-              countryCode:
-                type: string
-              countryName:
-                type: string
+            enum:
+            - DEPOSIT
+            - WITHDRAWAL
     PaymentMethodsResponse:
       type: object
       properties:
@@ -133,3 +102,35 @@ components:
                 type: array
                 items:
                   type: object
+    CountriesResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        countries:
+          type: array
+          items:
+            type: object
+            properties:
+              countryCode:
+                type: string
+              countryName:
+                type: string
+    MerchantRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string

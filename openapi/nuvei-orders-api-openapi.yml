@@ -1,10 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Nuvei Order API
-  description: Create and update orders prior to payment. openOrder authenticates merchant credentials,
-    sets up an order, and returns a sessionToken. updateOrder modifies an in-flight order
-    (amount/items) without reloading.
-  version: "1.0"
+  title: Nuvei 3DS Orders API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: '1.0'
   contact:
     name: Nuvei Developer Support
     url: https://docs.nuvei.com
@@ -22,44 +20,70 @@ paths:
       - Orders
       summary: Open Order
       operationId: openOrder
-      description: Authenticates merchant credentials, sets up an order in the Nuvei system, and
-        returns a sessionToken.
+      description: Authenticates merchant credentials, sets up an order in the Nuvei system, and returns a sessionToken.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/OrderRequest"
+              $ref: '#/components/schemas/OrderRequest'
       responses:
-        "200":
+        '200':
           description: Order opened
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/OrderResponse"
+                $ref: '#/components/schemas/OrderResponse'
   /updateOrder.do:
     post:
       tags:
       - Orders
       summary: Update Order
       operationId: updateOrder
-      description: Modifies an existing order's amount or item list during checkout without
-        reloading.
+      description: Modifies an existing order's amount or item list during checkout without reloading.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/OrderRequest"
+              $ref: '#/components/schemas/OrderRequest'
       responses:
-        "200":
+        '200':
           description: Order updated
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/OrderResponse"
+                $ref: '#/components/schemas/OrderResponse'
 components:
   schemas:
+    OrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        sessionToken:
+          type: string
+        clientRequestId:
+          type: string
+        internalRequestId:
+          type: integer
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        errCode:
+          type: integer
+        reason:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        version:
+          type: string
+        userTokenId:
+          type: string
     OrderRequest:
       type: object
       required:
@@ -108,30 +132,4 @@ components:
         timeStamp:
           type: string
         checksum:
-          type: string
-    OrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        sessionToken:
-          type: string
-        clientRequestId:
-          type: string
-        internalRequestId:
-          type: integer
-        status:
-          type: string
-          enum: [SUCCESS, ERROR]
-        errCode:
-          type: integer
-        reason:
-          type: string
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        version:
-          type: string
-        userTokenId:
           type: string

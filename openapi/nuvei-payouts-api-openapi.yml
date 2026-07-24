@@ -1,9 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Nuvei Payouts API
-  description: Push funds to consumers and counterparties via card, bank account, or local APMs.
-    Supports referenced (relatedTransactionId) and unreferenced payouts.
-  version: "1.0"
+  title: Nuvei 3DS Payouts API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: '1.0'
   contact:
     name: Nuvei Developer Support
     url: https://docs.nuvei.com
@@ -21,45 +20,100 @@ paths:
       - Payouts
       summary: Create Payout
       operationId: payout
-      description: Withdraws funds to a card, bank account, or APM. Either references a prior
-        transaction (relatedTransactionId) or uses a userPaymentOptionId / unreferenced
-        destination details.
+      description: Withdraws funds to a card, bank account, or APM. Either references a prior transaction (relatedTransactionId) or uses a userPaymentOptionId / unreferenced destination details.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PayoutRequest"
+              $ref: '#/components/schemas/PayoutRequest'
       responses:
-        "200":
+        '200':
           description: Payout result
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PayoutResponse"
+                $ref: '#/components/schemas/PayoutResponse'
   /accountCapture.do:
     post:
       tags:
       - Payouts
       summary: Account Capture
       operationId: accountCapture
-      description: Returns a redirect URL where the cardholder/account holder securely provides
-        bank account details for use in a subsequent payout.
+      description: Returns a redirect URL where the cardholder/account holder securely provides bank account details for use in a subsequent payout.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AccountCaptureRequest"
+              $ref: '#/components/schemas/AccountCaptureRequest'
       responses:
-        "200":
+        '200':
           description: Account capture redirect
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AccountCaptureResponse"
+                $ref: '#/components/schemas/AccountCaptureResponse'
 components:
   schemas:
+    AccountCaptureRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - userTokenId
+      - amount
+      - currency
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        userTokenId:
+          type: string
+        clientRequestId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        country:
+          type: string
+        paymentMethod:
+          type: string
+        urlDetails:
+          type: object
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+    PayoutResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        externalTransactionId:
+          type: string
+        transactionStatus:
+          type: string
+          enum:
+          - APPROVED
+          - DECLINED
+          - ERROR
+          - PENDING
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        authCode:
+          type: string
+        gwErrorCode:
+          type: integer
+        gwErrorReason:
+          type: string
     PayoutRequest:
       type: object
       required:
@@ -104,58 +158,6 @@ components:
           type: string
         checksum:
           type: string
-    PayoutResponse:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        externalTransactionId:
-          type: string
-        transactionStatus:
-          type: string
-          enum: [APPROVED, DECLINED, ERROR, PENDING]
-        status:
-          type: string
-          enum: [SUCCESS, ERROR]
-        authCode:
-          type: string
-        gwErrorCode:
-          type: integer
-        gwErrorReason:
-          type: string
-    AccountCaptureRequest:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - userTokenId
-      - amount
-      - currency
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        userTokenId:
-          type: string
-        clientRequestId:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        country:
-          type: string
-        paymentMethod:
-          type: string
-        urlDetails:
-          type: object
-        timeStamp:
-          type: string
-        checksum:
-          type: string
     AccountCaptureResponse:
       type: object
       properties:
@@ -165,7 +167,9 @@ components:
           type: string
         status:
           type: string
-          enum: [SUCCESS, ERROR]
+          enum:
+          - SUCCESS
+          - ERROR
         errCode:
           type: integer
         reason:

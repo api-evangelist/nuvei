@@ -1,0 +1,147 @@
+openapi: 3.0.3
+info:
+  title: Nuvei 3DS Financial Operations API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: '1.0'
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com
+servers:
+- url: https://secure.safecharge.com/ppp/api/v1
+  description: Production
+- url: https://ppp-test.nuvei.com/ppp/api/v1
+  description: Sandbox
+tags:
+- name: Financial Operations
+  description: Settle, void, and refund operations.
+paths:
+  /settleTransaction.do:
+    post:
+      tags:
+      - Financial Operations
+      summary: Settle Transaction
+      operationId: settleTransaction
+      description: Captures a previously authorized transaction in full or in part using its relatedTransactionId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialOperationRequest'
+      responses:
+        '200':
+          description: Settle result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialOperationResponse'
+  /voidTransaction.do:
+    post:
+      tags:
+      - Financial Operations
+      summary: Void Transaction
+      operationId: voidTransaction
+      description: Cancels a sale, credit, or APM transaction before it has been transmitted to the acquirer/scheme.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialOperationRequest'
+      responses:
+        '200':
+          description: Void result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialOperationResponse'
+  /refundTransaction.do:
+    post:
+      tags:
+      - Financial Operations
+      summary: Refund Transaction
+      operationId: refundTransaction
+      description: Refunds a settled transaction in full or in part. The relatedTransactionId is mandatory and must reference the original payment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialOperationRequest'
+      responses:
+        '200':
+          description: Refund result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialOperationResponse'
+components:
+  schemas:
+    FinancialOperationRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        required:
+        - relatedTransactionId
+        - amount
+        - currency
+        properties:
+          clientUniqueId:
+            type: string
+          amount:
+            type: string
+          currency:
+            type: string
+          relatedTransactionId:
+            type: string
+          authCode:
+            type: string
+          comment:
+            type: string
+    FinancialOperationResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        externalTransactionId:
+          type: string
+        transactionStatus:
+          type: string
+          enum:
+          - APPROVED
+          - DECLINED
+          - ERROR
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        authCode:
+          type: string
+        gwErrorCode:
+          type: integer
+        gwErrorReason:
+          type: string
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+          description: Merchant identifier assigned by Nuvei.
+        merchantSiteId:
+          type: string
+          description: Site identifier for the merchant.
+        clientRequestId:
+          type: string
+          description: Idempotent client-side identifier for the request.
+        timeStamp:
+          type: string
+          description: yyyyMMddHHmmss timestamp used in the checksum.
+        checksum:
+          type: string
+          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.

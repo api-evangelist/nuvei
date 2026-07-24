@@ -1,9 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Nuvei DCC API
-  description: Dynamic Currency Conversion. Compute a converted amount and markup rate for a card
-    BIN against a target currency.
-  version: "1.0"
+  title: Nuvei 3DS DCC API
+  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  version: '1.0'
   contact:
     name: Nuvei Developer Support
     url: https://docs.nuvei.com
@@ -26,16 +25,42 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DccRequest"
+              $ref: '#/components/schemas/DccRequest'
       responses:
-        "200":
+        '200':
           description: DCC quote
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DccResponse"
+                $ref: '#/components/schemas/DccResponse'
 components:
   schemas:
+    DccResponse:
+      type: object
+      properties:
+        dccDetails:
+          type: object
+          properties:
+            originalAmount:
+              type: string
+            originalCurrency:
+              type: string
+            convertedAmount:
+              type: string
+            convertedCurrency:
+              type: string
+            exchangeRate:
+              type: string
+            markup:
+              type: string
+            expireTime:
+              type: string
+        status:
+          type: string
+        errCode:
+          type: integer
+        reason:
+          type: string
     DccRequest:
       type: object
       required:
@@ -65,30 +90,4 @@ components:
         timeStamp:
           type: string
         checksum:
-          type: string
-    DccResponse:
-      type: object
-      properties:
-        dccDetails:
-          type: object
-          properties:
-            originalAmount:
-              type: string
-            originalCurrency:
-              type: string
-            convertedAmount:
-              type: string
-            convertedCurrency:
-              type: string
-            exchangeRate:
-              type: string
-            markup:
-              type: string
-            expireTime:
-              type: string
-        status:
-          type: string
-        errCode:
-          type: integer
-        reason:
           type: string
