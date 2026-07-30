@@ -8,6 +8,18 @@ description: Nuvei is a global payment technology company headquartered in Montr
   acquiring in 52 markets across eCommerce, iGaming, sports betting, travel, retail,
   B2B, and financial services. Originally listed on Nasdaq and TSX as NVEI, Nuvei
   was taken private by Advent International in 2024.
+accessModel:
+  pricing: enterprise
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 image: https://nuvei.com/wp-content/uploads/2023/01/Nuvei_Logo_2C_RGB.svg
 humanURL: https://nuvei.com
 baseURL: https://secure.safecharge.com/ppp/api/v1/
@@ -66,17 +78,19 @@ apis:
   - Settlement
   - Refund
   - Void
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Server-to-server REST API for processing card and APM transactions
-    through Nuvei. Includes openOrder for session setup, payment for end-to-end transactions,
-    settleTransaction for capturing pre-authorized amounts, refundTransaction for
-    refunds, voidTransaction for cancellations, and getPaymentStatus for transaction
-    state. Auth uses SHA-256 checksum over merchantId, merchantSiteId, clientRequestId,
-    amount, currency, timeStamp, and merchantSecretKey.
+  description: >-
+    Server-to-server REST API for processing card and APM transactions through Nuvei. Includes openOrder
+    for session setup, payment for end-to-end transactions, settleTransaction for capturing pre-authorized
+    amounts, refundTransaction for refunds, voidTransaction for cancellations, and getPaymentStatus for
+    transaction state. Auth uses SHA-256 checksum over merchantId, merchantSiteId, clientRequestId, amount,
+    currency, timeStamp, and merchantSecretKey.
   properties:
   - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-payments-api-openapi.yml
   - type: JSONSchema
@@ -85,54 +99,23 @@ apis:
     url: json-schema/nuvei-transaction-schema.json
   - url: graphql/nuvei-graphql.md
     type: GraphQL
-- aid: nuvei:nuvei-session-api
-  name: Nuvei Session API
-  tags:
-  - Sessions
-  - Tokens
-  - Authentication
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
-  baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Generates and manages session tokens (getSessionToken) used to authenticate
-    subsequent REST calls and Web SDK operations. Session tokens are scoped to a merchant
-    and order and have a short lifetime.
-  properties:
-  - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
-  - type: OpenAPI
-    url: openapi/nuvei-session-api-openapi.yml
-- aid: nuvei:nuvei-order-api
-  name: Nuvei Order API
-  tags:
-  - Orders
-  - Cart
-  - Checkout
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
-  baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Creates and updates orders prior to payment via openOrder and updateOrder.
-    Supports line items, billing/shipping addresses, currency, device details, and
-    dynamic descriptors. Used as the first step for Web SDK, Simply Connect, and Payment
-    Page integrations.
-  properties:
-  - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
-  - type: OpenAPI
-    url: openapi/nuvei-order-api-openapi.yml
 - aid: nuvei:nuvei-payouts-api
   name: Nuvei Payouts API
   tags:
   - Payouts
   - Withdrawals
   - Disbursement
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Pushes funds out to consumers and counterparties via card, bank account,
-    and a wide set of local APMs. The payout endpoint supports referenced (relatedTransactionId)
-    and unreferenced (account number / IBAN) payouts and integrates with accountCapture
-    to collect destination details safely.
+  description: >-
+    Pushes funds out to consumers and counterparties via card, bank account, and a wide set of local APMs.
+    The payout endpoint supports referenced (relatedTransactionId) and unreferenced (account number /
+    IBAN) payouts and integrates with accountCapture to collect destination details safely.
   properties:
   - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-payouts-api-openapi.yml
 - aid: nuvei:nuvei-user-payment-options-api
@@ -142,33 +125,18 @@ apis:
   - Vault
   - User Payment Options
   - Cards
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Manages stored payment instruments (User Payment Options / UPOs) including
-    card and APM tokenization. Supports addUPOCreditCard, addUPOAPM, editUPOCreditCard,
-    editUPOAPM, deleteUPO, getUserUPOs, and enableUPO/disableUPO.
+  description: >-
+    Manages stored payment instruments (User Payment Options / UPOs) including card and APM tokenization.
+    Supports addUPOCreditCard, addUPOAPM, editUPOCreditCard, editUPOAPM, deleteUPO, getUserUPOs, and enableUPO/disableUPO.
   properties:
   - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-user-payment-options-api-openapi.yml
-- aid: nuvei:nuvei-merchant-config-api
-  name: Nuvei Merchant Configuration API
-  tags:
-  - Merchant
-  - Configuration
-  - Payment Methods
-  - Countries
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
-  baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Returns configuration data for a merchant including supported countries
-    (getMerchantCountries) and the active set of payment methods per country (getMerchantPaymentMethods).
-    Used by client checkouts to render dynamic payment selection.
-  properties:
-  - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
-  - type: OpenAPI
-    url: openapi/nuvei-merchant-config-api-openapi.yml
 - aid: nuvei:nuvei-3ds-api
   name: Nuvei 3DS API
   tags:
@@ -176,15 +144,17 @@ apis:
   - SCA
   - Authentication
   - Cards
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: 3D Secure 2 authentication endpoints. getCard3DDetails returns DS information
-    and challenge requirements for a card; authenticate3d completes the authentication
-    flow returning CAVV and ECI. Designed to satisfy PSD2 SCA requirements for EEA
-    acquiring.
+  description: >-
+    3D Secure 2 authentication endpoints. getCard3DDetails returns DS information and challenge requirements
+    for a card; authenticate3d completes the authentication flow returning CAVV and ECI. Designed to satisfy
+    PSD2 SCA requirements for EEA acquiring.
   properties:
   - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-3ds-api-openapi.yml
 - aid: nuvei:nuvei-dcc-api
@@ -193,14 +163,16 @@ apis:
   - DCC
   - Currency Conversion
   - FX
-  humanURL: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
-  description: Dynamic Currency Conversion. getDccDetails computes the converted amount
-    and markup rate for a card BIN and currency pair so merchants can present a localized
-    currency offer at checkout.
+  description: >-
+    Dynamic Currency Conversion. getDccDetails computes the converted amount and markup rate for a card
+    BIN and currency pair so merchants can present a localized currency offer at checkout.
   properties:
   - type: Documentation
-    url: https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   - type: OpenAPI
     url: openapi/nuvei-dcc-api-openapi.yml
 - aid: nuvei:nuvei-webhooks-dmn
@@ -211,11 +183,11 @@ apis:
   - Notifications
   - DMN
   humanURL: https://docs.nuvei.com/documentation/integration/webhooks/
-  description: Asynchronous webhook notifications sent from Nuvei to a merchant endpoint
-    to communicate the final status of payments, payouts, refunds, voids, settles,
-    and Control Panel events. Payment DMNs include an advanceResponseChecksum signed
-    with the merchantSecretKey using SHA-256 over the ordered parameter values; withdrawal
-    DMNs concatenate name=value pairs with the secret appended.
+  description: >-
+    Asynchronous webhook notifications sent from Nuvei to a merchant endpoint to communicate the final
+    status of payments, payouts, refunds, voids, settles, and Control Panel events. Payment DMNs include
+    an advanceResponseChecksum signed with the merchantSecretKey using SHA-256 over the ordered parameter
+    values; withdrawal DMNs concatenate name=value pairs with the secret appended.
   properties:
   - type: Documentation
     url: https://docs.nuvei.com/documentation/integration/webhooks/
@@ -227,6 +199,76 @@ apis:
     url: https://docs.nuvei.com/documentation/integration/webhooks/control-panel/
   - type: AsyncAPI
     url: asyncapi/nuvei-dmn-asyncapi.yml
+- aid: nuvei:nuvei-financial-operations-api
+  name: Nuvei Financial Operations API
+  description: Settle, void, and refund operations.
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  baseURL: https://secure.safecharge.com/ppp/api/v1/
+  tags:
+  - Financial Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/nuvei-financial-operations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+- aid: nuvei:nuvei-merchant-api
+  name: Nuvei Merchant API
+  description: The Merchant API from Nuvei — 2 operation(s) for merchant.
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  baseURL: https://secure.safecharge.com/ppp/api/v1/
+  tags:
+  - Merchant
+  properties:
+  - type: OpenAPI
+    url: openapi/nuvei-merchant-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+- aid: nuvei:nuvei-orders-api
+  name: Nuvei Orders API
+  description: The Orders API from Nuvei — 2 operation(s) for orders.
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  baseURL: https://secure.safecharge.com/ppp/api/v1/
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/nuvei-orders-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+- aid: nuvei:nuvei-sessions-api
+  name: Nuvei Sessions API
+  description: The Sessions API from Nuvei — 1 operation(s) for sessions.
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  baseURL: https://secure.safecharge.com/ppp/api/v1/
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/nuvei-sessions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+- aid: nuvei:nuvei-status-api
+  name: Nuvei Status API
+  description: Read-only transaction state.
+  humanURL: >-
+    https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
+  baseURL: https://secure.safecharge.com/ppp/api/v1/
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/nuvei-status-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
 common:
 - type: AgenticAccess
   url: agentic-access/nuvei-agentic-access.yml
