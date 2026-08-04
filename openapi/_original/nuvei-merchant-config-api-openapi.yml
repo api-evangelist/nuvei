@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+  title: Nuvei Merchant Configuration API
+  description: Returns configuration data for a merchant including supported countries and the
+    payment methods enabled per country.
+  version: "1.0"
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com
+servers:
+- url: https://secure.safecharge.com/ppp/api/v1
+  description: Production
+- url: https://ppp-test.nuvei.com/ppp/api/v1
+  description: Sandbox
+tags:
+- name: Merchant
+paths:
+  /getMerchantCountries.do:
+    post:
+      tags:
+      - Merchant
+      summary: Get Merchant Countries
+      operationId: getMerchantCountries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MerchantRequest"
+      responses:
+        "200":
+          description: Country list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountriesResponse"
+  /getMerchantPaymentMethods.do:
+    post:
+      tags:
+      - Merchant
+      summary: Get Merchant Payment Methods
+      operationId: getMerchantPaymentMethods
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentMethodsRequest"
+      responses:
+        "200":
+          description: Payment methods list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethodsResponse"
+components:
+  schemas:
+    MerchantRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+    PaymentMethodsRequest:
+      allOf:
+      - $ref: "#/components/schemas/MerchantRequest"
+      - type: object
+        properties:
+          countryCode:
+            type: string
+          currencyCode:
+            type: string
+          languageCode:
+            type: string
+          type:
+            type: string
+            enum: [DEPOSIT, WITHDRAWAL]
+    CountriesResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        countries:
+          type: array
+          items:
+            type: object
+            properties:
+              countryCode:
+                type: string
+              countryName:
+                type: string
+    PaymentMethodsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        paymentMethods:
+          type: array
+          items:
+            type: object
+            properties:
+              paymentMethod:
+                type: string
+              paymentMethodDisplayName:
+                type: array
+                items:
+                  type: object
+              countries:
+                type: array
+                items:
+                  type: string
+              currencies:
+                type: array
+                items:
+                  type: string
+              logoURL:
+                type: string
+              isDirect:
+                type: boolean
+              fields:
+                type: array
+                items:
+                  type: object

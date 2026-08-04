@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Nuvei Session API
+  description: Generates session tokens that authenticate subsequent REST API and Web SDK calls.
+  version: "1.0"
+  contact:
+    name: Nuvei Developer Support
+    url: https://docs.nuvei.com
+servers:
+- url: https://secure.safecharge.com/ppp/api/v1
+  description: Production
+- url: https://ppp-test.nuvei.com/ppp/api/v1
+  description: Sandbox
+tags:
+- name: Sessions
+paths:
+  /getSessionToken.do:
+    post:
+      tags:
+      - Sessions
+      summary: Get Session Token
+      operationId: getSessionToken
+      description: Authenticates merchant credentials and returns a sessionToken used by other
+        REST and Web SDK operations.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SessionRequest"
+      responses:
+        "200":
+          description: Session token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionResponse"
+components:
+  schemas:
+    SessionRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|timeStamp|merchantSecretKey.
+    SessionResponse:
+      type: object
+      properties:
+        sessionToken:
+          type: string
+        internalRequestId:
+          type: integer
+        status:
+          type: string
+          enum: [SUCCESS, ERROR]
+        errCode:
+          type: integer
+        reason:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        version:
+          type: string
+        clientRequestId:
+          type: string

@@ -1,0 +1,32 @@
+{
+  "provider": "nuvei",
+  "sources": [
+    "nuvei-3ds-api-openapi.yml",
+    "nuvei-dcc-api-openapi.yml",
+    "nuvei-financial-operations-api-openapi.yml",
+    "nuvei-merchant-api-openapi.yml",
+    "nuvei-orders-api-openapi.yml",
+    "nuvei-payments-api-openapi.yml",
+    "nuvei-payouts-api-openapi.yml",
+    "nuvei-sessions-api-openapi.yml",
+    "nuvei-status-api-openapi.yml",
+    "nuvei-user-payment-options-api-openapi.yml"
+  ],
+  "outputs": [
+    "nuvei-3ds-api-openapi.yml",
+    "nuvei-dcc-api-openapi.yml",
+    "nuvei-financial-operations-api-openapi.yml",
+    "nuvei-merchant-api-openapi.yml",
+    "nuvei-orders-api-openapi.yml",
+    "nuvei-payments-api-openapi.yml",
+    "nuvei-payouts-api-openapi.yml",
+    "nuvei-sessions-api-openapi.yml",
+    "nuvei-status-api-openapi.yml",
+    "nuvei-user-payment-options-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
