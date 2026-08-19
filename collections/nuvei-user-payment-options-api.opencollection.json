@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Nuvei User Payment Options API",
+    "name": "Nuvei 3DS User Payment Options API",
     "version": "1.0"
   },
   "items": [

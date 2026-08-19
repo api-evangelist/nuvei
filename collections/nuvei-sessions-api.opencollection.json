@@ -1,30 +1,30 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Nuvei 3DS Payments API",
+    "name": "Nuvei 3DS Sessions API",
     "version": "1.0"
   },
   "items": [
     {
       "info": {
-        "name": "Payments",
+        "name": "Sessions",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create Payment",
+            "name": "Get Session Token",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://secure.safecharge.com/ppp/api/v1/payment.do",
+            "url": "https://secure.safecharge.com/ppp/api/v1/getSessionToken.do",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Performs an end-to-end PCI-compliant payment using card data, a UPO id, a temporary token\nfrom the Web SDK, or an APM payment option. The Nuvei platform handles 3DS2, fraud screening,\nand routing.\n"
+          "docs": "Authenticates merchant credentials and returns a sessionToken used by other REST and Web SDK operations."
         }
       ]
     }

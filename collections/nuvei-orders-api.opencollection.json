@@ -1,45 +1,45 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Nuvei 3DS Payouts API",
+    "name": "Nuvei 3DS Orders API",
     "version": "1.0"
   },
   "items": [
     {
       "info": {
-        "name": "Payouts",
+        "name": "Orders",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create Payout",
+            "name": "Open Order",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://secure.safecharge.com/ppp/api/v1/payout.do",
+            "url": "https://secure.safecharge.com/ppp/api/v1/openOrder.do",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Withdraws funds to a card, bank account, or APM. Either references a prior transaction (relatedTransactionId) or uses a userPaymentOptionId / unreferenced destination details."
+          "docs": "Authenticates merchant credentials, sets up an order in the Nuvei system, and returns a sessionToken."
         },
         {
           "info": {
-            "name": "Account Capture",
+            "name": "Update Order",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://secure.safecharge.com/ppp/api/v1/accountCapture.do",
+            "url": "https://secure.safecharge.com/ppp/api/v1/updateOrder.do",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Returns a redirect URL where the cardholder/account holder securely provides bank account details for use in a subsequent payout."
+          "docs": "Modifies an existing order's amount or item list during checkout without reloading."
         }
       ]
     }

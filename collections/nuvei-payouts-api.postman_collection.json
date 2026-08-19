@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "92733dc9-694d-43b1-8d02-f8bde32204c9",
+      "id": "e7fa3506-a61d-4a1f-aa93-6aee42734d46",
       "name": "Payouts",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "c8720b57-b6d9-43c4-888e-1c5c2de0540d",
+          "id": "ca517761-cedc-4775-a81d-7cbb7f7f43d5",
           "name": "Create Payout",
           "request": {
             "name": "Create Payout",
@@ -51,7 +51,7 @@
           },
           "response": [
             {
-              "id": "e35d082b-b15d-4c51-ab7f-a094342b21f5",
+              "id": "50e8ec97-e450-43f6-9a9d-0658cfebaa07",
               "name": "Payout result",
               "originalRequest": {
                 "url": {
@@ -89,7 +89,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"transactionStatus\": \"DECLINED\",\n  \"status\": \"ERROR\",\n  \"authCode\": \"string\",\n  \"gwErrorCode\": 4165,\n  \"gwErrorReason\": \"string\"\n}",
+              "body": "{\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"transactionStatus\": \"APPROVED\",\n  \"status\": \"ERROR\",\n  \"authCode\": \"string\",\n  \"gwErrorCode\": 3237,\n  \"gwErrorReason\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -100,7 +100,7 @@
           }
         },
         {
-          "id": "ad45cbc9-c89e-45a7-a2fd-803444a4b631",
+          "id": "588f053b-2316-406c-87a5-76c186adb963",
           "name": "Account Capture",
           "request": {
             "name": "Account Capture",
@@ -142,7 +142,7 @@
           },
           "response": [
             {
-              "id": "8c044696-e03f-49d4-903a-5887cb8db52f",
+              "id": "13daa498-e9fc-44e7-ac9f-855cb35462e2",
               "name": "Account capture redirect",
               "originalRequest": {
                 "url": {
@@ -180,7 +180,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"redirectURL\": \"string\",\n  \"sessionToken\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 719,\n  \"reason\": \"string\"\n}",
+              "body": "{\n  \"redirectURL\": \"string\",\n  \"sessionToken\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 8423,\n  \"reason\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -203,11 +203,11 @@
     }
   ],
   "info": {
-    "_postman_id": "7f1f885e-a8db-4cd2-954e-335d01619509",
-    "name": "Nuvei Payouts API",
+    "_postman_id": "2275c864-53c4-4bdb-9ddd-c0519df8760a",
+    "name": "Nuvei 3DS Payouts API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Push funds to consumers and counterparties via card, bank account, or local APMs. Supports referenced (relatedTransactionId) and unreferenced payouts.\n\nContact Support:\n Name: Nuvei Developer Support",
+      "content": "3D Secure 2 authentication endpoints supporting PSD2 SCA.\n\nContact Support:\n Name: Nuvei Developer Support",
       "type": "text/plain"
     }
   }

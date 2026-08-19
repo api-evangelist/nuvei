@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuvei 3DS Financial Operations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Financial Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Settle Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/settleTransaction.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Captures a previously authorized transaction in full or in part using its relatedTransactionId."
+        },
+        {
+          "info": {
+            "name": "Void Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/voidTransaction.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels a sale, credit, or APM transaction before it has been transmitted to the acquirer/scheme."
+        },
+        {
+          "info": {
+            "name": "Refund Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.safecharge.com/ppp/api/v1/refundTransaction.do",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refunds a settled transaction in full or in part. The relatedTransactionId is mandatory and must reference the original payment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

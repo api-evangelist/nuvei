@@ -1,22 +1,25 @@
 {
   "item": [
     {
-      "id": "cda7db15-3bcb-4d85-be3a-dbcb21eef40c",
-      "name": "DCC",
+      "id": "b2b443c5-d54c-4bfc-bb07-da645a535467",
+      "name": "Status",
       "description": {
-        "content": "",
+        "content": "Read-only transaction state.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "9a037fab-393f-49ce-bb60-d8ecb003a8cb",
-          "name": "Get DCC Details",
+          "id": "a4e0740d-379a-448b-a44e-fe16f93606fb",
+          "name": "Get Payment Status",
           "request": {
-            "name": "Get DCC Details",
-            "description": {},
+            "name": "Get Payment Status",
+            "description": {
+              "content": "Returns the final state of a payment. Should be called only at the end of payment processing.",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
-                "getDccDetails.do"
+                "getPaymentStatus.do"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -38,7 +41,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"bin\": \"<string>\",\n  \"originalCurrency\": \"<string>\"\n}",
+              "raw": "{\n  \"checksum\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -48,12 +51,12 @@
           },
           "response": [
             {
-              "id": "e8d8d3c6-f734-4562-a9fd-5002240c4eda",
-              "name": "DCC quote",
+              "id": "97cf047b-9220-486a-9900-78213394c965",
+              "name": "Payment status",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "getDccDetails.do"
+                    "getPaymentStatus.do"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -70,7 +73,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"bin\": \"<string>\",\n  \"originalCurrency\": \"<string>\"\n}",
+                  "raw": "{\n  \"checksum\": \"<string>\",\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -86,7 +89,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"dccDetails\": {\n    \"originalAmount\": \"string\",\n    \"originalCurrency\": \"string\",\n    \"convertedAmount\": \"string\",\n    \"convertedCurrency\": \"string\",\n    \"exchangeRate\": \"string\",\n    \"markup\": \"string\",\n    \"expireTime\": \"string\"\n  },\n  \"status\": \"string\",\n  \"errCode\": 458,\n  \"reason\": \"string\"\n}",
+              "body": "{\n  \"sessionToken\": \"string\",\n  \"orderId\": \"string\",\n  \"userTokenId\": \"string\",\n  \"paymentOption\": {},\n  \"transactionStatus\": \"REDIRECT\",\n  \"gwErrorCode\": 9993,\n  \"gwErrorReason\": \"string\",\n  \"gwExtendedErrorCode\": 4431,\n  \"transactionType\": \"string\",\n  \"transactionId\": \"string\",\n  \"externalTransactionId\": \"string\",\n  \"authCode\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"reason\": \"string\",\n  \"errCode\": 4289,\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 5846,\n  \"clientUniqueId\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -109,8 +112,8 @@
     }
   ],
   "info": {
-    "_postman_id": "1a7ef158-0374-414e-8c29-bb73e574910f",
-    "name": "Nuvei 3DS DCC API",
+    "_postman_id": "44341a53-213a-4b37-955e-b5267b893759",
+    "name": "Nuvei 3DS Status API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "3D Secure 2 authentication endpoints supporting PSD2 SCA.\n\nContact Support:\n Name: Nuvei Developer Support",

@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "64e1e3e9-98ae-4ca0-94ad-39555959a5f4",
+      "id": "988faaa0-b74b-4acc-8c44-bae1e7e5a3bc",
       "name": "User Payment Options",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "acfc990a-4a33-409a-8a84-55b615ff07b6",
+          "id": "622b513a-e1f4-4b08-baf8-0eab586dbeba",
           "name": "Add Credit Card UPO",
           "request": {
             "name": "Add Credit Card UPO",
@@ -48,7 +48,7 @@
           },
           "response": [
             {
-              "id": "59451135-a5d1-48ea-bfff-533c2a513074",
+              "id": "8f0c84f1-45b9-4848-8fdd-d711c779e35c",
               "name": "UPO created",
               "originalRequest": {
                 "url": {
@@ -86,7 +86,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 7057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 8328\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -97,7 +97,7 @@
           }
         },
         {
-          "id": "d845189c-25e2-4559-835b-0d0a432b7f8a",
+          "id": "ab147b30-a823-42bf-a5d8-db057ea48086",
           "name": "Add APM UPO",
           "request": {
             "name": "Add APM UPO",
@@ -126,7 +126,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentMethodName\": \"<string>\",\n  \"apmData\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5461\n  },\n  \"billingAddress\": \"<object>\"\n}",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentMethodName\": \"<string>\",\n  \"apmData\": {\n    \"key_0\": 4986,\n    \"key_1\": 9796.274610059725\n  },\n  \"billingAddress\": \"<object>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -136,7 +136,7 @@
           },
           "response": [
             {
-              "id": "ec06d85e-257d-43ef-a7af-139de4847e05",
+              "id": "e87932a8-d91a-4ed2-9ee2-45292b622248",
               "name": "UPO created",
               "originalRequest": {
                 "url": {
@@ -158,7 +158,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentMethodName\": \"<string>\",\n  \"apmData\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5207,\n    \"key_2\": 4422.706614400907\n  },\n  \"billingAddress\": \"<object>\"\n}",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"userTokenId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"paymentMethodName\": \"<string>\",\n  \"apmData\": {\n    \"key_0\": 9936\n  },\n  \"billingAddress\": \"<object>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -174,7 +174,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 7057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 8328\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -185,7 +185,7 @@
           }
         },
         {
-          "id": "7a4088b8-3720-4db4-9f25-6fa672465c98",
+          "id": "e3f240e6-8f2b-4e79-bdf6-085a03cbf0ca",
           "name": "Edit Credit Card UPO",
           "request": {
             "name": "Edit Credit Card UPO",
@@ -224,7 +224,7 @@
           },
           "response": [
             {
-              "id": "8c31df12-1f70-4b41-b88c-0dec317d64a6",
+              "id": "a2ba54c7-bb43-4050-8f77-d4352f681fd6",
               "name": "UPO updated",
               "originalRequest": {
                 "url": {
@@ -262,7 +262,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 7057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 8328\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -273,7 +273,7 @@
           }
         },
         {
-          "id": "a583c3c5-36d7-4cee-8858-6866056d4b20",
+          "id": "54425423-d228-4d40-b997-78ba59a1afca",
           "name": "Edit APM UPO",
           "request": {
             "name": "Edit APM UPO",
@@ -312,7 +312,7 @@
           },
           "response": [
             {
-              "id": "56661df4-d443-4114-b738-eaee266c46f7",
+              "id": "79785311-bbb4-4f03-9ac5-e9c25a62ffad",
               "name": "UPO updated",
               "originalRequest": {
                 "url": {
@@ -350,7 +350,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 7057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 8328\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -361,7 +361,7 @@
           }
         },
         {
-          "id": "65845942-fdf2-408a-8a3b-a04ac64c6005",
+          "id": "a43d1b5f-d4fe-4db6-b1ba-ce1282039c2b",
           "name": "Delete UPO",
           "request": {
             "name": "Delete UPO",
@@ -400,7 +400,7 @@
           },
           "response": [
             {
-              "id": "a6c988d3-e2a5-4dad-bf08-6b412c580f79",
+              "id": "2713f8c8-23c2-4afa-b259-c7fb497a6fb4",
               "name": "UPO deleted",
               "originalRequest": {
                 "url": {
@@ -438,7 +438,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 7057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 8328\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -449,7 +449,7 @@
           }
         },
         {
-          "id": "0e885447-615f-47b0-a912-770bf8dea2a8",
+          "id": "0b194e9f-5147-476c-92ea-038c1f08f155",
           "name": "Get User UPOs",
           "request": {
             "name": "Get User UPOs",
@@ -488,7 +488,7 @@
           },
           "response": [
             {
-              "id": "01197144-75f9-4b73-ad52-bbb55214b4d9",
+              "id": "ad05c96f-0e9e-4e73-bd34-2693f1f39d6c",
               "name": "List of UPOs",
               "originalRequest": {
                 "url": {
@@ -537,7 +537,7 @@
           }
         },
         {
-          "id": "ae7a830c-046f-413c-b237-b3dd09520352",
+          "id": "251821f5-5b3e-4eea-93b0-d93c15acef98",
           "name": "Enable UPO",
           "request": {
             "name": "Enable UPO",
@@ -576,7 +576,7 @@
           },
           "response": [
             {
-              "id": "06f046fd-fbdf-4937-bd68-ffb7b818427a",
+              "id": "f1c6deb1-b41d-415d-bde7-560ff2d5cb01",
               "name": "UPO enabled",
               "originalRequest": {
                 "url": {
@@ -614,7 +614,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 7057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 8328\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -625,7 +625,7 @@
           }
         },
         {
-          "id": "d5235e68-9525-4eff-9fde-beb361b5c297",
+          "id": "745b1522-8ea1-46a0-a9db-240ed3cbd518",
           "name": "Disable UPO",
           "request": {
             "name": "Disable UPO",
@@ -664,7 +664,7 @@
           },
           "response": [
             {
-              "id": "2726f407-11cb-4c14-af6c-169e5e2fccc0",
+              "id": "036242f5-f39c-4247-86fe-f0a649ee1476",
               "name": "UPO disabled",
               "originalRequest": {
                 "url": {
@@ -702,7 +702,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"ERROR\",\n  \"errCode\": 2436,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 4154\n}",
+              "body": "{\n  \"userPaymentOptionId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"errCode\": 7057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\",\n  \"internalRequestId\": 8328\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -725,11 +725,11 @@
     }
   ],
   "info": {
-    "_postman_id": "1a98da21-ccd4-4e02-8f22-eb69e7e47f36",
-    "name": "Nuvei User Payment Options API",
+    "_postman_id": "42e75bf1-18f8-4def-9855-504bb477172b",
+    "name": "Nuvei 3DS User Payment Options API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Manage stored payment instruments (User Payment Options / UPOs) — cards and APMs.\n\nContact Support:\n Name: Nuvei Developer Support",
+      "content": "3D Secure 2 authentication endpoints supporting PSD2 SCA.\n\nContact Support:\n Name: Nuvei Developer Support",
       "type": "text/plain"
     }
   }

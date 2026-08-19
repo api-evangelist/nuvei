@@ -1,22 +1,25 @@
 {
   "item": [
     {
-      "id": "cda7db15-3bcb-4d85-be3a-dbcb21eef40c",
-      "name": "DCC",
+      "id": "920bda6a-c82a-4040-9491-239fea69e150",
+      "name": "Sessions",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "9a037fab-393f-49ce-bb60-d8ecb003a8cb",
-          "name": "Get DCC Details",
+          "id": "9986cbd2-b5e5-4696-bad0-8e5ab68b1d4b",
+          "name": "Get Session Token",
           "request": {
-            "name": "Get DCC Details",
-            "description": {},
+            "name": "Get Session Token",
+            "description": {
+              "content": "Authenticates merchant credentials and returns a sessionToken used by other REST and Web SDK operations.",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
-                "getDccDetails.do"
+                "getSessionToken.do"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -38,7 +41,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"bin\": \"<string>\",\n  \"originalCurrency\": \"<string>\"\n}",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -48,12 +51,12 @@
           },
           "response": [
             {
-              "id": "e8d8d3c6-f734-4562-a9fd-5002240c4eda",
-              "name": "DCC quote",
+              "id": "6ecd1a36-9e19-485e-9469-0be6a74220ce",
+              "name": "Session token",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "getDccDetails.do"
+                    "getSessionToken.do"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -70,7 +73,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"sessionToken\": \"<string>\",\n  \"clientRequestId\": \"<string>\",\n  \"bin\": \"<string>\",\n  \"originalCurrency\": \"<string>\"\n}",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"merchantSiteId\": \"<string>\",\n  \"timeStamp\": \"<string>\",\n  \"checksum\": \"<string>\",\n  \"clientRequestId\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -86,7 +89,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"dccDetails\": {\n    \"originalAmount\": \"string\",\n    \"originalCurrency\": \"string\",\n    \"convertedAmount\": \"string\",\n    \"convertedCurrency\": \"string\",\n    \"exchangeRate\": \"string\",\n    \"markup\": \"string\",\n    \"expireTime\": \"string\"\n  },\n  \"status\": \"string\",\n  \"errCode\": 458,\n  \"reason\": \"string\"\n}",
+              "body": "{\n  \"sessionToken\": \"string\",\n  \"internalRequestId\": 5579,\n  \"status\": \"SUCCESS\",\n  \"errCode\": 1057,\n  \"reason\": \"string\",\n  \"merchantId\": \"string\",\n  \"merchantSiteId\": \"string\",\n  \"version\": \"string\",\n  \"clientRequestId\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -109,8 +112,8 @@
     }
   ],
   "info": {
-    "_postman_id": "1a7ef158-0374-414e-8c29-bb73e574910f",
-    "name": "Nuvei 3DS DCC API",
+    "_postman_id": "e9406157-f95c-4df2-b4b6-f9f79f704ec0",
+    "name": "Nuvei 3DS Sessions API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "3D Secure 2 authentication endpoints supporting PSD2 SCA.\n\nContact Support:\n Name: Nuvei Developer Support",
