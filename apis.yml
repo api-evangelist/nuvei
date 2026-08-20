@@ -35,6 +35,19 @@ tags:
 - Risk
 - Currency Conversion
 - iGaming
+- E-Commerce
+- Fintech
+tags_raw:
+- Payments
+- Payment Processing
+- Payment Gateway
+- Acquiring
+- Payouts
+- Alternative Payment Methods
+- Fraud
+- Risk
+- Currency Conversion
+- iGaming
 - eCommerce
 - FinTech
 properties:
@@ -179,6 +192,11 @@ apis:
 - aid: nuvei:nuvei-webhooks-dmn
   name: Nuvei Direct Merchant Notifications (DMN)
   tags:
+  - Webhook
+  - Event
+  - Notification
+  - DMN
+  tags_raw:
   - Webhooks
   - Events
   - Notifications
@@ -235,6 +253,8 @@ apis:
     https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
