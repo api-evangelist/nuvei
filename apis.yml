@@ -8,6 +8,17 @@ description: Nuvei is a global payment technology company headquartered in Montr
   acquiring in 52 markets across eCommerce, iGaming, sports betting, travel, retail,
   B2B, and financial services. Originally listed on Nasdaq and TSX as NVEI, Nuvei
   was taken private by Advent International in 2024.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 specificationVersion: '0.23'
 accessModel:
   pricing: enterprise
