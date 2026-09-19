@@ -128,6 +128,10 @@ apis:
   tags:
   - Payouts
   - Withdrawals
+  - Disbursements
+  tags_raw:
+  - Payouts
+  - Withdrawals
   - Disbursement
   humanURL: >-
     https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
@@ -229,6 +233,8 @@ apis:
     https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
   tags:
+  - Merchants
+  tags_raw:
   - Merchant
   properties:
   - type: OpenAPI
@@ -287,6 +293,8 @@ apis:
     https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
   baseURL: https://secure.safecharge.com/ppp/api/v1/
   tags:
+  - 3D
+  tags_raw:
   - 3 DS
   properties:
   - type: OpenAPI
