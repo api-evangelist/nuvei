@@ -1,32 +1,50 @@
 {
   "provider": "nuvei",
   "sources": [
-    "nuvei-3ds-api-openapi.yml",
+    "_original/nuvei-merchant-config-api-openapi.yml",
+    "_original/nuvei-order-api-openapi.yml",
+    "_original/nuvei-session-api-openapi.yml",
+    "nuvei-3-ds-api-openapi.yml",
     "nuvei-dcc-api-openapi.yml",
     "nuvei-financial-operations-api-openapi.yml",
-    "nuvei-merchant-api-openapi.yml",
-    "nuvei-orders-api-openapi.yml",
     "nuvei-payments-api-openapi.yml",
     "nuvei-payouts-api-openapi.yml",
-    "nuvei-sessions-api-openapi.yml",
     "nuvei-status-api-openapi.yml",
     "nuvei-user-payment-options-api-openapi.yml"
   ],
   "outputs": [
-    "nuvei-3ds-api-openapi.yml",
-    "nuvei-dcc-api-openapi.yml",
-    "nuvei-financial-operations-api-openapi.yml",
     "nuvei-merchant-api-openapi.yml",
     "nuvei-orders-api-openapi.yml",
+    "nuvei-sessions-api-openapi.yml",
+    "nuvei-3-ds-api-openapi.yml",
+    "nuvei-dcc-api-openapi.yml",
+    "nuvei-financial-operations-api-openapi.yml",
     "nuvei-payments-api-openapi.yml",
     "nuvei-payouts-api-openapi.yml",
-    "nuvei-sessions-api-openapi.yml",
     "nuvei-status-api-openapi.yml",
     "nuvei-user-payment-options-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+  "warnings": [
+    "nuvei-3-ds-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /authenticate3d.do post, /getCard3DDetails.do post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "nuvei-dcc-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /getDccDetails.do post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "nuvei-financial-operations-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /refundTransaction.do post, /settleTransaction.do post, /voidTransaction.do post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "nuvei-payments-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /payment.do post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "nuvei-payouts-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /accountCapture.do post, /payout.do post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "nuvei-status-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /getPaymentStatus.do post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "nuvei-user-payment-options-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /addUPOAPM.do post, /addUPOCreditCard.do post, /deleteUPO.do post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "nuvei-merchant-config-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "nuvei-order-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "nuvei-session-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "nuvei-merchant-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nuvei-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nuvei-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Nuvei 3DS Payouts API
   description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
@@ -89,30 +89,21 @@ components:
           type: string
         checksum:
           type: string
-    PayoutResponse:
+    AccountCaptureResponse:
       type: object
       properties:
-        transactionId:
+        redirectURL:
           type: string
-        externalTransactionId:
+        sessionToken:
           type: string
-        transactionStatus:
-          type: string
-          enum:
-          - APPROVED
-          - DECLINED
-          - ERROR
-          - PENDING
         status:
           type: string
           enum:
           - SUCCESS
           - ERROR
-        authCode:
-          type: string
-        gwErrorCode:
+        errCode:
           type: integer
-        gwErrorReason:
+        reason:
           type: string
     PayoutRequest:
       type: object
@@ -158,19 +149,28 @@ components:
           type: string
         checksum:
           type: string
-    AccountCaptureResponse:
+    PayoutResponse:
       type: object
       properties:
-        redirectURL:
+        transactionId:
           type: string
-        sessionToken:
+        externalTransactionId:
           type: string
+        transactionStatus:
+          type: string
+          enum:
+          - APPROVED
+          - DECLINED
+          - ERROR
+          - PENDING
         status:
           type: string
           enum:
           - SUCCESS
           - ERROR
-        errCode:
+        authCode:
+          type: string
+        gwErrorCode:
           type: integer
-        reason:
+        gwErrorReason:
           type: string

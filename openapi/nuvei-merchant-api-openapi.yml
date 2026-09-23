@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Nuvei 3DS Merchant API
-  description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
+  title: Nuvei Configuration Merchant API
+  description: Returns configuration data for a merchant including supported countries and the payment methods enabled per country.
   version: '1.0'
   contact:
     name: Nuvei Developer Support
@@ -54,22 +54,24 @@ paths:
                 $ref: '#/components/schemas/PaymentMethodsResponse'
 components:
   schemas:
-    PaymentMethodsRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantRequest'
-      - type: object
-        properties:
-          countryCode:
-            type: string
-          currencyCode:
-            type: string
-          languageCode:
-            type: string
-          type:
-            type: string
-            enum:
-            - DEPOSIT
-            - WITHDRAWAL
+    MerchantRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
     PaymentMethodsResponse:
       type: object
       properties:
@@ -102,6 +104,22 @@ components:
                 type: array
                 items:
                   type: object
+    PaymentMethodsRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantRequest'
+      - type: object
+        properties:
+          countryCode:
+            type: string
+          currencyCode:
+            type: string
+          languageCode:
+            type: string
+          type:
+            type: string
+            enum:
+            - DEPOSIT
+            - WITHDRAWAL
     CountriesResponse:
       type: object
       properties:
@@ -116,21 +134,3 @@ components:
                 type: string
               countryName:
                 type: string
-    MerchantRequest:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string

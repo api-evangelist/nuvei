@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Nuvei 3DS API
+  title: Nuvei 3 DS API
   description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
   version: '1.0'
   contact:
@@ -12,12 +12,12 @@ servers:
 - url: https://ppp-test.nuvei.com/ppp/api/v1
   description: Sandbox
 tags:
-- name: 3DS
+- name: 3 DS
 paths:
   /getCard3DDetails.do:
     post:
       tags:
-      - 3DS
+      - 3 DS
       summary: Get Card 3DS Details
       operationId: getCard3DDetails
       description: Returns 3DS-relevant info for a card (DS, version, challenge requirements) so the merchant can decide whether to proceed with a frictionless or challenge flow.
@@ -37,7 +37,7 @@ paths:
   /authenticate3d.do:
     post:
       tags:
-      - 3DS
+      - 3 DS
       summary: Authenticate 3D
       operationId: authenticate3d
       description: Performs the 3DS-only authentication (without authorization) and returns CAVV and ECI values for use in a downstream payment.
@@ -56,23 +56,24 @@ paths:
                 $ref: '#/components/schemas/Authenticate3DResponse'
 components:
   schemas:
-    Authenticate3DResponse:
+    Card3DResponse:
       type: object
       properties:
-        transactionId:
+        ccTempToken:
           type: string
-        threeDResult:
+        bin:
           type: string
-        cavv:
+        last4Digits:
           type: string
-        eci:
+        ccCardNumber:
           type: string
-        version:
+        brand:
           type: string
-        dsTransID:
+        issuerBankName:
           type: string
-        acsTransID:
-          type: string
+        threeDDetails:
+          type: object
+          additionalProperties: true
         status:
           type: string
     Card3DRequest:
@@ -121,23 +122,22 @@ components:
           type: object
         deviceDetails:
           type: object
-    Card3DResponse:
+    Authenticate3DResponse:
       type: object
       properties:
-        ccTempToken:
+        transactionId:
           type: string
-        bin:
+        threeDResult:
           type: string
-        last4Digits:
+        cavv:
           type: string
-        ccCardNumber:
+        eci:
           type: string
-        brand:
+        version:
           type: string
-        issuerBankName:
+        dsTransID:
           type: string
-        threeDDetails:
-          type: object
-          additionalProperties: true
+        acsTransID:
+          type: string
         status:
           type: string

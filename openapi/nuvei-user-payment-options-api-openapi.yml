@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Nuvei 3DS User Payment Options API
   description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
@@ -168,31 +168,84 @@ paths:
                 $ref: '#/components/schemas/UPOResponse'
 components:
   schemas:
-    AddUPOCardRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          ccCardNumber:
-            type: string
-          ccExpMonth:
-            type: string
-          ccExpYear:
-            type: string
-          ccNameOnCard:
-            type: string
-          billingAddress:
-            type: object
-    GetUserUPOsRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-    DeleteUPORequest:
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - userTokenId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        userTokenId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+    ToggleUPORequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
       - type: object
         properties:
           userPaymentOptionId:
             type: string
+    GetUserUPOsRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+    GetUserUPOsResponse:
+      type: object
+      properties:
+        paymentMethods:
+          type: array
+          items:
+            type: object
+            properties:
+              userPaymentOptionId:
+                type: string
+              upoName:
+                type: string
+              upoStatus:
+                type: string
+              upoRegistrationDate:
+                type: string
+              ccCardNumber:
+                type: string
+              ccExpMonth:
+                type: string
+              ccExpYear:
+                type: string
+              brand:
+                type: string
+              uniqueCC:
+                type: string
+              bin:
+                type: string
+              last4Digits:
+                type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+    AddUPOAPMRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          paymentMethodName:
+            type: string
+          apmData:
+            type: object
+            additionalProperties: true
+          billingAddress:
+            type: object
     UPOResponse:
       type: object
       properties:
@@ -232,78 +285,25 @@ components:
             type: string
           billingAddress:
             type: object
-    GetUserUPOsResponse:
-      type: object
-      properties:
-        paymentMethods:
-          type: array
-          items:
+    AddUPOCardRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          ccCardNumber:
+            type: string
+          ccExpMonth:
+            type: string
+          ccExpYear:
+            type: string
+          ccNameOnCard:
+            type: string
+          billingAddress:
             type: object
-            properties:
-              userPaymentOptionId:
-                type: string
-              upoName:
-                type: string
-              upoStatus:
-                type: string
-              upoRegistrationDate:
-                type: string
-              ccCardNumber:
-                type: string
-              ccExpMonth:
-                type: string
-              ccExpYear:
-                type: string
-              brand:
-                type: string
-              uniqueCC:
-                type: string
-              bin:
-                type: string
-              last4Digits:
-                type: string
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - ERROR
-    ToggleUPORequest:
+    DeleteUPORequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
       - type: object
         properties:
           userPaymentOptionId:
             type: string
-    MerchantAuth:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - userTokenId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        userTokenId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string
-    AddUPOAPMRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          paymentMethodName:
-            type: string
-          apmData:
-            type: object
-            additionalProperties: true
-          billingAddress:
-            type: object

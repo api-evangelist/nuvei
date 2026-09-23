@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Nuvei 3DS Status API
   description: 3D Secure 2 authentication endpoints supporting PSD2 SCA.
@@ -37,6 +37,29 @@ paths:
                 $ref: '#/components/schemas/PaymentResponse'
 components:
   schemas:
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+          description: Merchant identifier assigned by Nuvei.
+        merchantSiteId:
+          type: string
+          description: Site identifier for the merchant.
+        clientRequestId:
+          type: string
+          description: Idempotent client-side identifier for the request.
+        timeStamp:
+          type: string
+          description: yyyyMMddHHmmss timestamp used in the checksum.
+        checksum:
+          type: string
+          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
     PaymentResponse:
       type: object
       properties:
@@ -91,29 +114,6 @@ components:
           type: integer
         clientUniqueId:
           type: string
-    MerchantAuth:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-          description: Merchant identifier assigned by Nuvei.
-        merchantSiteId:
-          type: string
-          description: Site identifier for the merchant.
-        clientRequestId:
-          type: string
-          description: Idempotent client-side identifier for the request.
-        timeStamp:
-          type: string
-          description: yyyyMMddHHmmss timestamp used in the checksum.
-        checksum:
-          type: string
-          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
     StatusRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
