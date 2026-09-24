@@ -42,7 +42,7 @@ tags:
 - Payouts
 - Alternative Payment Methods
 - Fraud
-- Risk
+- Risk Management
 - Currency Conversion
 - iGaming
 - E-Commerce
@@ -121,8 +121,6 @@ apis:
     url: json-schema/nuvei-payment-schema.json
   - type: JSONSchema
     url: json-schema/nuvei-transaction-schema.json
-  - url: graphql/nuvei-graphql.md
-    type: GraphQL
 - aid: nuvei:nuvei-payouts-api
   name: Nuvei Payouts API
   tags:
