@@ -54,24 +54,6 @@ paths:
                 $ref: '#/components/schemas/PaymentMethodsResponse'
 components:
   schemas:
-    MerchantRequest:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string
     PaymentMethodsResponse:
       type: object
       properties:
@@ -134,3 +116,21 @@ components:
                 type: string
               countryName:
                 type: string
+    MerchantRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string

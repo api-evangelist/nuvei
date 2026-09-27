@@ -56,6 +56,25 @@ paths:
                 $ref: '#/components/schemas/Authenticate3DResponse'
 components:
   schemas:
+    Card3DRequest:
+      type: object
+      required:
+      - sessionToken
+      - merchantId
+      - merchantSiteId
+      properties:
+        sessionToken:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        cardNumber:
+          type: string
+        userPaymentOptionId:
+          type: string
     Card3DResponse:
       type: object
       properties:
@@ -76,24 +95,24 @@ components:
           additionalProperties: true
         status:
           type: string
-    Card3DRequest:
+    Authenticate3DResponse:
       type: object
-      required:
-      - sessionToken
-      - merchantId
-      - merchantSiteId
       properties:
-        sessionToken:
+        transactionId:
           type: string
-        merchantId:
+        threeDResult:
           type: string
-        merchantSiteId:
+        cavv:
           type: string
-        clientRequestId:
+        eci:
           type: string
-        cardNumber:
+        version:
           type: string
-        userPaymentOptionId:
+        dsTransID:
+          type: string
+        acsTransID:
+          type: string
+        status:
           type: string
     Authenticate3DRequest:
       type: object
@@ -122,22 +141,3 @@ components:
           type: object
         deviceDetails:
           type: object
-    Authenticate3DResponse:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        threeDResult:
-          type: string
-        cavv:
-          type: string
-        eci:
-          type: string
-        version:
-          type: string
-        dsTransID:
-          type: string
-        acsTransID:
-          type: string
-        status:
-          type: string

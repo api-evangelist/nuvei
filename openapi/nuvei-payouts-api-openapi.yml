@@ -56,6 +56,47 @@ paths:
                 $ref: '#/components/schemas/AccountCaptureResponse'
 components:
   schemas:
+    PayoutResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        externalTransactionId:
+          type: string
+        transactionStatus:
+          type: string
+          enum:
+          - APPROVED
+          - DECLINED
+          - ERROR
+          - PENDING
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        authCode:
+          type: string
+        gwErrorCode:
+          type: integer
+        gwErrorReason:
+          type: string
+    AccountCaptureResponse:
+      type: object
+      properties:
+        redirectURL:
+          type: string
+        sessionToken:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        errCode:
+          type: integer
+        reason:
+          type: string
     AccountCaptureRequest:
       type: object
       required:
@@ -88,22 +129,6 @@ components:
         timeStamp:
           type: string
         checksum:
-          type: string
-    AccountCaptureResponse:
-      type: object
-      properties:
-        redirectURL:
-          type: string
-        sessionToken:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - ERROR
-        errCode:
-          type: integer
-        reason:
           type: string
     PayoutRequest:
       type: object
@@ -148,29 +173,4 @@ components:
         timeStamp:
           type: string
         checksum:
-          type: string
-    PayoutResponse:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        externalTransactionId:
-          type: string
-        transactionStatus:
-          type: string
-          enum:
-          - APPROVED
-          - DECLINED
-          - ERROR
-          - PENDING
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - ERROR
-        authCode:
-          type: string
-        gwErrorCode:
-          type: integer
-        gwErrorReason:
           type: string

@@ -41,15 +41,6 @@ paths:
                 $ref: '#/components/schemas/PaymentResponse'
 components:
   schemas:
-    Item:
-      type: object
-      properties:
-        name:
-          type: string
-        price:
-          type: string
-        quantity:
-          type: integer
     Address:
       type: object
       properties:
@@ -69,6 +60,56 @@ components:
           type: string
         phone:
           type: string
+    UrlDetails:
+      type: object
+      properties:
+        successUrl:
+          type: string
+        failureUrl:
+          type: string
+        pendingUrl:
+          type: string
+        notificationUrl:
+          type: string
+    Card:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+        cardHolderName:
+          type: string
+        expirationMonth:
+          type: string
+        expirationYear:
+          type: string
+        CVV:
+          type: string
+        threeD:
+          type: object
+          additionalProperties: true
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+          description: Merchant identifier assigned by Nuvei.
+        merchantSiteId:
+          type: string
+          description: Site identifier for the merchant.
+        clientRequestId:
+          type: string
+          description: Idempotent client-side identifier for the request.
+        timeStamp:
+          type: string
+          description: yyyyMMddHHmmss timestamp used in the checksum.
+        checksum:
+          type: string
+          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
     PaymentResponse:
       type: object
       properties:
@@ -123,19 +164,15 @@ components:
           type: integer
         clientUniqueId:
           type: string
-    DeviceDetails:
+    Item:
       type: object
       properties:
-        ipAddress:
+        name:
           type: string
-        deviceType:
+        price:
           type: string
-        deviceName:
-          type: string
-        deviceOS:
-          type: string
-        browser:
-          type: string
+        quantity:
+          type: integer
     PaymentOption:
       type: object
       properties:
@@ -146,45 +183,6 @@ components:
           additionalProperties: true
         userPaymentOptionId:
           type: string
-    Card:
-      type: object
-      properties:
-        cardNumber:
-          type: string
-        cardHolderName:
-          type: string
-        expirationMonth:
-          type: string
-        expirationYear:
-          type: string
-        CVV:
-          type: string
-        threeD:
-          type: object
-          additionalProperties: true
-    MerchantAuth:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-          description: Merchant identifier assigned by Nuvei.
-        merchantSiteId:
-          type: string
-          description: Site identifier for the merchant.
-        clientRequestId:
-          type: string
-          description: Idempotent client-side identifier for the request.
-        timeStamp:
-          type: string
-          description: yyyyMMddHHmmss timestamp used in the checksum.
-        checksum:
-          type: string
-          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
     PaymentRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
@@ -222,14 +220,16 @@ components:
             enum:
             - 0
             - 1
-    UrlDetails:
+    DeviceDetails:
       type: object
       properties:
-        successUrl:
+        ipAddress:
           type: string
-        failureUrl:
+        deviceType:
           type: string
-        pendingUrl:
+        deviceName:
           type: string
-        notificationUrl:
+        deviceOS:
+          type: string
+        browser:
           type: string

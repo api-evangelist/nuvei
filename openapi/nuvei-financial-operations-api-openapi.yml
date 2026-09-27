@@ -77,6 +77,27 @@ paths:
                 $ref: '#/components/schemas/FinancialOperationResponse'
 components:
   schemas:
+    FinancialOperationRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        required:
+        - relatedTransactionId
+        - amount
+        - currency
+        properties:
+          clientUniqueId:
+            type: string
+          amount:
+            type: string
+          currency:
+            type: string
+          relatedTransactionId:
+            type: string
+          authCode:
+            type: string
+          comment:
+            type: string
     MerchantAuth:
       type: object
       required:
@@ -100,27 +121,6 @@ components:
         checksum:
           type: string
           description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
-    FinancialOperationRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        required:
-        - relatedTransactionId
-        - amount
-        - currency
-        properties:
-          clientUniqueId:
-            type: string
-          amount:
-            type: string
-          currency:
-            type: string
-          relatedTransactionId:
-            type: string
-          authCode:
-            type: string
-          comment:
-            type: string
     FinancialOperationResponse:
       type: object
       properties:
