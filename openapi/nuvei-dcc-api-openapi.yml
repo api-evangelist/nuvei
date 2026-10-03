@@ -35,32 +35,6 @@ paths:
                 $ref: '#/components/schemas/DccResponse'
 components:
   schemas:
-    DccResponse:
-      type: object
-      properties:
-        dccDetails:
-          type: object
-          properties:
-            originalAmount:
-              type: string
-            originalCurrency:
-              type: string
-            convertedAmount:
-              type: string
-            convertedCurrency:
-              type: string
-            exchangeRate:
-              type: string
-            markup:
-              type: string
-            expireTime:
-              type: string
-        status:
-          type: string
-        errCode:
-          type: integer
-        reason:
-          type: string
     DccRequest:
       type: object
       required:
@@ -90,4 +64,30 @@ components:
         timeStamp:
           type: string
         checksum:
+          type: string
+    DccResponse:
+      type: object
+      properties:
+        dccDetails:
+          type: object
+          properties:
+            originalAmount:
+              type: string
+            originalCurrency:
+              type: string
+            convertedAmount:
+              type: string
+            convertedCurrency:
+              type: string
+            exchangeRate:
+              type: string
+            markup:
+              type: string
+            expireTime:
+              type: string
+        status:
+          type: string
+        errCode:
+          type: integer
+        reason:
           type: string

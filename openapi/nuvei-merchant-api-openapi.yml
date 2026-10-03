@@ -86,36 +86,6 @@ components:
                 type: array
                 items:
                   type: object
-    PaymentMethodsRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantRequest'
-      - type: object
-        properties:
-          countryCode:
-            type: string
-          currencyCode:
-            type: string
-          languageCode:
-            type: string
-          type:
-            type: string
-            enum:
-            - DEPOSIT
-            - WITHDRAWAL
-    CountriesResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        countries:
-          type: array
-          items:
-            type: object
-            properties:
-              countryCode:
-                type: string
-              countryName:
-                type: string
     MerchantRequest:
       type: object
       required:
@@ -134,3 +104,33 @@ components:
           type: string
         checksum:
           type: string
+    CountriesResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        countries:
+          type: array
+          items:
+            type: object
+            properties:
+              countryCode:
+                type: string
+              countryName:
+                type: string
+    PaymentMethodsRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantRequest'
+      - type: object
+        properties:
+          countryCode:
+            type: string
+          currencyCode:
+            type: string
+          languageCode:
+            type: string
+          type:
+            type: string
+            enum:
+            - DEPOSIT
+            - WITHDRAWAL

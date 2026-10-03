@@ -56,64 +56,6 @@ paths:
                 $ref: '#/components/schemas/Authenticate3DResponse'
 components:
   schemas:
-    Card3DRequest:
-      type: object
-      required:
-      - sessionToken
-      - merchantId
-      - merchantSiteId
-      properties:
-        sessionToken:
-          type: string
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        clientRequestId:
-          type: string
-        cardNumber:
-          type: string
-        userPaymentOptionId:
-          type: string
-    Card3DResponse:
-      type: object
-      properties:
-        ccTempToken:
-          type: string
-        bin:
-          type: string
-        last4Digits:
-          type: string
-        ccCardNumber:
-          type: string
-        brand:
-          type: string
-        issuerBankName:
-          type: string
-        threeDDetails:
-          type: object
-          additionalProperties: true
-        status:
-          type: string
-    Authenticate3DResponse:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        threeDResult:
-          type: string
-        cavv:
-          type: string
-        eci:
-          type: string
-        version:
-          type: string
-        dsTransID:
-          type: string
-        acsTransID:
-          type: string
-        status:
-          type: string
     Authenticate3DRequest:
       type: object
       required:
@@ -141,3 +83,61 @@ components:
           type: object
         deviceDetails:
           type: object
+    Card3DRequest:
+      type: object
+      required:
+      - sessionToken
+      - merchantId
+      - merchantSiteId
+      properties:
+        sessionToken:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        cardNumber:
+          type: string
+        userPaymentOptionId:
+          type: string
+    Authenticate3DResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        threeDResult:
+          type: string
+        cavv:
+          type: string
+        eci:
+          type: string
+        version:
+          type: string
+        dsTransID:
+          type: string
+        acsTransID:
+          type: string
+        status:
+          type: string
+    Card3DResponse:
+      type: object
+      properties:
+        ccTempToken:
+          type: string
+        bin:
+          type: string
+        last4Digits:
+          type: string
+        ccCardNumber:
+          type: string
+        brand:
+          type: string
+        issuerBankName:
+          type: string
+        threeDDetails:
+          type: object
+          additionalProperties: true
+        status:
+          type: string

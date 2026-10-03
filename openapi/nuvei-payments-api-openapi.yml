@@ -71,22 +71,6 @@ components:
           type: string
         notificationUrl:
           type: string
-    Card:
-      type: object
-      properties:
-        cardNumber:
-          type: string
-        cardHolderName:
-          type: string
-        expirationMonth:
-          type: string
-        expirationYear:
-          type: string
-        CVV:
-          type: string
-        threeD:
-          type: object
-          additionalProperties: true
     MerchantAuth:
       type: object
       required:
@@ -110,6 +94,16 @@ components:
         checksum:
           type: string
           description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
+    PaymentOption:
+      type: object
+      properties:
+        card:
+          $ref: '#/components/schemas/Card'
+        alternativePaymentMethod:
+          type: object
+          additionalProperties: true
+        userPaymentOptionId:
+          type: string
     PaymentResponse:
       type: object
       properties:
@@ -164,25 +158,6 @@ components:
           type: integer
         clientUniqueId:
           type: string
-    Item:
-      type: object
-      properties:
-        name:
-          type: string
-        price:
-          type: string
-        quantity:
-          type: integer
-    PaymentOption:
-      type: object
-      properties:
-        card:
-          $ref: '#/components/schemas/Card'
-        alternativePaymentMethod:
-          type: object
-          additionalProperties: true
-        userPaymentOptionId:
-          type: string
     PaymentRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
@@ -233,3 +208,28 @@ components:
           type: string
         browser:
           type: string
+    Card:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+        cardHolderName:
+          type: string
+        expirationMonth:
+          type: string
+        expirationYear:
+          type: string
+        CVV:
+          type: string
+        threeD:
+          type: object
+          additionalProperties: true
+    Item:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: string
+        quantity:
+          type: integer

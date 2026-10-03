@@ -168,6 +168,49 @@ paths:
                 $ref: '#/components/schemas/UPOResponse'
 components:
   schemas:
+    AddUPOAPMRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          paymentMethodName:
+            type: string
+          apmData:
+            type: object
+            additionalProperties: true
+          billingAddress:
+            type: object
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - userTokenId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        userTokenId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+    GetUserUPOsRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+    ToggleUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
     UPOResponse:
       type: object
       properties:
@@ -192,52 +235,6 @@ components:
           type: string
         internalRequestId:
           type: integer
-    ToggleUPORequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          userPaymentOptionId:
-            type: string
-    MerchantAuth:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - userTokenId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        userTokenId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string
-    EditUPORequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          userPaymentOptionId:
-            type: string
-          ccExpMonth:
-            type: string
-          ccExpYear:
-            type: string
-          ccNameOnCard:
-            type: string
-          billingAddress:
-            type: object
-    GetUserUPOsRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
     GetUserUPOsResponse:
       type: object
       properties:
@@ -280,24 +277,27 @@ components:
         properties:
           userPaymentOptionId:
             type: string
-    AddUPOAPMRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          paymentMethodName:
-            type: string
-          apmData:
-            type: object
-            additionalProperties: true
-          billingAddress:
-            type: object
     AddUPOCardRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
       - type: object
         properties:
           ccCardNumber:
+            type: string
+          ccExpMonth:
+            type: string
+          ccExpYear:
+            type: string
+          ccNameOnCard:
+            type: string
+          billingAddress:
+            type: object
+    EditUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
             type: string
           ccExpMonth:
             type: string
