@@ -168,73 +168,6 @@ paths:
                 $ref: '#/components/schemas/UPOResponse'
 components:
   schemas:
-    AddUPOAPMRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          paymentMethodName:
-            type: string
-          apmData:
-            type: object
-            additionalProperties: true
-          billingAddress:
-            type: object
-    MerchantAuth:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - userTokenId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        userTokenId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string
-    GetUserUPOsRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-    ToggleUPORequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          userPaymentOptionId:
-            type: string
-    UPOResponse:
-      type: object
-      properties:
-        userPaymentOptionId:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - ERROR
-        errCode:
-          type: integer
-        reason:
-          type: string
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        version:
-          type: string
-        clientRequestId:
-          type: string
-        internalRequestId:
-          type: integer
     GetUserUPOsResponse:
       type: object
       properties:
@@ -270,13 +203,9 @@ components:
           enum:
           - SUCCESS
           - ERROR
-    DeleteUPORequest:
+    GetUserUPOsRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          userPaymentOptionId:
-            type: string
     AddUPOCardRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
@@ -292,6 +221,34 @@ components:
             type: string
           billingAddress:
             type: object
+    DeleteUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - userTokenId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        userTokenId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
     EditUPORequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
@@ -305,5 +262,48 @@ components:
             type: string
           ccNameOnCard:
             type: string
+          billingAddress:
+            type: object
+    ToggleUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
+    UPOResponse:
+      type: object
+      properties:
+        userPaymentOptionId:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        errCode:
+          type: integer
+        reason:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        version:
+          type: string
+        clientRequestId:
+          type: string
+        internalRequestId:
+          type: integer
+    AddUPOAPMRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          paymentMethodName:
+            type: string
+          apmData:
+            type: object
+            additionalProperties: true
           billingAddress:
             type: object

@@ -36,25 +36,6 @@ paths:
                 $ref: '#/components/schemas/SessionResponse'
 components:
   schemas:
-    SessionRequest:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        clientRequestId:
-          type: string
-        timeStamp:
-          type: string
-        checksum:
-          type: string
-          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|timeStamp|merchantSecretKey.
     SessionResponse:
       type: object
       properties:
@@ -79,3 +60,22 @@ components:
           type: string
         clientRequestId:
           type: string
+    SessionRequest:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        timeStamp:
+          type: string
+        checksum:
+          type: string
+          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|timeStamp|merchantSecretKey.

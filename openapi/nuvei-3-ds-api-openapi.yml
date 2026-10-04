@@ -83,25 +83,6 @@ components:
           type: object
         deviceDetails:
           type: object
-    Card3DRequest:
-      type: object
-      required:
-      - sessionToken
-      - merchantId
-      - merchantSiteId
-      properties:
-        sessionToken:
-          type: string
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        clientRequestId:
-          type: string
-        cardNumber:
-          type: string
-        userPaymentOptionId:
-          type: string
     Authenticate3DResponse:
       type: object
       properties:
@@ -140,4 +121,23 @@ components:
           type: object
           additionalProperties: true
         status:
+          type: string
+    Card3DRequest:
+      type: object
+      required:
+      - sessionToken
+      - merchantId
+      - merchantSiteId
+      properties:
+        sessionToken:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        clientRequestId:
+          type: string
+        cardNumber:
+          type: string
+        userPaymentOptionId:
           type: string

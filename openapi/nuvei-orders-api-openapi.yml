@@ -56,6 +56,34 @@ paths:
                 $ref: '#/components/schemas/OrderResponse'
 components:
   schemas:
+    OrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        sessionToken:
+          type: string
+        clientRequestId:
+          type: string
+        internalRequestId:
+          type: integer
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        errCode:
+          type: integer
+        reason:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        version:
+          type: string
+        userTokenId:
+          type: string
     OrderRequest:
       type: object
       required:
@@ -104,32 +132,4 @@ components:
         timeStamp:
           type: string
         checksum:
-          type: string
-    OrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        sessionToken:
-          type: string
-        clientRequestId:
-          type: string
-        internalRequestId:
-          type: integer
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - ERROR
-        errCode:
-          type: integer
-        reason:
-          type: string
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        version:
-          type: string
-        userTokenId:
           type: string

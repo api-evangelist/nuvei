@@ -98,29 +98,6 @@ components:
             type: string
           comment:
             type: string
-    MerchantAuth:
-      type: object
-      required:
-      - merchantId
-      - merchantSiteId
-      - timeStamp
-      - checksum
-      properties:
-        merchantId:
-          type: string
-          description: Merchant identifier assigned by Nuvei.
-        merchantSiteId:
-          type: string
-          description: Site identifier for the merchant.
-        clientRequestId:
-          type: string
-          description: Idempotent client-side identifier for the request.
-        timeStamp:
-          type: string
-          description: yyyyMMddHHmmss timestamp used in the checksum.
-        checksum:
-          type: string
-          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.
     FinancialOperationResponse:
       type: object
       properties:
@@ -145,3 +122,26 @@ components:
           type: integer
         gwErrorReason:
           type: string
+    MerchantAuth:
+      type: object
+      required:
+      - merchantId
+      - merchantSiteId
+      - timeStamp
+      - checksum
+      properties:
+        merchantId:
+          type: string
+          description: Merchant identifier assigned by Nuvei.
+        merchantSiteId:
+          type: string
+          description: Site identifier for the merchant.
+        clientRequestId:
+          type: string
+          description: Idempotent client-side identifier for the request.
+        timeStamp:
+          type: string
+          description: yyyyMMddHHmmss timestamp used in the checksum.
+        checksum:
+          type: string
+          description: SHA-256 of merchantId|merchantSiteId|clientRequestId|amount|currency|timeStamp|merchantSecretKey.

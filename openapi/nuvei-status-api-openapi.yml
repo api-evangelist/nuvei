@@ -37,6 +37,15 @@ paths:
                 $ref: '#/components/schemas/PaymentResponse'
 components:
   schemas:
+    StatusRequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        required:
+        - sessionToken
+        properties:
+          sessionToken:
+            type: string
     PaymentResponse:
       type: object
       properties:
@@ -91,15 +100,6 @@ components:
           type: integer
         clientUniqueId:
           type: string
-    StatusRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        required:
-        - sessionToken
-        properties:
-          sessionToken:
-            type: string
     MerchantAuth:
       type: object
       required:
