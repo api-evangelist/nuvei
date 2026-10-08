@@ -301,6 +301,12 @@ apis:
     url: >-
       https://docs.nuvei.com/documentation/integration/server-to-server/server-to-server-introduction/
 common:
+- type: Plans
+  url: plans/nuvei-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/nuvei-rate-limits.yml
+- type: FinOps
+  url: finops/nuvei-finops.yml
 - type: Website
   url: https://nuvei.com
 - type: AgenticAccess
