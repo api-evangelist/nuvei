@@ -1,18 +1,21 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/nuvei-3ds-api-openapi.yml, openapi/nuvei-dcc-api-openapi.yml, openapi/nuvei-merchant-config-api-openapi.yml,
-  openapi/nuvei-order-api-openapi.yml, openapi/nuvei-payments-api-openapi.yml, openapi/nuvei-payouts-api-openapi.yml,
-  openapi/nuvei-session-api-openapi.yml, openapi/nuvei-user-payment-options-api-openapi.yml
+source: openapi/nuvei-3-ds-api-openapi.yml, openapi/nuvei-dcc-api-openapi.yml, openapi/nuvei-financial-operations-api-openapi.yml,
+  openapi/nuvei-merchant-api-openapi.yml, openapi/nuvei-orders-api-openapi.yml, openapi/nuvei-payments-api-openapi.yml,
+  openapi/nuvei-payouts-api-openapi.yml, openapi/nuvei-sessions-api-openapi.yml, openapi/nuvei-status-api-openapi.yml,
+  openapi/nuvei-user-payment-options-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 23
   by_action_class:
-    acting: 23
+    connected: 6
+    acting: 17
   by_consequence:
-    write: 7
-    physical: 15
+    read: 6
+    write: 4
+    physical: 12
     safety-critical: 1
   human_in_the_loop_required: 1
 operations:
@@ -20,18 +23,12 @@ operations:
   method: post
   operationId: getCard3DDetails
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /authenticate3d.do
   method: post
   operationId: authenticate3d
@@ -52,106 +49,12 @@ operations:
   method: post
   operationId: getDccDetails
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /getMerchantCountries.do
-  method: post
-  operationId: getMerchantCountries
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /getMerchantPaymentMethods.do
-  method: post
-  operationId: getMerchantPaymentMethods
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /openOrder.do
-  method: post
-  operationId: openOrder
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /updateOrder.do
-  method: post
-  operationId: updateOrder
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /payment.do
-  method: post
-  operationId: createPayment
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /settleTransaction.do
   method: post
   operationId: settleTransaction
@@ -202,9 +105,65 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /getPaymentStatus.do
+- path: /getMerchantCountries.do
   method: post
-  operationId: getPaymentStatus
+  operationId: getMerchantCountries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /getMerchantPaymentMethods.do
+  method: post
+  operationId: getMerchantPaymentMethods
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /openOrder.do
+  method: post
+  operationId: openOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /updateOrder.do
+  method: post
+  operationId: updateOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /payment.do
+  method: post
+  operationId: createPayment
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -272,6 +231,16 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /getPaymentStatus.do
+  method: post
+  operationId: getPaymentStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /addUPOCreditCard.do
   method: post
   operationId: addUPOCreditCard
@@ -366,20 +335,12 @@ operations:
   method: post
   operationId: getUserUPOs
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /enableUPO.do
   method: post
   operationId: enableUPO

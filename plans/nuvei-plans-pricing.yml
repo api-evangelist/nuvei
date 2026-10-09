@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-24 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-05-24'
 apiCommonsPlans: "0.1"
 provider:
   id: nuvei
@@ -63,3 +68,15 @@ plans:
 contact:
   url: https://nuvei.com/contact-sales/
   notes: Pricing is provided through sales engagement; standard merchant onboarding required.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Custom Merchant Pricing
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
