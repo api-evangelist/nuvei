@@ -1,0 +1,51 @@
+arazzo: 1.0.1
+info:
+  title: 'nuvei through plaid: processorTokenCreate preconfigured with nuvei'
+  summary: Calls plaid's processorTokenCreate with `nuvei` preset, the way nuvei is used inside plaid.
+  description: 'A PRECONFIGURATION, not an orchestration: nuvei is a processor-connection inside plaid, so the integration
+    is plaid''s own operation with nuvei''s enum value set. Derived from plaid''s contract (plaid-plaid-api-openapi.yml);
+    required properties are inputs.'
+  version: 1.0.0
+x-integration:
+  partner: plaid
+  relationship: processor-connection
+  preconfig: true
+  edge_evidence: https://github.com/api-evangelist/plaid/blob/main/openapi/plaid-plaid-api-openapi.yml
+  edge_type: contract
+  preset:
+    processor: nuvei
+  method: derived
+  generated: '2026-10-12'
+  generator: build-integration-preconfigs.py
+sourceDescriptions:
+- name: plaidPlaidApiOpenapi
+  url: https://raw.githubusercontent.com/api-evangelist/plaid/refs/heads/main/openapi/plaid-plaid-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: nuvei-via-plaid-processortokencreate
+  summary: processorTokenCreate with nuvei preset
+  inputs:
+    type: object
+    required:
+    - access_token
+    - account_id
+    properties:
+      access_token:
+        type: string
+      account_id:
+        type: string
+  steps:
+  - stepId: call-with-preset
+    operationId: $sourceDescriptions.plaidPlaidApiOpenapi.processorTokenCreate
+    requestBody:
+      contentType: application/json
+      payload:
+        access_token: $inputs.access_token
+        account_id: $inputs.account_id
+        processor: nuvei
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      id: $response.body#/id
+  outputs:
+    id: $steps.call-with-preset.outputs.id

@@ -1,0 +1,46 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/nuvei/integrations
+- https://n8n.io/integrations/nuvei/
+- https://composio.dev/toolkits/nuvei
+- https://monid.ai/tools/nuvei
+checked:
+- https://composio.dev/toolkits/nuvei
+- https://monid.ai/tools/nuvei
+- https://n8n.io/integrations/nuvei/
+- https://zapier.com/apps/nuvei/integrations
+summary: null
+marketplace_apps: []
+edges:
+- partner_name: justt
+  partner: justt
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/justt/blob/main/openapi/justt-chargebacks-api-openapi.yml
+  contract_reference:
+    repo: justt
+    spec_file: justt-chargebacks-api-openapi.yml
+    value: nuvei
+    property: components.schemas.PSP
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: plaid
+  partner: plaid
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/plaid/blob/main/openapi/plaid-plaid-api-openapi.yml
+  contract_reference:
+    repo: plaid
+    spec_file: plaid-plaid-api-openapi.yml
+    value: nuvei
+    property: schemas.ProcessorTokenCreateRequest.processor
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+templates: []
