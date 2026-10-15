@@ -7,8 +7,11 @@ source:
 - https://monid.ai/tools/nuvei
 checked:
 - https://composio.dev/toolkits/nuvei
+- https://kantarainitiative.org/trust-status-list/
 - https://monid.ai/tools/nuvei
+- https://msb.fincen.gov/
 - https://n8n.io/integrations/nuvei/
+- https://www.access-dvs-register.service.gov.uk/register/download-register
 - https://zapier.com/apps/nuvei/integrations
 summary: null
 marketplace_apps: []
@@ -43,4 +46,35 @@ edges:
     property: schemas.ProcessorTokenCreateRequest.processor
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: FinCEN (MSB registration)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://msb.fincen.gov/
+  category: Money services business
+  contract_reference:
+    register: FinCEN MSB Registrant Search (msb.fincen.gov, full list export)
+    spec_file: null
+    standard: FinCEN MSB registration (US Bank Secrecy Act)
+    role: fincen-msb-registrant
+    registered_name: Nuvei US LLC
+    dba_name: null
+    register_id: Nuvei US LLC
+    matched_domain: nuvei.com
+    matched_by: domain
+    identity: wikidata Q47508523 'Nuvei' P856 https://www.nuvei.com
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    msb_activities:
+    - 409 money transmitter
+    states_of_activity: 41
+    received_date: 03/12/2026
+    signal_note: 'participation only: an MSB registration is not a licence or a certification; activities and states
+      are context, never counted'
+    detected_by: sweep-regtech-aml.py
+    detected: '2026-10-15'
+  detected_by: sweep-regtech-aml.py
+  first_seen: '2026-10-15'
 templates: []
