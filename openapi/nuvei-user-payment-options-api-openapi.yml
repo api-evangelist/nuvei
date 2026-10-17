@@ -203,9 +203,47 @@ components:
           enum:
           - SUCCESS
           - ERROR
+    UPOResponse:
+      type: object
+      properties:
+        userPaymentOptionId:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - ERROR
+        errCode:
+          type: integer
+        reason:
+          type: string
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        version:
+          type: string
+        clientRequestId:
+          type: string
+        internalRequestId:
+          type: integer
+    DeleteUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
     GetUserUPOsRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
+    ToggleUPORequest:
+      allOf:
+      - $ref: '#/components/schemas/MerchantAuth'
+      - type: object
+        properties:
+          userPaymentOptionId:
+            type: string
     AddUPOCardRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
@@ -221,13 +259,18 @@ components:
             type: string
           billingAddress:
             type: object
-    DeleteUPORequest:
+    AddUPOAPMRequest:
       allOf:
       - $ref: '#/components/schemas/MerchantAuth'
       - type: object
         properties:
-          userPaymentOptionId:
+          paymentMethodName:
             type: string
+          apmData:
+            type: object
+            additionalProperties: true
+          billingAddress:
+            type: object
     MerchantAuth:
       type: object
       required:
@@ -262,48 +305,5 @@ components:
             type: string
           ccNameOnCard:
             type: string
-          billingAddress:
-            type: object
-    ToggleUPORequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          userPaymentOptionId:
-            type: string
-    UPOResponse:
-      type: object
-      properties:
-        userPaymentOptionId:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - ERROR
-        errCode:
-          type: integer
-        reason:
-          type: string
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        version:
-          type: string
-        clientRequestId:
-          type: string
-        internalRequestId:
-          type: integer
-    AddUPOAPMRequest:
-      allOf:
-      - $ref: '#/components/schemas/MerchantAuth'
-      - type: object
-        properties:
-          paymentMethodName:
-            type: string
-          apmData:
-            type: object
-            additionalProperties: true
           billingAddress:
             type: object

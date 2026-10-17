@@ -83,25 +83,6 @@ components:
           type: object
         deviceDetails:
           type: object
-    Authenticate3DResponse:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        threeDResult:
-          type: string
-        cavv:
-          type: string
-        eci:
-          type: string
-        version:
-          type: string
-        dsTransID:
-          type: string
-        acsTransID:
-          type: string
-        status:
-          type: string
     Card3DResponse:
       type: object
       properties:
@@ -120,6 +101,25 @@ components:
         threeDDetails:
           type: object
           additionalProperties: true
+        status:
+          type: string
+    Authenticate3DResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        threeDResult:
+          type: string
+        cavv:
+          type: string
+        eci:
+          type: string
+        version:
+          type: string
+        dsTransID:
+          type: string
+        acsTransID:
+          type: string
         status:
           type: string
     Card3DRequest:
