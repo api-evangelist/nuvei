@@ -14,6 +14,8 @@ checked:
 - https://www.access-dvs-register.service.gov.uk/register/download-register
 - https://zapier.com/apps/nuvei/integrations
 - https://listings.pcisecuritystandards.org/assessors_and_solutions
+- commercetools/integrations/commercetools-integration-edges.yml
+- salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -110,4 +112,38 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: commercetools (own)
+  partner: commercetools
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://commercetools.com/technology-partners/nuvei
+  mirror_of: commercetools/integrations/commercetools-integration-edges.yml
+  apps:
+  - Nuvei
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Financial Services, Payment Service Providers
+- partner_name: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000GkWyDUAV
+  mirror_of: salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+  apps:
+  - Nuvei Payments Cartridge for B2C Commerce
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: finance, eCommerce, paymentsProcessing
 templates: []

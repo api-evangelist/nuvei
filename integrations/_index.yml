@@ -102,3 +102,29 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: nuvei-commercetools-own
+  label: commercetools (own)
+  partner: commercetools
+  partner_name: commercetools (own)
+  category: Financial Services, Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/nuvei
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: nuvei-salesforce-commerce-cloud-own
+  label: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_name: Salesforce Commerce Cloud (own)
+  category: finance, eCommerce, paymentsProcessing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000GkWyDUAV
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
