@@ -128,3 +128,190 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: nuvei-eba-payment-institutions-register-psd2-emd2
+  label: EBA Payment Institutions Register (PSD2 / EMD2)
+  partner_name: EBA Payment Institutions Register (PSD2 / EMD2)
+  category: EU/EEA PSD2 payment / e-money authorisation
+  type: register
+  channel: regulator-register
+  evidence: https://euclid.eba.europa.eu/register/pir/search
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: EBA Payment Institutions Register (PSD2 / EMD2)
+    spec_file: null
+    standard: null
+    role: authorised-payment-or-e-money-institution
+    registrations:
+    - registered_name: 'Nuvei Limited (former name: SAFECHARGE LTD)'
+      licences:
+      - electronic money institution
+      register_country: CY
+      register_id: PSD_EMICY_CBC!129880
+      matched_domain: null
+      matched_by: register-name
+      authorised: '2018-07-19'
+      competent_authority: CY_CBC
+      national_ref: 115.1.3.9
+      home_services:
+      - ES_010
+      - PS_03A
+      - PS_03B
+      - PS_03C
+      - PS_05A
+      - PS_05B
+      passports:
+      - AT
+      - BE
+      - BG
+      - CZ
+      - DE
+      - DK
+      - EE
+      - ES
+      - FI
+      - FR
+      - GR
+      - HR
+      - HU
+      - IE
+      - IS
+      - IT
+      - LI
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - 'NO'
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      register_name_note: register-name 'nuvei' = nuvei; wikidata P856 nuvei.com agrees or unheld
+    - registered_name: UAB “Nuvei”
+      licences:
+      - electronic money institution
+      register_country: LT
+      register_id: '304445876'
+      matched_domain: null
+      matched_by: register-name
+      authorised: '2019-07-23'
+      competent_authority: LT_BL
+      national_ref: LB001894
+      home_services:
+      - ES_010
+      - PS_03A
+      - PS_03B
+      - PS_03C
+      - PS_05B
+      - PS_060
+      passports:
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - ES
+      - FI
+      - FR
+      - GR
+      - HR
+      - HU
+      - IE
+      - IS
+      - IT
+      - LI
+      - LU
+      - LV
+      - MT
+      - NL
+      - 'NO'
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      register_name_note: register-name 'nuvei' = nuvei; wikidata P856 nuvei.com agrees or unheld
+    matched_by: register-name
+    signal_note: 'participation only: a regulator authorisation / registration and its PSD2 passports (host countries);
+      no API conformance is published by this register'
+    detected_by: sweep-eu-psd2-payment-institutions.py
+    detected: '2026-10-21'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  status: not-a-workflow
+  arazzo: null
+- slug: nuvei-bank-of-canada-rpaa-registry-of-payment-service-providers
+  label: Bank of Canada RPAA registry of payment service providers
+  partner_name: Bank of Canada RPAA registry of payment service providers
+  category: Canadian retail payment activities (RPAA) PSP registration
+  type: register
+  channel: regulator-register
+  evidence: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Bank of Canada RPAA registry of payment service providers
+    spec_file: null
+    standard: null
+    role: registered-psp
+    registrations:
+    - registered_name: Nuvei Corporation
+      register_status: registered
+      register_country: CA
+      register_id: 077cd814-48a0-ef11-a72d-000d3af39d00
+      matched_domain: nuvei.com
+      matched_by: domain
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=077cd814-48a0-ef11-a72d-000d3af39d00
+      licences:
+      - RPAA registered PSP
+      registration_date: '2026-03-25'
+      head_office_country: Canada
+      payment_functions:
+      - The provision or maintenance of an account that, in relation to an electronic funds transfer, is held on
+        behalf of one or more end users
+      - Holding of funds on behalf of an end user until they are withdrawn by the end user or transferred to another
+        individual or entity
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      - Clearing or settlement services
+      has_violations: false
+    - registered_name: Nuvei Integrated Payments EFT, Inc. f/k/a Paya EFT, Inc.
+      register_status: registered
+      register_country: CA
+      register_id: a4e7f5ff-aea2-ef11-a72d-000d3af39cf4
+      matched_domain: nuvei.com
+      matched_by: domain
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=a4e7f5ff-aea2-ef11-a72d-000d3af39cf4
+      licences:
+      - RPAA registered PSP
+      brand: Nuvei
+      registration_date: '2025-11-14'
+      head_office_country: Canada
+      trade_names:
+      - Paya Canada
+      - TPG
+      - Paya Services
+      - Paya Canada
+      - Paya Services
+      - TPG
+      payment_functions:
+      - The provision or maintenance of an account that, in relation to an electronic funds transfer, is held on
+        behalf of one or more end users
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      has_violations: false
+    signal_note: 'participation only: a regulator registration / payment-system membership; no API conformance is
+      published by this register'
+    detected_by: sweep-canada-rpaa-psp-registry.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null

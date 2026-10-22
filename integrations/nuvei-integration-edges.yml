@@ -19,6 +19,11 @@ checked:
 - https://euclid.eba.europa.eu/register/api/filemetadata
 - https://euclid.eba.europa.eu/register/cir/search
 - https://euclid.eba.europa.eu/register/pir/search
+- https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+- https://www.bankofcanada.ca/rps-api/cif2/accounts/list
+- https://www.payments.ca/payment-resources/directories?field_directory_type=10
+- https://www.payments.ca/payment-resources/directories?field_directory_type=13
+- https://www.payments.ca/payment-resources/directories?field_directory_type=14
 summary: null
 marketplace_apps: []
 edges:
@@ -270,4 +275,70 @@ edges:
       P856 not contradicting (Kin 2026-10-20 decision 2)
   detected_by: sweep-eu-psd2-payment-institutions.py
   first_seen: '2026-10-21'
+- partner_name: Bank of Canada RPAA registry of payment service providers
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+  category: Canadian retail payment activities (RPAA) PSP registration
+  contract_reference:
+    register: Bank of Canada RPAA registry of payment service providers
+    spec_file: null
+    standard: null
+    role: registered-psp
+    registrations:
+    - registered_name: Nuvei Corporation
+      register_status: registered
+      register_country: CA
+      register_id: 077cd814-48a0-ef11-a72d-000d3af39d00
+      matched_domain: nuvei.com
+      matched_by: domain
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=077cd814-48a0-ef11-a72d-000d3af39d00
+      licences:
+      - RPAA registered PSP
+      registration_date: '2026-03-25'
+      head_office_country: Canada
+      payment_functions:
+      - The provision or maintenance of an account that, in relation to an electronic funds transfer, is held on
+        behalf of one or more end users
+      - Holding of funds on behalf of an end user until they are withdrawn by the end user or transferred to another
+        individual or entity
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      - Clearing or settlement services
+      has_violations: false
+    - registered_name: Nuvei Integrated Payments EFT, Inc. f/k/a Paya EFT, Inc.
+      register_status: registered
+      register_country: CA
+      register_id: a4e7f5ff-aea2-ef11-a72d-000d3af39cf4
+      matched_domain: nuvei.com
+      matched_by: domain
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=a4e7f5ff-aea2-ef11-a72d-000d3af39cf4
+      licences:
+      - RPAA registered PSP
+      brand: Nuvei
+      registration_date: '2025-11-14'
+      head_office_country: Canada
+      trade_names:
+      - Paya Canada
+      - TPG
+      - Paya Services
+      - Paya Canada
+      - Paya Services
+      - TPG
+      payment_functions:
+      - The provision or maintenance of an account that, in relation to an electronic funds transfer, is held on
+        behalf of one or more end users
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      has_violations: false
+    signal_note: 'participation only: a regulator registration / payment-system membership; no API conformance is
+      published by this register'
+    detected_by: sweep-canada-rpaa-psp-registry.py
+    detected: '2026-10-22'
+  detected_by: sweep-canada-rpaa-psp-registry.py
+  first_seen: '2026-10-22'
 templates: []
