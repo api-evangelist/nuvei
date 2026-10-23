@@ -102,32 +102,6 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
-- slug: nuvei-commercetools-own
-  label: commercetools (own)
-  partner: commercetools
-  partner_name: commercetools (own)
-  category: Financial Services, Payment Service Providers
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://commercetools.com/technology-partners/nuvei
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: nuvei-salesforce-commerce-cloud-own
-  label: Salesforce Commerce Cloud (own)
-  partner: salesforce-commerce-cloud
-  partner_name: Salesforce Commerce Cloud (own)
-  category: finance, eCommerce, paymentsProcessing
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000GkWyDUAV
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: nuvei-eba-payment-institutions-register-psd2-emd2
   label: EBA Payment Institutions Register (PSD2 / EMD2)
   partner_name: EBA Payment Institutions Register (PSD2 / EMD2)
@@ -313,5 +287,44 @@
       published by this register'
     detected_by: sweep-canada-rpaa-psp-registry.py
     detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: nuvei-commercetools-own
+  label: commercetools (own)
+  partner: commercetools
+  partner_name: commercetools (own)
+  category: Financial Services, Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/nuvei
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: nuvei-salesforce-commerce-cloud-own
+  label: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_name: Salesforce Commerce Cloud (own)
+  category: finance, eCommerce, paymentsProcessing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000GkWyDUAV
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: nuvei-adobe-commerce-own
+  label: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_name: Adobe Commerce (own)
+  category: Adobe Exchange Experience Cloud listing (Commerce)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/108008
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
